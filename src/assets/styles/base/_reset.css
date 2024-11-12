@@ -1,0 +1,59 @@
+html {
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+
+* {
+  scroll-behavior: smooth;
+  outline: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  transition: background-color var(--animation-duration),
+    color var(--animation-duration-long);
+  /* border: red 1px solid; */
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul,
+a,
+img {
+  margin: 0;
+  padding: 0;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+a:link,
+a:visited {
+  color: #fff;
+  text-decoration: none;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  padding: var(--spacing-g);
+}
