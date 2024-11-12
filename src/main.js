@@ -12,8 +12,12 @@ import svg from './assets/images/play-pause.svg';
 import { getComponent, getTextComponent, getTextSpan } from './utils/helpers.js';
 import { showModal } from './handlers/showModal.js';
 import { home } from './pages/home.js';
+import { closeModal } from './components/modal.js';
 
-const div = getComponent('div', home, createButton('modal', ()=>{showModal(getComponent('div', getTextComponent('Em breve...')), '', ()=>{showSnackbar('Teste teste 123 teste', 5000)}, 'teste', )}, svg, '', 'mostra o modal'))
+const div = getComponent('div', home, createButton('modal', ()=>{showModal(getComponent('div', getTextComponent('Em breve...')), '', (e)=>{
+  showSnackbar('Teste teste 123 teste')
+  closeModal(e)
+}, 'teste', )}, svg, '', 'mostra o modal'))
 
 /**
  * @function main
