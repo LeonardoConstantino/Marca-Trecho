@@ -1,0 +1,86 @@
+button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  user-select: none;
+  background: var(--accent);
+  color: #FFFFFF;
+  font-weight: var(--font-weight-bold);
+  font-size: 1rem;
+  transition: background-color var(--animation-duration) ease, color var(--animation-duration) ease, transform var(--animation-duration) ease;
+}
+
+button:hover {
+  opacity: 0.9;
+  transform: scale(1.02);
+  box-shadow: var(--shadow-md);
+}
+
+button.button-tertiary {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  font-weight: var(--font-weight-regular);
+  transition: border var(--animation-duration) ease;
+}
+
+button.button-tertiary:hover {
+  border: 1px solid var(--accent);
+  color: var(--text-primary);
+}
+
+button.button-secondary {
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  font-weight: var(--font-weight-regular);
+  transition: border var(--animation-duration) ease;
+}
+
+button.button-secondary:hover {
+  background: var(--accent);
+  color: #FFFFFF;
+}
+
+/* Estilo para o ícone opcional */
+button i {
+  display: inline-block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 24px;
+  height: 24px;
+  filter: brightness(0) saturate(100%) invert(1); /* Cor branca padrão */
+}
+
+/* Especificidade para botões secundários e terciários */
+button.button-tertiary i,
+button.button-tertiary:hover i {
+  filter: brightness(0) saturate(100%) invert(18%) sepia(4%) saturate(30%) hue-rotate(180deg) brightness(90%) contrast(89%);
+}
+
+button.button-secondary i,
+button.button-secondary:hover i {
+  filter: brightness(0) saturate(100%) invert(31%) sepia(6%) saturate(509%) hue-rotate(182deg) brightness(90%) contrast(89%);
+}
+
+/* Hover no botão principal apenas ajusta o contraste */
+button:hover i {
+  filter: brightness(1) saturate(100%);
+}
+
+
+/* Tamanhos de ícones adaptáveis */
+button i.small {
+  width: 16px;
+  height: 16px;
+}
+
+button i.large {
+  width: 32px;
+  height: 32px;
+}

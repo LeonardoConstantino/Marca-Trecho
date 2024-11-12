@@ -305,6 +305,133 @@ function generateShareLink(playlistId, isEditable) {
 - [ ] O botão "Começar Agora" leva o usuário de volta à Home.
 - [ ] O tutorial cobre todos os principais recursos do aplicativo de maneira clara e concisa.
 
+## Estruturas de Dados
+### 1. Estrutura de Dados do Vídeo
+Cada vídeo adicionado pelo usuário será representado por um objeto que contém o videoId e uma lista de marcacoes de trechos feitas no vídeo.
+
+```javascript
+const Video = {
+  id: "1", // ID único do vídeo, pode ser um UUID
+  videoId: "dQw4w9WgXcQ", // ID do vídeo extraído do link (YouTube ID)
+  url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ", // URL do vídeo
+  marcacoes: [] // Array de marcacoes feitas pelo usuário no vídeo
+};
+```
+### 2. Estrutura de Dados das Marcações
+Cada marcação corresponde a um trecho específico de um vídeo, junto com detalhes sobre o trecho, nível de importância e comentário.
+
+```javascript
+const Marcacao = {
+  id: "1", // ID único da marcação
+  inicio: 120, // Início do trecho em segundos
+  fim: 150, // Fim do trecho em segundos
+  comentario: "Trecho interessante sobre o tema", // Comentário do usuário
+  importancia: "vermelho" // Nível de importância: "verde", "amarelo" ou "vermelho"
+};
+```
+### 3. Estrutura de Dados da Playlist
+A playlist é composta por uma lista de trechos, onde cada trecho corresponde a uma marcação específica de um vídeo.
+
+```javascript
+const Playlist = {
+  id: "1", // ID único da playlist
+  titulo: "Minha Playlist de Estudos", // Título personalizado da playlist
+  trechos: [] // Array de objetos Trecho (detalhados a seguir)
+};
+```
+### 4. Estrutura de Dados do Trecho na Playlist
+Cada trecho na playlist contém informações que relacionam uma marcação com seu vídeo original, permitindo que o trecho seja reproduzido na sequência desejada.
+
+```javascript
+const Trecho = {
+  id: "1", // ID único do trecho na playlist
+  videoId: "dQw4w9WgXcQ", // ID do vídeo a que o trecho pertence
+  inicio: 120, // Início do trecho em segundos (correspondente à marcação)
+  fim: 150, // Fim do trecho em segundos (correspondente à marcação)
+  comentario: "Trecho interessante sobre o tema", // Comentário associado ao trecho
+  importancia: "vermelho" // Nível de importância
+};
+```
+### Estruturas Relacionais e Integração
+As estruturas podem ser organizadas em arrays para facilitar o gerenciamento de dados na aplicação. Abaixo está uma forma de organizar esses dados em objetos de armazenamento para facilitar operações como adicionar, editar, remover e ordenar trechos.
+
+**Exemplo Completo de Estrutura de Dados**
+```javascript
+const dadosDoUsuario = {
+  videos: [
+    {
+      id: "1",
+      videoId: "dQw4w9WgXcQ",
+      url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      marcacoes: [
+        {
+          id: "1",
+          inicio: 120,
+          fim: 150,
+          comentario: "Trecho interessante sobre o tema",
+          importancia: "vermelho"
+        },
+        {
+          id: "2",
+          inicio: 300,
+          fim: 330,
+          comentario: "Detalhe importante",
+          importancia: "amarelo"
+        }
+      ]
+    },
+    {
+      id: "2",
+      videoId: "hY7m5jjJ9mM",
+      url: "https://www.youtube.com/watch?v=hY7m5jjJ9mM",
+      marcacoes: [
+        {
+          id: "3",
+          inicio: 60,
+          fim: 90,
+          comentario: "Interessante",
+          importancia: "verde"
+        }
+      ]
+    }
+  ],
+  playlists: [
+    {
+      id: "1",
+      titulo: "Playlist de Exemplo",
+      trechos: [
+        {
+          id: "1",
+          videoId: "dQw4w9WgXcQ",
+          inicio: 120,
+          fim: 150,
+          comentario: "Trecho interessante sobre o tema",
+          importancia: "vermelho"
+        },
+        {
+          id: "2",
+          videoId: "hY7m5jjJ9mM",
+          inicio: 60,
+          fim: 90,
+          comentario: "Interessante",
+          importancia: "verde"
+        }
+      ]
+    }
+  ]
+};
+```
+### Possíveis Métodos e Funções Auxiliares
+Para manipular essas estruturas, algumas funções auxiliares podem ser criadas, como:
+
+- **Adicionar Vídeo**: Função para adicionar um novo vídeo à lista de videos.
+- **Adicionar Marcação**: Função para adicionar uma nova marcação a um vídeo específico.
+- **Criar Playlist**: Função para criar uma nova playlist com trechos selecionados.
+- **Adicionar Trecho à Playlist**: Função para inserir trechos de vídeos em uma playlist específica.
+- **Ordenar Trechos**: Função para reordenar os trechos de uma playlist.
+- **Gerar Link Compartilhável**: Função para gerar uma URL com parâmetros codificados para compartilhar a playlist.
+Essas funções devem interagir com o objeto `dadosDoUsuario` para realizar as operações e podem ser armazenadas no localStorage para que o estado seja mantido entre sessões.
+
 ## Conclusão
 
 Esse detalhamento fornece uma estrutura clara para o desenvolvimento do projeto "Marca Trecho", permitindo que cada parte seja construída e testada de maneira sequencial e lógica. A estrutura é modular, o que facilita futuras expansões, como o suporte a outros sites de vídeo ou a adição de novas funcionalidades.
