@@ -1,4 +1,4 @@
-import { currentLanguage } from "../services/storageHandle";
+import { currentLanguage } from '../services/storageHandle';
 
 /**
  * Cria um componente genérico com filhos.
@@ -36,6 +36,38 @@ export const getTextComponent = (text) => {
  */
 export const getTextSpan = (text) => {
   return getComponent('span', getTextComponent(text));
+};
+
+/**
+ * Cria um componente de âncora (link) com texto.
+ * @param {string} link - O URL do link.
+ * @param {string} nome - O texto a ser exibido no link.
+ * @returns {Object} As configurações para criar um componente de âncora.
+ */
+export const getAnchor = (link, nome) => {
+  const a = getComponent('a', getTextComponent(nome));
+  a.props.href = link;
+  a.props.target = '_blank';
+  a.props.rel = 'noopener noreferrer';
+
+  return a;
+};
+
+/**
+ * Cria um componente de ícone com um tamanho específico.
+ *
+ * @param {string} icon - A URL da imagem do ícone.
+ * @param {'small' | 'normal' | 'large'} [size='normal'] - O tamanho do ícone (por exemplo, 'small', 'medium', 'large').
+ * @returns {Object} Um objeto representando o componente de ícone.
+ */
+export const getIconComponent = (icon, size='normal') => {
+  return {
+    type: 'i',
+    props: {
+      class: `${size === 'normal' ? 'icon' : `icon ${size}`}`,
+      style: `background-image: url("${icon}")`,
+    },
+  };
 };
 
 /**

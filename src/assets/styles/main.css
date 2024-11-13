@@ -9,13 +9,15 @@
 @import url('./components/_snackbar.css');
 @import url('./components/_textarea.css');
 
-/* @import url('./layout/layout_container.css'); */
-@import url('./layout/layout_header.css');
+@import url('./layout/layout_container.css');
 @import url('./layout/layout_footer.css');
+@import url('./layout/layout_header.css');
+@import url('./layout/layout_navigation.css');
 
 @import url('./pages/pages_home.css');
 
 @import url('./utils/utils_variables.css');
+@import url('./utils/utils_animation.css');
 @import url('./utils/utils_helpers.css');
 @import url('./utils/media-queries.css');
 

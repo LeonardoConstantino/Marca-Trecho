@@ -36,7 +36,8 @@ button.button-secondary {
   border: 1px solid var(--accent);
   color: var(--accent);
   font-weight: var(--font-weight-regular);
-  transition: border var(--animation-duration) ease;
+  transition: background-color var(--animation-duration) ease,
+  color var(--animation-duration-short) ease;
 }
 
 button.button-secondary:hover {
@@ -55,7 +56,8 @@ button.button-tertiary {
   border: 1px solid var(--border);
   color: var(--text-primary);
   font-weight: var(--font-weight-regular);
-  transition: border var(--animation-duration) ease;
+  transition: border var(--animation-duration-long) ease,
+  color var(--animation-duration) ease;
 }
 
 button.button-tertiary:hover {
@@ -77,39 +79,31 @@ button i {
   background-size: contain;
   width: 24px;
   height: 24px;
-  filter: brightness(0) saturate(100%) invert(1); /* Cor branca padrão */
+  filter: var(--icon-filter);
+  transition: filter var(--animation-duration-long) ease;
 }
 
-/* Especificidade para botões secundários e terciários */
-button.button-tertiary i,
-button.button-tertiary:hover i {
-  filter: brightness(0) saturate(100%) invert(18%) sepia(4%) saturate(30%)
-    hue-rotate(180deg) brightness(90%) contrast(89%);
-}
-
-button.button-secondary i,
-button.button-secondary:hover i {
-  filter: brightness(0) saturate(100%) invert(31%) sepia(6%) saturate(509%)
-    hue-rotate(182deg) brightness(90%) contrast(89%);
-}
-
-/* Hover no botão principal apenas ajusta o contraste */
+/* Hover padrão para o botão */
 button:hover i {
-  filter: brightness(1) saturate(100%);
+  filter: var(--icon-filter-hover);
 }
 
+/* Disabled */
 button:disabled i {
-  filter: brightness(0) saturate(100%) invert(31%) sepia(6%) saturate(509%)
-    hue-rotate(182deg) brightness(90%) contrast(89%);
+  filter: var(--icon-filter-disabled);
 }
 
-/* Tamanhos de ícones adaptáveis */
-button i.small {
-  width: 16px;
-  height: 16px;
+/* Botões secundários e terciários */
+button.button-secondary i {
+  filter: var(--icon-filter);
 }
 
-button i.large {
-  width: 32px;
-  height: 32px;
+button.button-tertiary i {
+  filter: var(--icon-filter-tertiary);
+}
+
+/* Hover específico para botões secundário e terciário */
+button.button-secondary:hover i,
+button.button-tertiary:hover i {
+  filter: var(--icon-filter-hover);
 }

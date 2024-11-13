@@ -1,1 +1,4 @@
-/* Navegação*/
+nav {
+  display: flex;
+  gap: var(--spacing-md);
+}

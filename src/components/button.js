@@ -6,7 +6,7 @@ import { getComponent, getTextSpan } from '../utils/helpers';
 /**
  * Representa os diferentes tipos de botões disponíveis na aplicação.
  *
- * @typedef {'PRIMARY' | 'SECONDARY' | 'TERTIARY'} BUTTONTYPE
+ * @typedef {'primary' | 'secondary' | 'tertiary'} BUTTONTYPE
  * @property {String} PRIMARY - O tipo de botão primário.
  * @property {String} SECONDARY - O tipo de botão secundário.
  * @property {String} TERTIARY - O tipo de botão terciário.
@@ -43,8 +43,8 @@ const defaultIconSize = IconSize.NORMAL;
  * @param {string} [className=''] - Classes CSS adicionais a serem aplicadas ao botão.
  * @param {string} [title=''] - O título (tooltip) do botão.
  * @param {Boolean} [disabled=false] - Indica se o botão está desabilitado.
- * @param {string} [tipo=defaultButtonType] - O tipo de botão.
- * @param {string} [iconSize=defaultIconSize] - O tamanho do ícone.
+ * @param {BUTTONTYPE} [tipo=defaultButtonType] - O tipo de botão.
+ * @param {...ICONSIZE} [iconSize=defaultIconSize] - O tamanho do ícone.
  * @returns {ElementConfig} Uma representação do botão como um objeto.
  *
  * @example
@@ -80,7 +80,8 @@ export const createButton = (
   if (iconSize !== IconSize.NORMAL) icon.props.class = iconSize;
 
   // Cria a representação do botão com um span filho contendo o texto.
-  const button = getComponent('button', getTextSpan(text));
+  const button = getComponent('button');
+  if (text !== '') button.props.children.push(getTextSpan(text));
 
   // Adiciona o evento onClick se for fornecido.
   if (onClick) button.props['onClick'] = onClick;

@@ -2,9 +2,9 @@
 import { ButtonType, createButton } from '../components/button.js';
 import { contactView } from '../pages/contact.js';
 import { homeView } from '../pages/home.js';
-import { capitalizeFirstLetter, getComponent } from '../utils/helpers.js';
+import { getComponent } from '../utils/helpers.js';
 
-export const views = [{ home: homeView }, { contact: contactView }];
+export const views = [{ Home: homeView }, { Contact: contactView }, { 'Minhas Playlists': contactView }, { 'Tutorial': contactView }];
 
 /**
  * Cria os links de navegação com base nos caminhos das rotas.
@@ -16,7 +16,7 @@ export const createNavigation = (views, currentView) => {
     const name = Object.keys(view)[0];
     const isCurrentView = name === currentView;
     const navButton = createButton(
-      capitalizeFirstLetter(name),
+      name,
       () => {
         console.log('name :', name);
       },
@@ -24,7 +24,7 @@ export const createNavigation = (views, currentView) => {
       '',
       '',
       isCurrentView,
-      ButtonType.SECONDARY
+      ButtonType.SECONDARY,
     );
 
     return navButton;
@@ -36,7 +36,7 @@ export const createNavigation = (views, currentView) => {
 };
 
 const getCurrentView = () => {
-  return 'home';
+  return 'Home';
 };
 
 // Cria o contêiner de navegação

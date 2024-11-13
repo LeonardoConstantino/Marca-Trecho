@@ -14,7 +14,7 @@
   
   header {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     padding: var(--spacing-sm);
   }
 
@@ -25,7 +25,13 @@
 
   [data-nav] nav {
     flex-direction: column;
-    gap: var(--spacing-xs);
+    align-items: center;
+    gap: var(--spacing-md);
+  }
+  
+  header .header-actions {
+    width: 100%;
+    justify-content: end;
   }
 }
 
@@ -33,5 +39,10 @@
   :root {
     --space-unit: 0.625rem;
     --font-size-root: 65%;
+  }
+
+  [data-nav] nav {
+    flex-direction: column;
+    gap: var(--spacing-sm);
   }
 }

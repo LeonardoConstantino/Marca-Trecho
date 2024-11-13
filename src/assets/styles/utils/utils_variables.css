@@ -5,6 +5,7 @@
   --text-primary: #1a1b1e;
   --text-secondary: #4a4b53;
   --text-tertiary: #8b8c95;
+  --text-highlight: #000000;
   --accent: #ff0000; /* Inspirado no vermelho do YouTube */
   --border: #e8eaf0;
   --success: #5ba97a;
@@ -12,12 +13,20 @@
   --danger: #d15e63;
   --card-bg: #ffffff;
   --shadow: rgba(0, 0, 0, 0.08);
+  --icon-filter: brightness(0) saturate(100%) invert(18%) sepia(4%)
+    saturate(30%) hue-rotate(180deg) brightness(90%) contrast(89%);
+  --icon-filter-hover: brightness(1) saturate(100%);
+  --icon-filter-disabled: brightness(0) saturate(100%) invert(75%) sepia(6%)
+    saturate(50%) hue-rotate(0deg) brightness(80%) contrast(70%);
+  --icon-filter-tertiary: brightness(0) saturate(100%) invert(0%) sepia(2%)
+    saturate(250%) hue-rotate(150deg) brightness(85%) contrast(85%);
 
   /* Tipografia */
   --font-primary: 'Roboto', sans-serif;
   --font-size-root: 100%;
   --font-size-base: 1rem;
   --font-size-small: 0.875rem;
+  --font-size-medium: 0.9rem;
   --font-size-large: 1.125rem;
   --font-size-h1: 4.21rem; /* 67.36px */
   --font-size-h2: 3.158rem; /* 50.56px */
@@ -26,6 +35,7 @@
   --font-size-h5: 1.333rem; /* 21.28px */
   --font-weight-regular: 400;
   --font-weight-bold: 700;
+  --font-line-height: 1.6;
 
   /* Espaçamento */
   --space-unit: 1rem; /* Unidade base (16px) */
@@ -35,19 +45,31 @@
   --spacing-lg: calc(var(--space-unit) * 1.5); /* 24px */
   --spacing-xl: calc(var(--space-unit) * 2); /* 32px */
 
+  /* Layout */
+  --layout-max-width: 800px;
+
   /* Bordas e Sombra */
   --border-radius-sm: 0.125rem; /* 2px */
   --border-radius: 0.3125rem; /* 5px */
   --border-radius-lg: 0.625rem; /* 10px */
 
+  /* Sombras */
   --shadow-sm: 0px 1px 2px rgba(0, 0, 0, 0.05);
   --shadow-md: 0px 4px 8px rgba(0, 0, 0, 0.1);
   --shadow-lg: 0px 8px 16px rgba(0, 0, 0, 0.1);
 
   /* Animações */
-  --animation-duration-short: 0.1s;
+  --animation-duration-short: 0.15s;
   --animation-duration: 0.2s;
-  --animation-duration-long: 0.3s;
+  --animation-duration-long: 0.25s;
+  --animation-duration-extra-long: 0.4s;
+
+  --scale-up-center-blurred: scale-up-center-blurred
+    var(--animation-duration-extra-long) cubic-bezier(0.39, 0.575, 0.565, 1)
+    both;
+  --scale-down-center-blurred: scale-down-center-blurred
+    var(--animation-duration-extra-long) cubic-bezier(0.39, 0.575, 0.565, 1)
+    both;
 }
 
 /* Modo escuro */
@@ -57,6 +79,7 @@
   --text-primary: #f8f9fa;
   --text-secondary: #ced3d7;
   --text-tertiary: #9ba1a6;
+  --text-highlight: #ffffff;
   --accent: #ff4a4a; /* Vermelho mais claro para contraste no escuro */
   --border: #2a2a34;
   --success: #6bab7f;
@@ -64,4 +87,10 @@
   --danger: #d66d75;
   --card-bg: #1e1e26;
   --shadow: rgba(255, 255, 255, 0.15);
+  --icon-filter: brightness(0) saturate(100%) invert(1); /* ícones brancos */
+  --icon-filter-hover: brightness(1.2) saturate(110%);
+  --icon-filter-disabled: brightness(0) saturate(100%) invert(50%) sepia(8%)
+    saturate(120%) hue-rotate(0deg) brightness(60%) contrast(75%);
+  --icon-filter-tertiary: brightness(0) saturate(100%) invert(40%) sepia(10%)
+    saturate(300%) hue-rotate(180deg) brightness(85%) contrast(85%);
 }

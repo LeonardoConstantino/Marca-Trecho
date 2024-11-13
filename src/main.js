@@ -8,6 +8,7 @@ import { renderElement } from './utils/renderElement.js';// Renderiza elementos 
 import { showSnackbar } from './utils/showSnackbar.js';// Exibe notificações
 import { currentTheme } from './services/storageHandle.js';// Obtém tarefas do armazenamento local
 import { createButton, ButtonType, IconSize } from './components/button.js';
+//@ts-ignore
 import svg from './assets/images/play-pause.svg';
 import { getComponent, getTextComponent, getTextSpan } from './utils/helpers.js';
 import { showModal } from './handlers/showModal.js';
@@ -15,6 +16,7 @@ import { homeView } from './pages/home.js';
 import { closeModal } from './components/modal.js';
 // import { navigation } from './layout/navigation.js';
 import { header } from './layout/header.js';
+import { footer } from './layout/footer.js';
 
 const div = getComponent('div', homeView, createButton('modal', ()=>{showModal(getComponent('div', getTextComponent('Em breve...')), '', (e)=>{
   showSnackbar('Teste teste 123 teste')
@@ -23,7 +25,7 @@ const div = getComponent('div', homeView, createButton('modal', ()=>{showModal(g
 
 /**
  * @function main
- * @description Função principal para inicializar a aplicação. Configura o tema, renderiza a página inicial, carrega tarefas e exibe notificações.
+ * @description Função principal para inicializar a aplicação. Configura o tema, renderiza a página inicial e exibe notificações.
  */
 const main = () => {
   try {
@@ -39,6 +41,7 @@ const main = () => {
     // Renderiza a página inicial e o layout de tarefas dentro do elemento 'app'
     renderElement(header, true, app);
     renderElement(div, true, app);
+    renderElement(footer, true, app);
 
     // Exibe uma mensagem de sucesso indicando que a aplicação foi iniciada
     showSnackbar('Aplicação iniciada com sucesso!');
