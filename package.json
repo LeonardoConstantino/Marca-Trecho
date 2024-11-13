@@ -1,9 +1,9 @@
 {
-  "name": "todo-app",
+  "name": "marca-trecho",
   "private": true,
   "version": "1.1.0",
   "type": "module",
-  "homepage": "https://leonardoconstantino.github.io/todoApp/",
+  "homepage": "https://leonardoconstantino.github.io/Marca-Trecho/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

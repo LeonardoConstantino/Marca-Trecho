@@ -1,12 +1,38 @@
 # Marca-Trecho!
 
-### [preview do projeto](https://leonardoconstantino.github.io/Marca-Trecho/)
+<!-- ### [preview do projeto](https://leonardoconstantino.github.io/Marca-Trecho/) -->
 
-[Detalhes da arquitetura de arquivos](https://github.com/LeonardoConstantino/Marca-Trecho/blob/main/estrutura.md)
+[Detalhes da arquitetura de arquivos](https://github.com/LeonardoConstantino/Marca-Trecho/blob/master/estrutura.md)
 
 ## Descrição
 
-Descrição...
+Este projeto é uma ferramenta de marcação de trechos de vídeos diretamente no navegador. Ele permite ao usuário criar e organizar marcações de partes importantes de vídeos do YouTube e, no futuro, de outros sites de vídeo. Não possui backend ou banco de dados, e todas as funcionalidades são executadas no front-end.
+
+<!-- ## Imagem do projeto
+
+<div align='center'>
+    <img src='https://raw.githubusercontent.com/LeonardoConstantino/Marca-Trecho/master/src/assets/images/image.png' alt='Sample screenshot' width='400'>
+</div> -->
+
+## Funcionalidades
+- **Adicionar Vídeos**: Insira o link do YouTube e adicione à sua lista.
+- **Marcar Trechos**: Selecione o trecho que deseja salvar e insira um comentário.
+- **Organizar Playlist**: Arraste e solte os trechos na ordem que preferir.
+- **Compartilhar Playlist**: Crie um link e compartilhe com amigos.
+
+## Tecnologias Utilizadas
+- **HTML5, CSS3** para estrutura e estilo.
+- **JavaScript** para lógica e manipulação de eventos.
+- **Vite** para o bundling e desenvolvimento local.
+- **Git** para controle de versão.
+- **GitHub** para hospedagem e colaboração.
+- **gh-pages** para deploy.
+- **VS Code** para desenvolvimento.
+<p>
+  <a href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=html,css,js,vite,git,github,vscode" />
+  </a>
+</p>
 
 ## Instalação
 
@@ -49,7 +75,7 @@ Após a instalação, siga os passos abaixo para rodar o projeto:
 3. Acesse o aplicativo no navegador e preencha o formulário para calcular o preço do papel higiênico.
 
 ## Licença
-Este projeto está licenciado sob a licença MIT. Veja o arquivo [LICENSE](https://github.com/LeonardoConstantino/Marca-Trecho/blob/main/LICENSE.txt) para mais detalhes.
+Este projeto está licenciado sob a licença MIT. Veja o arquivo [LICENSE](https://github.com/LeonardoConstantino/Marca-Trecho/blob/master/LICENSE.txt) para mais detalhes.
 
 ## Créditos
 Autor: Leonardo H. Constantino
@@ -80,8 +106,11 @@ Autor: Leonardo H. Constantino
 
 </div>
 
-<div align='center'>
+<!-- <div align='center'>
     <img src='https://raw.githubusercontent.com/LeonardoConstantino/Marca-Trecho/master/src/assets/images/print.jpg' alt='Sample screenshot' width='400'>
-</div>
+</div> -->
+
+## Proximo passos
+Ainda em desenvolvimento.
 
 #### Se precisar de alguma informação sobre o projeto estou a disposição, avise-me!
