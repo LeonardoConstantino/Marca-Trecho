@@ -66,3 +66,5 @@ dialog span {
   display: inline-block;
   padding: 0 var(--spacing-xs);
 }
+
+/*TODO: adicionar animação de entrada e saída do modal*/

@@ -11,7 +11,7 @@ Este projeto é uma ferramenta de marcação de trechos de vídeos diretamente n
 <!-- ## Imagem do projeto
 
 <div align='center'>
-    <img src='https://raw.githubusercontent.com/LeonardoConstantino/Marca-Trecho/master/src/assets/images/image.png' alt='Sample screenshot' width='400'>
+    <img src='https://raw.githubusercontent.com/LeonardoConstantino/Marca-Trecho/master/src/assets/images/print.png' alt='Sample screenshot' width='400'>
 </div> -->
 
 ## Funcionalidades
@@ -107,7 +107,7 @@ Autor: Leonardo H. Constantino
 </div>
 
 <!-- <div align='center'>
-    <img src='https://raw.githubusercontent.com/LeonardoConstantino/Marca-Trecho/master/src/assets/images/print.jpg' alt='Sample screenshot' width='400'>
+    <img src='https://raw.githubusercontent.com/LeonardoConstantino/Marca-Trecho/master/src/assets/images/representacao.jpg' alt='representação' width='400'>
 </div> -->
 
 ## Proximo passos
