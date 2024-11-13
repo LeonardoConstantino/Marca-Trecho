@@ -10,12 +10,13 @@ import { getComponent, getTextSpan } from '../utils/helpers';
  * @property {String} PRIMARY - O tipo de botão primário.
  * @property {String} SECONDARY - O tipo de botão secundário.
  * @property {String} TERTIARY - O tipo de botão terciário.
+ * @readonly
  */
-export const ButtonType = {
+export const ButtonType = Object.freeze({
   PRIMARY: 'primary',
   SECONDARY: 'secondary',
   TERTIARY: 'tertiary'
-};
+});
 const defaultButtonType = ButtonType.PRIMARY;
 
 /**
@@ -25,12 +26,13 @@ const defaultButtonType = ButtonType.PRIMARY;
  * @property {'small'} SMALL - O tamanho de ícone pequeno.
  * @property {'normal'} NORMAL - O tamanho de ícone normal.
  * @property {'large'} LARGE - O tamanho de ícone grande.
+ * @readonly
  */
-export const IconSize = {
+export const IconSize = Object.freeze({
   SMALL: 'small',
   NORMAL: 'normal',
   LARGE: 'large'
-};
+});
 const defaultIconSize = IconSize.NORMAL;
 /**
  * Cria uma representação de um botão com texto, ícone, evento de clique, classe CSS e título.

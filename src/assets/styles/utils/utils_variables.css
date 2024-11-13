@@ -15,9 +15,10 @@
   
     /* Tipografia */
     --font-primary: 'Roboto', sans-serif;
-    --font-size-base: 16px;
-    --font-size-small: 14px;
-    --font-size-large: 18px;
+    --font-size-root: 100%;
+    --font-size-base: 1rem;
+    --font-size-small: 0.875rem;
+    --font-size-large: 1.125rem    ;
     --font-weight-regular: 400;
     --font-weight-bold: 700;
   
