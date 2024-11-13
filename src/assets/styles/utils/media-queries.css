@@ -11,6 +11,22 @@
     --space-unit: 0.75rem;
     --font-size-root: 75%;
   }
+  
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: var(--spacing-sm);
+  }
+
+  [data-nav] {
+    width: 100%;
+    justify-content: center;
+  }
+
+  [data-nav] nav {
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
 }
 
 @media (max-width: 375px) {

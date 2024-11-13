@@ -1,68 +1,67 @@
 :root {
-    /* Cores Baseadas no Design do YouTube */
-    --bg-primary: #FFFFFF;
-    --bg-secondary: #F8F9FC;
-    --text-primary: #1A1B1E;
-    --text-secondary: #4A4B53;
-    --text-tertiary: #8B8C95;
-    --accent: #FF0000; /* Inspirado no vermelho do YouTube */
-    --border: #E8EAF0;
-    --success: #5BA97A;
-    --warning: #D9964C;
-    --danger: #D15E63;
-    --card-bg: #FFFFFF;
-    --shadow: rgba(0, 0, 0, 0.08);
-  
-    /* Tipografia */
-    --font-primary: 'Roboto', sans-serif;
-    --font-size-root: 100%;
-    --font-size-base: 1rem;
-    --font-size-small: 0.875rem;
-    --font-size-large: 1.125rem    ;
-    --font-weight-regular: 400;
-    --font-weight-bold: 700;
-  
-    /* Espaçamento */
-    --space-unit: 1rem; /* Unidade base (16px) */
-    --spacing-xs: calc(var(--space-unit) * 0.25); /* 4px */
-    --spacing-sm: calc(var(--space-unit) * 0.5); /* 8px */
-    --spacing-md: var(--space-unit); /* 16px */
-    --spacing-lg: calc(var(--space-unit) * 1.5); /* 24px */
-    --spacing-xl: calc(var(--space-unit) * 2); /* 32px */
-  
-    /* Bordas e Sombra */
-    --border-radius-sm: 0.125rem; /* 2px */
-    --border-radius: 0.3125rem; /* 5px */
-    --border-radius-lg: 0.625rem; /* 10px */
+  /* Cores Baseadas no Design do YouTube */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fc;
+  --text-primary: #1a1b1e;
+  --text-secondary: #4a4b53;
+  --text-tertiary: #8b8c95;
+  --accent: #ff0000; /* Inspirado no vermelho do YouTube */
+  --border: #e8eaf0;
+  --success: #5ba97a;
+  --warning: #d9964c;
+  --danger: #d15e63;
+  --card-bg: #ffffff;
+  --shadow: rgba(0, 0, 0, 0.08);
 
-    --shadow-sm: 0px 1px 2px rgba(0, 0, 0, 0.05);
-    --shadow-md: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0px 8px 16px rgba(0, 0, 0, 0.1);
-  
-    /* Animações */
-    --animation-duration-short: 0.1s;
-    --animation-duration: 0.2s;
-    --animation-duration-long: 0.3s;
+  /* Tipografia */
+  --font-primary: 'Roboto', sans-serif;
+  --font-size-root: 100%;
+  --font-size-base: 1rem;
+  --font-size-small: 0.875rem;
+  --font-size-large: 1.125rem;
+  --font-size-h1: 4.21rem; /* 67.36px */
+  --font-size-h2: 3.158rem; /* 50.56px */
+  --font-size-h3: 2.369rem; /* 37.92px */
+  --font-size-h4: 1.777rem; /* 28.48px */
+  --font-size-h5: 1.333rem; /* 21.28px */
+  --font-weight-regular: 400;
+  --font-weight-bold: 700;
 
-    /*media queries*/
-    --breakpoint-sm: 375px;
-    --breakpoint-md: 600px;
-    --breakpoint-lg: 768px;
-  }
-  
-  /* Modo escuro */
-  [data-theme='dark'] {
-    --bg-primary: #121218;
-    --bg-secondary: #1E1E26;
-    --text-primary: #F8F9FA;
-    --text-secondary: #CED3D7;
-    --text-tertiary: #9BA1A6;
-    --accent: #FF4A4A; /* Vermelho mais claro para contraste no escuro */
-    --border: #2A2A34;
-    --success: #6BAB7F;
-    --warning: #E6A74C;
-    --danger: #D66D75;
-    --card-bg: #1E1E26;
-    --shadow: rgba(255, 255, 255, 0.15);
-  }
-  
+  /* Espaçamento */
+  --space-unit: 1rem; /* Unidade base (16px) */
+  --spacing-xs: calc(var(--space-unit) * 0.25); /* 4px */
+  --spacing-sm: calc(var(--space-unit) * 0.5); /* 8px */
+  --spacing-md: var(--space-unit); /* 16px */
+  --spacing-lg: calc(var(--space-unit) * 1.5); /* 24px */
+  --spacing-xl: calc(var(--space-unit) * 2); /* 32px */
+
+  /* Bordas e Sombra */
+  --border-radius-sm: 0.125rem; /* 2px */
+  --border-radius: 0.3125rem; /* 5px */
+  --border-radius-lg: 0.625rem; /* 10px */
+
+  --shadow-sm: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0px 8px 16px rgba(0, 0, 0, 0.1);
+
+  /* Animações */
+  --animation-duration-short: 0.1s;
+  --animation-duration: 0.2s;
+  --animation-duration-long: 0.3s;
+}
+
+/* Modo escuro */
+[data-theme='dark'] {
+  --bg-primary: #121218;
+  --bg-secondary: #1e1e26;
+  --text-primary: #f8f9fa;
+  --text-secondary: #ced3d7;
+  --text-tertiary: #9ba1a6;
+  --accent: #ff4a4a; /* Vermelho mais claro para contraste no escuro */
+  --border: #2a2a34;
+  --success: #6bab7f;
+  --warning: #e6a74c;
+  --danger: #d66d75;
+  --card-bg: #1e1e26;
+  --shadow: rgba(255, 255, 255, 0.15);
+}

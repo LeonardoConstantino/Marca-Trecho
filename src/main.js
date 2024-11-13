@@ -11,10 +11,12 @@ import { createButton, ButtonType, IconSize } from './components/button.js';
 import svg from './assets/images/play-pause.svg';
 import { getComponent, getTextComponent, getTextSpan } from './utils/helpers.js';
 import { showModal } from './handlers/showModal.js';
-import { home } from './pages/home.js';
+import { homeView } from './pages/home.js';
 import { closeModal } from './components/modal.js';
+// import { navigation } from './layout/navigation.js';
+import { header } from './layout/header.js';
 
-const div = getComponent('div', home, createButton('modal', ()=>{showModal(getComponent('div', getTextComponent('Em breve...')), '', (e)=>{
+const div = getComponent('div', homeView, createButton('modal', ()=>{showModal(getComponent('div', getTextComponent('Em breve...')), '', (e)=>{
   showSnackbar('Teste teste 123 teste')
   closeModal(e)
 }, 'teste', )}, svg, '', 'mostra o modal'))
@@ -35,6 +37,7 @@ const main = () => {
     if (!app) throw new Error('Elemento com o ID "app" não encontrado.');
       
     // Renderiza a página inicial e o layout de tarefas dentro do elemento 'app'
+    renderElement(header, true, app);
     renderElement(div, true, app);
 
     // Exibe uma mensagem de sucesso indicando que a aplicação foi iniciada

@@ -1,1 +1,32 @@
-/* Cabeçalho*/
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-sm) var(--spacing-md);
+  background-color: var(--bg-primary);
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow-md);
+}
+
+.header-title {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.header-title h1 {
+  font-size: var(--font-size-h2);
+}
+
+.header-title img {
+  max-height: 40px;
+}
+
+[data-nav] {
+  display: flex;
+}
+
+[data-nav] nav {
+  display: flex;
+  gap: var(--spacing-md);
+}

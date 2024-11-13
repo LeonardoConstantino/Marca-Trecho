@@ -42,6 +42,7 @@ const defaultIconSize = IconSize.NORMAL;
  * @param {string} [iconUrl] - O URL do ícone a ser exibido no botão.
  * @param {string} [className=''] - Classes CSS adicionais a serem aplicadas ao botão.
  * @param {string} [title=''] - O título (tooltip) do botão.
+ * @param {Boolean} [disabled=false] - Indica se o botão está desabilitado.
  * @param {string} [tipo=defaultButtonType] - O tipo de botão.
  * @param {string} [iconSize=defaultIconSize] - O tamanho do ícone.
  * @returns {ElementConfig} Uma representação do botão como um objeto.
@@ -69,6 +70,7 @@ export const createButton = (
   iconUrl,
   className = '',
   title = '',
+  disabled = false,
   tipo = defaultButtonType,
   iconSize = defaultIconSize
 ) => {
@@ -95,6 +97,9 @@ export const createButton = (
 
   // Adiciona o título (tooltip) do botão.
   if (title) button.props.title = title;
+
+  // Adiciona o atributo disabled se o botão estiver desabilitado.
+  if (disabled) button.props.disabled = '';
 
   // Retorna a representação do botão.
   return button;
