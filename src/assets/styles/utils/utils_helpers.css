@@ -30,3 +30,24 @@
 .hidden {
   display: none;
 }
+
+.icon {
+  display: inline-block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  filter: var(--icon-filter-tertiary);
+  width: 32px;
+  height: 32px;
+}
+
+/* Tamanhos de ícones adaptáveis */
+i.small {
+  width: 16px;
+  height: 16px;
+}
+
+i.large {
+  width: 32px;
+  height: 32px;
+}

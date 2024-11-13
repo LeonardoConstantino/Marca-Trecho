@@ -18,8 +18,13 @@ export const closeModal = (e) => {
   const modal = e.target.closest('dialog');
   if (modal instanceof HTMLDialogElement) {
     EventDelegator.cleanup(modal);
-    modal.close();
-    modal.remove();
+
+    modal.classList.add('modal-close')
+
+    setTimeout(() => {
+      modal.close();
+      modal.remove();
+    }, 450);
   }
 };
 
@@ -28,7 +33,7 @@ export const closeModal = (e) => {
  *
  * @param {ElementConfig} content - O conteúdo a ser exibido no modal.
  * @param {string} className - Uma string que representa o nome da classe CSS a ser aplicada ao modal.
- * @param {Function} confirmeHandler - A função a ser executada quando o usuário confirmar a ação.
+ * @param {Function | null} [confirmeHandler=null] - A função a ser executada quando o usuário confirmar a ação, ou null se não houver uma função de confirmação, os botoes de confirmação e cancelamento não serão exibidos.
  * @param {string} [textBtnConfirme='OK'] - O texto a ser exibido no botão de confirmação.
  * @param {string} [titleBtnConfirme='Confirmar'] - O título a ser exibido no botão de confirmação.
  * @param {Function} [cancelHandler=closeModal] - A função a ser executada quando o usuário cancelar a ação.
@@ -39,47 +44,52 @@ export const closeModal = (e) => {
 export const getModal = (
   content,
   className,
-  confirmeHandler,
+  confirmeHandler = null,
   textBtnConfirme = 'OK',
   titleBtnConfirme = 'Confirmar',
   cancelHandler = closeModal,
   textBtnCancel = 'Cancelar',
   titleBtnCancel = 'Fechar',
 ) => {
-  if (!confirmeHandler || typeof confirmeHandler !== 'function') {
-    throw new Error('confirmeHandler must be a function');
+  const modal = getComponent('dialog')
+  const form = getComponent('form')
+
+  if (confirmeHandler) {
+    const confirmeModalButton = createButton(
+      textBtnConfirme,
+      confirmeHandler,
+      '',
+      '',
+      titleBtnConfirme
+    );
+    
+    const cancelModalButton = createButton(
+      textBtnCancel,
+      cancelHandler,
+      '',
+      'button-secondary',
+      titleBtnCancel
+    );
+    if (cancelModalButton.props) cancelModalButton.props.formmethod = 'dialog';
+    
+    // const form = getComponent('form', confirmeModalButton, cancelModalButton);
+    form.props.children.push(confirmeModalButton, cancelModalButton);
+    if (form.props) form.props.method = 'dialog';
+    // modal.props.children.push(form);
   }
-
-  const classForModal =
-    className !== '' ? `dialog-modal ${className}` : 'dialog-modal';
-
-  const confirmeModalButton = createButton(
-    textBtnConfirme,
-    confirmeHandler,
-    '',
-    '',
-    titleBtnConfirme
-  );
-
-  const cancelModalButton = createButton(
-    textBtnCancel,
-    cancelHandler,
-    '',
-    'button-secondary',
-    titleBtnCancel
-  );
-  if (cancelModalButton.props) cancelModalButton.props.formmethod = 'dialog';
-
-  const form = getComponent('form', confirmeModalButton, cancelModalButton);
-  if (form.props) form.props.method = 'dialog';
-
+  
   const closeButton = createButton('X', closeModal, '', 'close', 'Fechar');
+  
+  const classForModal =
+  className !== '' ? `dialog-modal ${className}` : 'dialog-modal';
 
-  const modal = getComponent('dialog', closeButton, content, form);
+  // const modal = getComponent('dialog', closeButton, content, form);
+  modal.props.children.push(closeButton, content);
+  if (confirmeHandler !== null) {
+    modal.props.children.push(form);
+  }
   if (content.props) content.props.class = 'dialog-content';
   modal.props.class = classForModal;
 
   return modal;
 };
-
-//TODO : adicionar animaçao de entrada e saida do modal

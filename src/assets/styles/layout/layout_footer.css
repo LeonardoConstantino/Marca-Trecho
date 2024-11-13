@@ -1,1 +1,70 @@
-/* Rodapé*/
+/* Estilo geral para o footer */
+footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md) var(--spacing-lg);
+  background-color: var(--bg-secondary);
+  color: var(--text-secondary);
+  border-top: 1px solid var(--border);
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  max-width: var(--layout-max-width);
+}
+
+footer .brand {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  color: var(--text-tertiary);
+  font-size: var(--font-size-medium);
+}
+
+.about-content .dialog-content,
+.privacy-policy-content .dialog-content,
+.contact-content .dialog-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-md);
+}
+
+.dialog-content h3 {
+  font-size: var(--font-size-h4);
+  color: var(--text-highlight);
+}
+
+.dialog-content h4 {
+  font-size: var(--font-size-large);
+  font-weight: var(--font-weight-regular);
+  color: var(--text-secondary);
+}
+
+.dialog-content p {
+  line-height: var(--font-line-height);
+  color: var(--text-primary);
+}
+
+.dialog-content a {
+  color: var(--text-highlight);
+  text-decoration: none;
+  font-weight: var(--font-weight-medium);
+  transition: color var(--animation-duration-long) ease;
+}
+
+.dialog-content a:hover {
+  color: var(--accent);
+}
+
+.dialog-content .icon {
+  filter: var(--icon-filter-hover); 
+}
+
+.dialog-content p {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}

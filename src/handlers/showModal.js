@@ -11,7 +11,7 @@ import { renderElement } from '../utils/renderElement.js';
  *
  * @param {ElementConfig} content - O conteúdo a ser exibido no modal.
  * @param {string} className - Uma string que representa o nome da classe CSS a ser aplicada ao modal.
- * @param {Function} confirmeHandler - A função a ser executada quando o usuário confirmar a ação.
+ * @param {Function | null} [confirmeHandler=null] - A função a ser executada quando o usuário confirmar a ação, ou null se não houver uma função de confirmação, os botoes de confirmação e cancelamento não serão exibidos.
  * @param {string} [textBtnConfirme='OK'] - O texto a ser exibido no botão de confirmação.
  * @param {string} [titleBtnConfirme='Confirmar'] - O título a ser exibido no botão de confirmação.
  * @param {Function} [cancelHandler=closeModal] - A função a ser executada quando o usuário cancelar a ação.

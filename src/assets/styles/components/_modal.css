@@ -13,7 +13,7 @@ dialog {
   left: 50%;
   transform: translate(-50%, -50%);
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
-  animation: fadeIn 0.3s ease-out;
+  animation: var(--scale-up-center-blurred)
 }
 
 dialog::backdrop {
@@ -21,15 +21,8 @@ dialog::backdrop {
   backdrop-filter: blur(8px);
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translate(-50%, -48%);
-  }
-  to {
-    opacity: 1;
-    transform: translate(-50%, -50%);
-  }
+dialog.modal-close {
+  animation: var(--scale-down-center-blurred)
 }
 
 .close {
@@ -42,7 +35,8 @@ dialog::backdrop {
   top: 0px;
   right: 0px;
   cursor: pointer;
-  transition: color var(--animation-duration) ease, transform var(--animation-duration) ease;
+  transition: color var(--animation-duration) ease,
+    transform var(--animation-duration) ease;
 }
 
 .close:hover {

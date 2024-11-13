@@ -6,16 +6,17 @@ import { getComponent, getTextSpan } from '../utils/helpers';
 /**
  * Representa os diferentes tipos de botões disponíveis na aplicação.
  *
- * @typedef {'PRIMARY' | 'SECONDARY' | 'TERTIARY'} BUTTONTYPE
+ * @typedef {'primary' | 'secondary' | 'tertiary'} BUTTONTYPE
  * @property {String} PRIMARY - O tipo de botão primário.
  * @property {String} SECONDARY - O tipo de botão secundário.
  * @property {String} TERTIARY - O tipo de botão terciário.
+ * @readonly
  */
-export const ButtonType = {
+export const ButtonType = Object.freeze({
   PRIMARY: 'primary',
   SECONDARY: 'secondary',
   TERTIARY: 'tertiary'
-};
+});
 const defaultButtonType = ButtonType.PRIMARY;
 
 /**
@@ -25,12 +26,13 @@ const defaultButtonType = ButtonType.PRIMARY;
  * @property {'small'} SMALL - O tamanho de ícone pequeno.
  * @property {'normal'} NORMAL - O tamanho de ícone normal.
  * @property {'large'} LARGE - O tamanho de ícone grande.
+ * @readonly
  */
-export const IconSize = {
+export const IconSize = Object.freeze({
   SMALL: 'small',
   NORMAL: 'normal',
   LARGE: 'large'
-};
+});
 const defaultIconSize = IconSize.NORMAL;
 /**
  * Cria uma representação de um botão com texto, ícone, evento de clique, classe CSS e título.
@@ -40,8 +42,9 @@ const defaultIconSize = IconSize.NORMAL;
  * @param {string} [iconUrl] - O URL do ícone a ser exibido no botão.
  * @param {string} [className=''] - Classes CSS adicionais a serem aplicadas ao botão.
  * @param {string} [title=''] - O título (tooltip) do botão.
- * @param {string} [tipo=defaultButtonType] - O tipo de botão.
- * @param {string} [iconSize=defaultIconSize] - O tamanho do ícone.
+ * @param {Boolean} [disabled=false] - Indica se o botão está desabilitado.
+ * @param {BUTTONTYPE} [tipo=defaultButtonType] - O tipo de botão.
+ * @param {...ICONSIZE} [iconSize=defaultIconSize] - O tamanho do ícone.
  * @returns {ElementConfig} Uma representação do botão como um objeto.
  *
  * @example
@@ -67,6 +70,7 @@ export const createButton = (
   iconUrl,
   className = '',
   title = '',
+  disabled = false,
   tipo = defaultButtonType,
   iconSize = defaultIconSize
 ) => {
@@ -76,7 +80,8 @@ export const createButton = (
   if (iconSize !== IconSize.NORMAL) icon.props.class = iconSize;
 
   // Cria a representação do botão com um span filho contendo o texto.
-  const button = getComponent('button', getTextSpan(text));
+  const button = getComponent('button');
+  if (text !== '') button.props.children.push(getTextSpan(text));
 
   // Adiciona o evento onClick se for fornecido.
   if (onClick) button.props['onClick'] = onClick;
@@ -93,6 +98,9 @@ export const createButton = (
 
   // Adiciona o título (tooltip) do botão.
   if (title) button.props.title = title;
+
+  // Adiciona o atributo disabled se o botão estiver desabilitado.
+  if (disabled) button.props.disabled = '';
 
   // Retorna a representação do botão.
   return button;
