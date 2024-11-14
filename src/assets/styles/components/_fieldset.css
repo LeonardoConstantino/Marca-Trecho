@@ -1,7 +1,7 @@
 fieldset {
   border: 1px solid var(--border);
   border-radius: var(--border-radius);
-  padding: var(--spacing-xs);
+  padding: var(--spacing-sm);
   text-align: left;
 }
 
@@ -15,7 +15,7 @@ fieldset label {
   display: flex;
   align-items: center;
   gap: var(--spacing-xs);
-  padding: var(--spacing-xs);
+  padding: var(--spacing-sm);
   border-radius: var(--border-radius);
   transition: background-color 0.2s ease;
   cursor: pointer;

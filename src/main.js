@@ -17,6 +17,8 @@ import { closeModal } from './components/modal.js';
 // import { navigation } from './layout/navigation.js';
 import { header } from './layout/header.js';
 import { footer } from './layout/footer.js';
+import { contactView } from './pages/contact.js';
+import { viewContainer } from './layout/grid.js';
 
 const div = getComponent('div', homeView, createButton('modal', ()=>{showModal(getComponent('div', getTextComponent('Em breve...')), '', (e)=>{
   showSnackbar('Teste teste 123 teste')
@@ -31,6 +33,7 @@ const main = () => {
   try {
     // Seleciona o elemento principal da aplicação no DOM
     const app = document.getElementById('app');
+    const container = viewContainer
         
     // Obtém o tema atual da aplicação do armazenamento local
     document.documentElement.setAttribute('data-theme', currentTheme);
@@ -39,9 +42,11 @@ const main = () => {
     if (!app) throw new Error('Elemento com o ID "app" não encontrado.');
       
     // Renderiza a página inicial e o layout de tarefas dentro do elemento 'app'
+    // renderElement(header, true, app);
     renderElement(header, true, app);
-    renderElement(div, true, app);
+    renderElement(viewContainer, true, app);
     renderElement(footer, true, app);
+
 
     // Exibe uma mensagem de sucesso indicando que a aplicação foi iniciada
     showSnackbar('Aplicação iniciada com sucesso!');

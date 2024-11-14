@@ -2,4 +2,5 @@
   max-width: var(--layout-max-width);
   height: 100dvh;
   margin: 0 auto;
+  box-shadow: var(--shadow-md);
 }

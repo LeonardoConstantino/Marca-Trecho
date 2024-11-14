@@ -36,7 +36,7 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
-  filter: var(--icon-filter-tertiary);
+  filter: var(--icon-filter);
   width: 32px;
   height: 32px;
 }

@@ -1,5 +1,11 @@
 // src/pages/contact.js
 
-import { getComponent, getTextComponent } from "../utils/helpers";
+import { getComponent, getTextComponent } from '../utils/helpers';
 
-export const contactView = getComponent('div', getComponent('h2', getTextComponent('contact')), getComponent('p', getTextComponent('Em breve mais informações...')));
+export const contactView = getComponent(
+  'div',
+  getComponent('h2', getTextComponent('contact')),
+  getComponent('p', getTextComponent('Em breve mais informações...'))
+);
+
+contactView.props.class = 'view contact';

@@ -1,0 +1,15 @@
+main {
+  max-width: var(--layout-max-width);
+  min-height: 100%;
+  padding: var(--spacing-md);
+  background-color: var(--bg-tertiary);
+}
+
+main .view {
+  animation: var(--fade-in);
+}
+
+main .view-out {
+  animation: var(--fade-out);
+}
+

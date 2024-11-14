@@ -66,7 +66,7 @@ const contentModalSettings = getComponent(
 const settingsButton = createButton(
   '',
   () => {
-    showModal(contentModalSettings, '', toggleTheme);
+    showModal(contentModalSettings, 'modal-settings', toggleTheme);
   },
   settings,
   '',

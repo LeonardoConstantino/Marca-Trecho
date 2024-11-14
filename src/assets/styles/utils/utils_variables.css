@@ -2,6 +2,7 @@
   /* Cores Baseadas no Design do YouTube */
   --bg-primary: #ffffff;
   --bg-secondary: #f8f9fc;
+  --bg-tertiary: #f1f3f6;
   --text-primary: #1a1b1e;
   --text-secondary: #4a4b53;
   --text-tertiary: #8b8c95;
@@ -70,12 +71,15 @@
   --scale-down-center-blurred: scale-down-center-blurred
     var(--animation-duration-extra-long) cubic-bezier(0.39, 0.575, 0.565, 1)
     both;
+  --fade-in: fade-in var(--animation-duration-extra-long) cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+  --fade-out: fade-out var(--animation-duration-extra-long) ease-out both;
 }
 
 /* Modo escuro */
 [data-theme='dark'] {
   --bg-primary: #121218;
   --bg-secondary: #1e1e26;
+  --bg-tertiary: #2a2a34;
   --text-primary: #f8f9fa;
   --text-secondary: #ced3d7;
   --text-tertiary: #9ba1a6;
