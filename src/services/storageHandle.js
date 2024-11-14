@@ -1,5 +1,5 @@
 
-import { APP_PREFIX } from '../utils/constants.js';
+import { APP_PREFIX, FIRST_VIEW } from '../utils/constants.js';
 import { storageUtil } from '../utils/storageUtil';
 
 /**
@@ -21,3 +21,10 @@ export const currentTheme = storageUtil.getItem('theme') || 'light';
  * @type {string} - O idioma atual da aplicação armazenado no armazenamento local.
  */
 export const currentLanguage = storageUtil.getItem('language');
+
+/**
+ * Recupera a última view da aplicação armazenada no armazenamento local.
+ * Caso não exista nenhuma view armazenada, a view padrão fistView[tutorial ou home] é retornada.
+ * @returns {string} - A última view da aplicação armazenada no armazenamento local.
+ */
+export const getLastView = ()=> storageUtil.getItem('lastView') || FIRST_VIEW;
