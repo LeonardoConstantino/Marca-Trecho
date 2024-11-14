@@ -1,8 +1,18 @@
 main {
   max-width: var(--layout-max-width);
-  min-height: 100%;
+  /* min-height: 80%; */
   padding: var(--spacing-md);
   background-color: var(--bg-tertiary);
+}
+
+main .view {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-lg) 0;
+  /* max-width: 800px; */
+  width: 100%;
+  /* margin: 0 auto; */
 }
 
 main .view {

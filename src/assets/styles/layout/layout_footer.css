@@ -9,8 +9,8 @@ footer {
   color: var(--text-secondary);
   border-top: 1px solid var(--accent);
   text-align: center;
-  position: fixed;
-  bottom: 0;
+  /* position: sticky; */
+  /* bottom: 0; */
   width: 100%;
   max-width: var(--layout-max-width);
 }

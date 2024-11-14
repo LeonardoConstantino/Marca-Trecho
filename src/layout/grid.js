@@ -1,5 +1,4 @@
 // src/layout/grid.js
-// import { homeView } from '../pages/home'
 import { views } from '../handlers/toggleView';
 import { getLastView } from '../services/storageHandle';
 import { FIRST_VIEW } from '../utils/constants'

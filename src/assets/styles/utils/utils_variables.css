@@ -84,14 +84,17 @@
   --text-secondary: #ced3d7;
   --text-tertiary: #9ba1a6;
   --text-highlight: #ffffff;
-  --accent: #ff4a4a; /* Vermelho mais claro para contraste no escuro */
+  --accent: #ff4a4a;
   --border: #2a2a34;
   --success: #6bab7f;
   --warning: #e6a74c;
   --danger: #d66d75;
   --card-bg: #1e1e26;
-  --shadow: rgba(255, 255, 255, 0.15);
-  --icon-filter: brightness(0) saturate(100%) invert(1); /* ícones brancos */
+  --shadow: rgba(255, 255, 255, 0.18);
+  --shadow-sm: 0px 1px 2px rgba(255, 255, 255, 0.05);
+  --shadow-md: 0px 4px 8px rgba(255, 255, 255, 0.1);
+  --shadow-lg: 0px 8px 16px rgba(255, 255, 255, 0.1);
+  --icon-filter: brightness(0) saturate(100%) invert(1);
   --icon-filter-hover: brightness(1.2) saturate(110%);
   --icon-filter-disabled: brightness(0) saturate(100%) invert(50%) sepia(8%)
     saturate(120%) hue-rotate(0deg) brightness(60%) contrast(75%);

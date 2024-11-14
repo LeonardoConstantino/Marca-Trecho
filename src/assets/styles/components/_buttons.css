@@ -8,7 +8,7 @@ button {
   cursor: pointer;
   user-select: none;
   background: var(--accent);
-  color: var(--bg-primary);
+  color: var(--text-primary);
   font-weight: var(--font-weight-bold);
   font-size: 1rem;
   transition: background-color var(--animation-duration) ease,
@@ -106,4 +106,37 @@ button.button-tertiary i {
 button.button-secondary:hover i,
 button.button-tertiary:hover i {
   filter: var(--icon-filter-hover);
+}
+
+/* Estilo básico para o botão com o efeito shine */
+button.button-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animação de brilho (shine) */
+button.button-shine::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transform: skewX(-20deg);
+  transition: opacity var(--animation-duration) ease;
+}
+
+/* Animação ao passar o mouse */
+button.button-shine:hover::after {
+  animation: shine var(--animation-duration-extra-long) ease-in-out backwards;
+}
+
+@keyframes shine {
+  from {
+    left: -100%;
+  }
+  to {
+    left: 100%;
+  }
 }

@@ -1,6 +1,10 @@
 #app {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   max-width: var(--layout-max-width);
   height: 100dvh;
   margin: 0 auto;
   box-shadow: var(--shadow-md);
+  background-color: var(--bg-tertiary);
 }
