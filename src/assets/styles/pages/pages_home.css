@@ -12,7 +12,7 @@
 
 .home-video-management {
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   gap: var(--spacing-lg);
 }
 

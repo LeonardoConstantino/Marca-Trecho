@@ -70,7 +70,7 @@ playlists.props.class = 'home-playlists';
 const videoManagementActions = getComponent('div', createButton('', () => console.log('abrir/fechar'), arrow, 'showHide', 'Fechar', false, ButtonType.TERTIARY, IconSize.SMALL));
 videoManagementActions.props.class = 'home-video-management-actions';
 
-const videoManagement = getComponent('div', videoManagementActions, addedVideos, playlists);
+const videoManagement = getComponent('div', addedVideos, playlists);
 videoManagement.props.class = 'home-video-management';
 
 export const homeView = getComponent('div', introduction, videoManagement);

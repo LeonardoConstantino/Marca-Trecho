@@ -2,7 +2,7 @@ button {
   display: inline-flex;
   align-items: center;
   gap: var(--spacing-xs);
-  padding: var(--spacing-xs) var(--spacing-sm);
+  padding: var(--spacing-xs) var(--spacing-md);
   border: none;
   border-radius: var(--border-radius);
   cursor: pointer;
@@ -24,10 +24,10 @@ button:hover {
 
 button:disabled {
   cursor: not-allowed;
-  opacity: 0.6;
+  opacity: 0.3;
   background: var(--bg-secondary);
   color: var(--text-tertiary);
-  box-shadow: none;
+  box-shadow: inset 0 0 2px 0 var(--border);
   transform: none;
 }
 
@@ -37,7 +37,7 @@ button.button-secondary {
   color: var(--accent);
   font-weight: var(--font-weight-regular);
   transition: background-color var(--animation-duration) ease,
-  color var(--animation-duration-short) ease;
+    color var(--animation-duration-short) ease;
 }
 
 button.button-secondary:hover {
@@ -46,7 +46,7 @@ button.button-secondary:hover {
 }
 
 button.button-secondary:disabled {
-  background: var(--bg-secondary);
+  background: var(--bg-tertiary);
   border: 1px solid var(--border);
   color: var(--text-tertiary);
 }
@@ -56,13 +56,16 @@ button.button-tertiary {
   border: 1px solid var(--border);
   color: var(--text-primary);
   font-weight: var(--font-weight-regular);
+  box-shadow: 0 0 1.5px 0px var(--accent);
   transition: border var(--animation-duration-long) ease,
-  color var(--animation-duration) ease;
+    color var(--animation-duration) ease,
+    box-shadow var(--animation-duration-long) ease;
 }
 
 button.button-tertiary:hover {
   border: 1px solid var(--accent);
   color: var(--text-primary);
+  box-shadow: 0 0 0 0 var(--accent);
 }
 
 button.button-tertiary:disabled {
@@ -116,13 +119,18 @@ button.button-shine {
 
 /* Animação de brilho (shine) */
 button.button-shine::after {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
   transform: skewX(-20deg);
   transition: opacity var(--animation-duration) ease;
 }

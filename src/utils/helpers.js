@@ -70,6 +70,15 @@ export const getIconComponent = (icon, size='normal') => {
   };
 };
 
+export const getImgComponent = (src, alt, width, height) => {
+  const img = getComponent('img');
+  img.props.src = src;
+  img.props.alt = alt;
+  img.props.width = width;
+  img.props.height = height;
+  return img;
+};
+
 /**
  * Retorna o idioma do navegador ou o idioma atual da aplicação armazenado no armazenamento local.
  * @returns {string} - O código de idioma em minúsculas.
