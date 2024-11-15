@@ -12,7 +12,6 @@
 
 .home-video-management {
   display: flex;
-  /* flex-direction: column; */
   gap: var(--spacing-lg);
 }
 
@@ -29,10 +28,76 @@
   margin-bottom: var(--spacing-sm);
 }
 
+.home-added-videos,
+.home-playlists {
+  border: 1px solid var(--border);
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius-lg);
+}
+
 .home-added-videos div,
 .home-playlists div {
   background-color: var(--bg-secondary);
   padding: var(--spacing-md);
   border-radius: var(--border-radius);
   text-align: center;
+}
+
+.home-modal-add-video {
+  width: 500px;
+}
+
+.home-modal-add-video .dialog-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-md);
+}
+
+.home-wrapper-input-add-video {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-sm);
+  width: 100%;
+}
+
+.home-wrapper-input-add-video .home-label-input-add-video {
+  width: 100%;
+  align-self: stretch;
+  display: inline-flex;
+}
+
+.home-label-input-add-video input[type="text"] {
+  flex: 1;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: var(--font-size-large);
+  color: var(--text-primary);
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--border-radius);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.home-label-input-add-video input[type="text"]:focus {
+  border-color: var(--text-tertiary);
+  box-shadow: var(--shadow-sm);
+}
+
+.home-wrapper-input-add-video-message {
+  width: 100%;
+  padding: var(--spacing-md);
+  text-align: center;
+}
+
+p.home-positive-message {
+  color: var(--success);
+  font-size: var(--font-size-large);
+}
+
+p.home-negative-message {
+  color: var(--danger);
+  font-size: var(--font-size-large);
 }

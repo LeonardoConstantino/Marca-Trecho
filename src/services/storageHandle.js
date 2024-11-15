@@ -28,3 +28,5 @@ export const currentLanguage = storageUtil.getItem('language');
  * @returns {string} - A última view da aplicação armazenada no armazenamento local.
  */
 export const getLastView = ()=> storageUtil.getItem('lastView') || FIRST_VIEW;
+
+export const getVideoList = () => [0]

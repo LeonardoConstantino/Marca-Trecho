@@ -16,6 +16,11 @@ button {
     transform var(--animation-duration) ease;
 }
 
+button:focus {
+  box-shadow: var(--shadow-lg);
+  transform: scale(0.95);
+}
+
 button:hover {
   opacity: 0.9;
   transform: scale(1.02);

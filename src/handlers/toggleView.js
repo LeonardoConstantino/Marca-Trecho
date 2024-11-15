@@ -1,4 +1,4 @@
-import { contactView } from '../pages/contact';
+import { contactView } from '../pages/addTags';
 import { homeView } from '../pages/home';
 import { getLastView } from '../services/storageHandle';
 import { FIRST_VIEW } from '../utils/constants';
@@ -6,8 +6,8 @@ import { EventDelegator, renderElement } from '../utils/renderElement';
 import { storageUtil } from '../utils/storageUtil';
 
 export const views = {
-  Home: homeView,
-  Contact: contactView,
+  'Pagina inicial': homeView,
+  'Marcar trechos': contactView,
   'Minhas Playlists': contactView,
   Tutorial: contactView,
 };
@@ -42,8 +42,8 @@ export const toggleView = async (name, path) => {
     const view = viewContainer.querySelector('.view');
     EventDelegator.cleanup(viewContainer);
 
-    if (view) view.classList.remove('view');
     if (view) view.classList.add('view-out');
+    if (view) view.classList.remove('view');
 
     setTimeout(() => {
       viewContainer.innerHTML = '';
@@ -54,6 +54,6 @@ export const toggleView = async (name, path) => {
       // Reativar todos os botões, exceto o atual
       navButtons.forEach((button) => button.removeAttribute('disabled'));
       if (currentNavButton) currentNavButton.setAttribute('disabled', '');
-    }, 350);
+    }, 250);
   }
 };
