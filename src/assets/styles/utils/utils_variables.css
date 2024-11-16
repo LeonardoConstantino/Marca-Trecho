@@ -19,6 +19,48 @@
 
   --shadow: rgba(0, 0, 0, 0.08);
 
+  --button-bg-primary: var(--accent);
+  --button-bg-primary-hover: #e60000;
+  --button-bg-primary-focus: #cc0000;
+  --button-bg-primary-disabled: #f5bcbc;
+
+  --button-bg-secondary: var(--bg-secondary);
+  --button-bg-secondary-hover: var(--accent);
+  --button-bg-secondary-focus: #d1d3d6;
+  --button-bg-secondary-disabled: #e6e6e6;
+
+  --button-text-primary: var(--text-highlight);
+  --button-text-secondary: var(--accent);
+  --button-text-disabled: var(--text-tertiary);
+
+  --button-border-primary: var(--accent);
+  --button-border-secondary: var(--accent);
+  --button-border-focus: #a80000;
+  --button-border-disabled: var(--border);
+
+  --button-shadow-primary: var(--shadow-md);
+  --button-shadow-hover: var(--shadow-lg);
+  --button-shadow-focus: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  --button-shadow-disabled: none;
+  
+  --button-bg-tertiary: var(--bg-tertiary);
+  --button-text-tertiary: var(--text-primary);
+  --button-border-tertiary: var(--border);
+  --button-shadow-tertiary: 0 0 1.6px 0px var(--accent);
+  
+  --button-border-tertiary-focus: var(--accent);
+  --button-text-tertiary-focus: var(--text-primary);
+  --button-shadow-tertiary-focus: 0 0 1px 0 var(--accent);
+
+  
+  --button-text-tertiary-hover: var(--text-primary);
+  --button-border-tertiary-hover: var(--accent);
+  --button-shadow-tertiary-hover: 0 0 1px 0 var(--accent);
+  
+  --button-bg-tertiary-disabled: transparent;
+  --button-text-tertiary-disabled: var(--text-tertiary);
+  --button-border-tertiary-disabled: var(--text-tertiary);
+
   --icon-filter: brightness(0) saturate(100%) invert(18%) sepia(4%)
     saturate(30%) hue-rotate(180deg) brightness(90%) contrast(89%);
   --icon-filter-hover: brightness(1) saturate(100%);
@@ -120,4 +162,46 @@
     saturate(120%) hue-rotate(0deg) brightness(60%) contrast(75%);
   --icon-filter-tertiary: brightness(0) saturate(100%) invert(40%) sepia(10%)
     saturate(300%) hue-rotate(180deg) brightness(85%) contrast(85%);
+    
+  --button-bg-primary: var(--accent);
+  --button-bg-primary-hover: #ff3030;
+  --button-bg-primary-focus: #b30000;
+  --button-bg-primary-disabled: #664545;
+
+  --button-bg-secondary: var(--bg-secondary);
+  --button-bg-secondary-hover: var(--accent);
+  --button-bg-secondary-focus: #2c2c34;
+  --button-bg-secondary-disabled: #414040;
+
+  --button-text-primary: var(--text-highlight);
+  --button-text-secondary: var(--accent);
+  --button-text-disabled: var(--text-tertiary);
+
+  --button-border-primary: var(--accent);
+  --button-border-secondary: var(--accent);
+  --button-border-focus: #ff1a1a;
+  --button-border-disabled: var(--border);
+
+  --button-shadow-primary: var(--shadow-md);
+  --button-shadow-hover: var(--shadow-lg);
+  --button-shadow-focus: 0px 2px 4px rgba(255, 255, 255, 0.2);
+  --button-shadow-disabled: none;
+
+  --button-bg-tertiary: var(--bg-tertiary);
+  --button-text-tertiary: var(--text-primary);
+  --button-border-tertiary: var(--border);
+  --button-shadow-tertiary: 0 0 1.6px 0px var(--accent);
+  
+  --button-border-tertiary-focus: var(--accent);
+  --button-text-tertiary-focus: var(--text-primary);
+  --button-shadow-tertiary-focus: 0 0 1px 0 var(--accent);
+
+  
+  --button-text-tertiary-hover: var(--text-primary);
+  --button-border-tertiary-hover: var(--accent);
+  --button-shadow-tertiary-hover: 0 0 1px 0 var(--accent);
+  
+  --button-bg-tertiary-disabled: transparent;
+  --button-text-tertiary-disabled: var(--text-tertiary);
+  --button-border-tertiary-disabled: var(--text-tertiary);
 }
