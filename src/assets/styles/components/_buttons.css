@@ -82,7 +82,7 @@ button.button-tertiary {
 }
 
 button.button-tertiary:focus {
-  border: 1px solid var(--button-border-tertiary-focus);
+  border: 1px solid var(--button-border-focus);
   color: var(--button-text-tertiary-focus);
   box-shadow: var(--button-shadow-tertiary-focus);
 }

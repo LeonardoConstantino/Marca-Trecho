@@ -5,7 +5,7 @@ dialog {
   max-height: 80vh;
   border-radius: var(--border-radius);
   border: 1px solid var(--accent);
-  padding: var(--spacing-md);
+  padding: var(--spacing-lg) var(--spacing-md);
   background-color: var(--bg-primary);
   color: var(--text-primary);
   position: fixed;
@@ -39,11 +39,12 @@ dialog.modal-close {
     transform var(--animation-duration) ease;
 }
 
-/* .close:hover {
-  color: var(--text-primary);
-  transform: scale(1.05) translate(-2px, 2px);
+.close:hover {
+  background: none;
+  /* color: var(--text-primary); */
+  transform: scale(1.05) translate(-1px, 1px);
   box-shadow: none;
-} */
+}
 
 dialog form button {
   margin: var(--spacing-sm) var(--spacing-xs);

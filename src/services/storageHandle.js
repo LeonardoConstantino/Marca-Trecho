@@ -20,7 +20,7 @@ export const currentTheme = storageUtil.getItem('theme') || 'light';
  * Caso não exista nenhum idioma armazenado, o idioma padrão 'pt-BR' é retornado.
  * @type {string} - O idioma atual da aplicação armazenado no armazenamento local.
  */
-export const currentLanguage = storageUtil.getItem('language');
+export const currentLanguage = storageUtil.getItem('language') || 'pt-BR';
 
 /**
  * Recupera a última view da aplicação armazenada no armazenamento local.

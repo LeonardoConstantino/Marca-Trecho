@@ -60,7 +60,7 @@ export const getAnchor = (link, nome) => {
  * @param {'small' | 'normal' | 'large'} [size='normal'] - O tamanho do ícone (por exemplo, 'small', 'medium', 'large').
  * @returns {Object} Um objeto representando o componente de ícone.
  */
-export const getIconComponent = (icon, size='normal') => {
+export const getIconComponent = (icon, size = 'normal') => {
   return {
     type: 'i',
     props: {
@@ -77,6 +77,24 @@ export const getImgComponent = (src, alt, width, height) => {
   img.props.width = width;
   img.props.height = height;
   return img;
+};
+
+/**
+ * Adiciona filhos a uma visualização (view) com base em uma condição.
+ * @param {Object} view - A visualização (view) para a qual os filhos serão adicionados.
+ * @param {boolean} condition - A condição que determina quais filhos serão adicionados.
+ * @param {Array<Object>} childrenWhenTrue - Os filhos a serem adicionados se a condição for verdadeira.
+ * @param {Array<Object>} childrenWhenFalse - Os filhos a serem adicionados se a condição for falsa.
+ * @returns {void}
+ */
+export const addChildrenToView = (
+  view,
+  condition,
+  childrenWhenTrue,
+  childrenWhenFalse
+) => {
+  const childrenToAdd = condition ? childrenWhenTrue : childrenWhenFalse;
+  view.props.children.push(...childrenToAdd);
 };
 
 /**

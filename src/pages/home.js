@@ -1,7 +1,7 @@
 // src/pages/home.js
 
 import { ButtonType, createButton, IconSize } from '../components/button';
-import { getComponent, getTextComponent } from '../utils/helpers';
+import { addChildrenToView, getComponent, getTextComponent } from '../utils/helpers';
 import { showModal } from './../handlers/showModal';
 //@ts-ignore
 import play from '../assets/images/play.svg';
@@ -142,8 +142,9 @@ videoManagement.props.class = 'home-video-management';
 export const homeView = getComponent('div');
 homeView.props.class = 'view home';
 
-const childrenToAdd = videoList.length !== 0 
-  ? [addVideoContent, videoManagement] 
-  : [introduction, videoManagement];
-
-homeView.props.children.push(...childrenToAdd);
+addChildrenToView(
+  homeView,
+  videoList.length !== 0,
+  [addVideoContent, videoManagement],
+  [introduction, videoManagement]
+);

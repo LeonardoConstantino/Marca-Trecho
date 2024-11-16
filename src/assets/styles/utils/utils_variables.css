@@ -35,7 +35,7 @@
 
   --button-border-primary: var(--accent);
   --button-border-secondary: var(--accent);
-  --button-border-focus: #a80000;
+  --button-border-focus: var(--text-highlight);
   --button-border-disabled: var(--border);
 
   --button-shadow-primary: var(--shadow-md);
@@ -179,7 +179,7 @@
 
   --button-border-primary: var(--accent);
   --button-border-secondary: var(--accent);
-  --button-border-focus: #ff1a1a;
+  --button-border-focus: var(--text-highlight);
   --button-border-disabled: var(--border);
 
   --button-shadow-primary: var(--shadow-md);
