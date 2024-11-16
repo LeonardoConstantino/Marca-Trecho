@@ -165,7 +165,7 @@ export const EventDelegator = {
  * @param {ElementConfig} elementConfig - Configuração do elemento
  * @param {boolean} isAppend - Se deve anexar ao container
  * @param {HTMLElement} container - Container para renderização
- * @returns {HTMLElement|Text} Elemento renderizado
+ * @returns {DocumentFragment|HTMLElement|Text} Elemento renderizado
  */
 export const renderElement = (
   { type, props = {} },
@@ -175,6 +175,20 @@ export const renderElement = (
   try {
     // Inicializa o delegador de eventos se ainda não foi feito
     EventDelegator.init(document.body);
+
+    // Suporte para Fragment (<>)
+    if (type === '<>') {
+      /** @type {DocumentFragment} */ 
+      const fragment = document.createDocumentFragment();
+      const children = Array.isArray(props.children) ? props.children : [];
+      
+      children.forEach((child) => {
+        const childElement = renderElement(child, false, container);
+        if (childElement) fragment.appendChild(childElement);
+      });
+      
+      return isAppend ? container.appendChild(fragment) : fragment;
+    }
 
     // Validação do tipo de elemento
     if (type !== null && type !== undefined && typeof type !== 'string') {
