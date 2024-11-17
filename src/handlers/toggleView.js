@@ -1,28 +1,45 @@
-import { contactView } from '../pages/addTags';
+import { addTagsView } from '../pages/addTags';
 import { homeView } from '../pages/home';
 import { getLastView } from '../services/storageHandle';
 import { FIRST_VIEW } from '../utils/constants';
 import { EventDelegator, renderElement } from '../utils/renderElement';
 import { storageUtil } from '../utils/storageUtil';
 
+/**
+ * Objeto que mapeia os nomes das visualizações (views) com seus respectivos componentes.
+ * Cada chave representa o nome da visualização e o valor é o componente correspondente.
+ */
 export const views = {
   'Pagina inicial': homeView,
-  'Marcar trechos': contactView,
-  'Minhas Playlists': contactView,
-  Tutorial: contactView,
+  'Marcar trechos': addTagsView,
+  // 'Minhas Playlists': addTagsView,
+  // Tutorial: addTagsView,
 };
 
+/**
+ * Retorna a visualização (view) atual exibida no contêiner de visualização ou a ultima visualização armazenada no armazenamento local.
+ * @returns {string} O nome da visualização atual.
+ */
 export const getCurrentView = () => {
   const viewContainer = document.querySelector('[data-view]');
   const lastView = getLastView();
-  return viewContainer instanceof HTMLElement
-    ? viewContainer.dataset.view
-    : lastView || FIRST_VIEW;
+  const currentView =
+    viewContainer instanceof HTMLElement
+      ? viewContainer.dataset.view
+      : lastView;
+
+  return currentView || FIRST_VIEW;
 };
 
-export const toggleView = async (name, path) => {
+/**
+ * Alterna a visualização (view) exibida no contêiner de visualização.
+ * @param {string} name - O nome da visualização a ser exibida.
+ * @param {import('../utils/types').ElementConfig} view - O caminho do componente da visualização a ser renderizado.
+ * @returns {Promise<void>} Uma promessa que se resolve quando a visualização é alternada com sucesso.
+ */
+export const toggleView = async (name, view) => {
   const viewContainer = document.querySelector('[data-view]');
-  const currentView = getCurrentView();
+  const currentViewName = getCurrentView();
 
   // Desativar todos os botões temporariamente
   const navButtons = document.querySelectorAll('[data-navButton]');
@@ -30,7 +47,7 @@ export const toggleView = async (name, path) => {
 
   // Manipulação dos botões de navegação
   const previousNavButton = document.querySelector(
-    `[data-navButton="${currentView}"]`
+    `[data-navButton="${currentViewName}"]`
   );
   const currentNavButton = document.querySelector(`[data-navButton="${name}"]`);
 
@@ -39,15 +56,17 @@ export const toggleView = async (name, path) => {
 
   // Atualização da visualização com transição
   if (viewContainer instanceof HTMLElement) {
-    const view = viewContainer.querySelector('.view');
+    const currentViewElement = viewContainer.querySelector('.view');
     EventDelegator.cleanup(viewContainer);
 
-    if (view) view.classList.add('view-out');
-    if (view) view.classList.remove('view');
+    if (currentViewElement || currentViewElement) {
+      currentViewElement.classList.add('view-out');
+      currentViewElement.classList.remove('view');
+    } 
 
     setTimeout(() => {
       viewContainer.innerHTML = '';
-      renderElement(path, true, viewContainer);
+      renderElement(view, true, viewContainer);
       viewContainer.dataset.view = name;
       storageUtil.setItem('lastView', name);
 

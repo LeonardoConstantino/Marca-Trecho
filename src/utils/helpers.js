@@ -152,3 +152,30 @@ export const capitalizeFirstLetter = (str) => {
   // Converte a primeira letra para maiúsculo e junta com o restante da string
   return str.charAt(0).toUpperCase() + str.slice(1);
 };
+
+/**
+ * Converte uma string de tempo no formato 'hh:mm:ss' para o número de segundos correspondente.
+ * @param {string} timeString - A string de tempo no formato 'hh:mm:ss'.
+ * @returns {number} - O número de segundos correspondente à string de tempo.
+ */
+export const timeToSeconds = timeString => {
+  const [hours, minutes, seconds] = timeString.split(":").map(Number);
+  return hours * 3600 + minutes * 60 + (seconds || 0);
+};
+
+/**
+ * Converte um número de segundos para uma string no formato 'hh:mm:ss'.
+ * @param {number} seconds - O número de segundos a ser convertido.
+ * @returns {string} - A string de tempo no formato 'hh:mm:ss'.
+ */
+export const secondsToTime = seconds => {
+  const hours = Math.floor(seconds / 3600);
+  const minutes = Math.floor((seconds % 3600) / 60);
+  const remainingSeconds = seconds % 60;
+
+  return [
+    hours.toString().padStart(2, "0"),
+    minutes.toString().padStart(2, "0"),
+    remainingSeconds.toString().padStart(2, "0"),
+  ].join(":");
+};

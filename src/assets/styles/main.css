@@ -16,6 +16,7 @@
 @import url('./layout/layout_navigation.css');
 
 @import url('./pages/pages_home.css');
+@import url('./pages/pages_add-tags.css');
 
 @import url('./utils/utils_variables.css');
 @import url('./utils/utils_animation.css');

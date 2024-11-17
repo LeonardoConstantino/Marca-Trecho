@@ -29,4 +29,6 @@ export const currentLanguage = storageUtil.getItem('language') || 'pt-BR';
  */
 export const getLastView = ()=> storageUtil.getItem('lastView') || FIRST_VIEW;
 
-export const getVideoList = () => [0]
+export const getVideoList = () => []
+
+export const getTags = () => []

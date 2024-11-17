@@ -16,19 +16,16 @@ button {
     transform var(--animation-duration) ease;
 }
 
-button:focus {
-  /* box-shadow: var(--shadow-lg); */
-  color: var(--button-text-primary);
+button:focus,
+button.button-secondary:focus,
+button.button-tertiary:focus {
   border: 1px solid var(--button-border-focus);
   box-shadow: var(--button-shadow-focus);
-  /* transform: scale(0.95); */
 }
 
 button:hover {
-  /* opacity: 0.9; */
   transform: scale(1.02);
   background: var(--button-bg-primary-hover);
-  color: var(--button-text-primary);
   box-shadow: var(--button-shadow-hover);
 }
 
@@ -37,37 +34,37 @@ button:disabled {
   opacity: 0.3;
   background: var(--button-bg-primary-disabled);
   color: var(--button-text-disabled);
-  /* box-shadow: inset 0 0 2px 0 var(--border); */
   box-shadow: var(--button-shadow-disabled);
   transform: none;
+}
+
+button:disabled:hover {
+  box-shadow: none;
+}
+
+button.button-secondary,
+button.button-tertiary {
+  font-weight: var(--font-weight-regular);
+  transition: background-color var(--animation-duration) ease,
+    color var(--animation-duration) ease,
+    box-shadow var(--animation-duration-long) ease;
 }
 
 button.button-secondary {
   background: var(--button-bg-secondary);
   border: 1px solid var(--button-border-secondary);
   color: var(--button-text-secondary);
-  font-weight: var(--font-weight-regular);
-  transition: background-color var(--animation-duration) ease,
-    color var(--animation-duration-short) ease;
-}
-
-button.button-secondary:focus {
-  background: var(--button-bg-secondary-focus);
-  color: var(--button-text-secondary);
-  border: 1px solid var(--button-border-focus);
-  box-shadow: var(--button-shadow-focus);
 }
 
 button.button-secondary:hover {
   background: var(--button-bg-secondary-hover);
   color: var(--bg-primary);
-  box-shadow: var(--button-shadow-hover);
 }
 
 button.button-secondary:disabled {
   background: var(--button-bg-secondary-disabled);
   border: 1px solid var(--button-border-disabled);
-  color: var(--button-text-disabled);
+  color: var(--button-text-secondary-disabled);
 }
 
 button.button-tertiary {
@@ -75,16 +72,6 @@ button.button-tertiary {
   border: 1px solid var(--button-border-tertiary);
   color: var(--button-text-tertiary);
   box-shadow: var(--button-shadow-tertiary);
-  font-weight: var(--font-weight-regular);
-  transition: border var(--animation-duration-long) ease,
-    color var(--animation-duration) ease,
-    box-shadow var(--animation-duration-long) ease;
-}
-
-button.button-tertiary:focus {
-  border: 1px solid var(--button-border-focus);
-  color: var(--button-text-tertiary-focus);
-  box-shadow: var(--button-shadow-tertiary-focus);
 }
 
 button.button-tertiary:hover {
@@ -96,7 +83,13 @@ button.button-tertiary:hover {
 button.button-tertiary:disabled {
   background: var(--button-bg-tertiary-disabled);
   border: 1px solid var(--button-border-tertiary-disabled);
-  color: var(--button-text-tertiary-disabled);
+}
+
+button:disabled:hover,
+button.button-secondary:disabled:hover,
+button.button-tertiary:disabled:hover {
+  transform: none;
+  box-shadow: none;
 }
 
 button i {
@@ -110,25 +103,14 @@ button i {
   transition: filter var(--animation-duration-long) ease;
 }
 
-button:hover i {
+button:hover i,
+button.button-secondary:hover i,
+button.button-tertiary:hover i {
   filter: var(--icon-filter-hover);
 }
 
 button:disabled i {
   filter: var(--icon-filter-disabled);
-}
-
-button.button-secondary i {
-  filter: var(--icon-filter);
-}
-
-button.button-tertiary i {
-  filter: var(--icon-filter-tertiary);
-}
-
-button.button-secondary:hover i,
-button.button-tertiary:hover i {
-  filter: var(--icon-filter-hover);
 }
 
 button.button-shine {

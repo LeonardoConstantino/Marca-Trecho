@@ -54,7 +54,7 @@ const wrapperInputAddVideoMessage = getComponent(
 );
 wrapperInputAddVideoMessage.props.class = 'home-wrapper-input-add-video-message';
 
-const addVideoContent = getComponent(
+export const addVideoContent = getComponent(
   'div',
   wrapperInputAddVideo,
   wrapperInputAddVideoMessage
