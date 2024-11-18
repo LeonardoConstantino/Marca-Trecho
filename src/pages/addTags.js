@@ -1,41 +1,20 @@
 // src/pages/addTags.js
 
-import { ButtonType, createButton, IconSize } from '../components/button';
+import { createButton } from '../components/button';
 import { showModal } from '../handlers/showModal';
 import { getTags } from '../services/storageHandle';
 import {
   addChildrenToView,
   getComponent,
   getTextComponent,
-  getTextSpan,
 } from '../utils/helpers';
 import { addVideoContent } from './home';
+import { getSelection } from '../components/selection';
+import { getTimeSelector } from '../components/timeSelector';
 //@ts-ignore
 import addNotes from '../assets/images/addNotes.svg';
-import { getSelection } from '../components/selection';
 
 const tags = getTags();
-
-// const priorities =  {
-//   low: 'Baixa 🔵',
-//   medium: 'Média 🟠',
-//   high: 'Alta 🔴',
-// }
-
-const createInput = (labelValue, inputId, className) => {
-  const input = getComponent('input');
-  input.props.type = 'time';
-  input.props.class = className;
-  input.props.id = inputId;
-  input.props.min = 0;
-  input.props.step = 1;
-
-  const label = getComponent('label', getTextSpan(labelValue), input);
-  label.props.class = `form-label-${className}`;
-  label.props.for = inputId;
-
-  return label;
-};
 
 const divVideoPlaceholder = getComponent(
   'div',
@@ -43,19 +22,11 @@ const divVideoPlaceholder = getComponent(
 );
 divVideoPlaceholder.props.class = 'video-placeholder';
 divVideoPlaceholder.props.title = 'Click Para Adicionar Um Vídeo';
-divVideoPlaceholder.props.onClick = () => showModal(addVideoContent, 'home-modal-add-video')
+divVideoPlaceholder.props.onClick = () =>
+  showModal(addVideoContent, 'home-modal-add-video');
 
 const videoWrapper = getComponent('div', divVideoPlaceholder);
 videoWrapper.props.id = 'videoWrapper';
-
-// const inputComment = getComponent('input');
-// inputComment.props.type = 'text';
-// inputComment.props.placeholder = 'Adicionar Comentário';
-// inputComment.props.id = 'input-comment';
-
-// const labelInputComment = getComponent('label', inputComment);
-// labelInputComment.props.for = 'input-comment';
-// labelInputComment.props.class = 'add-tags-label-input-comment';
 
 const textarea = getComponent('textarea');
 textarea.props.id = 'tagInput';
@@ -64,10 +35,10 @@ textarea.props.placeholder = 'Adicionar Comentário';
 
 const TimeSelector = getComponent(
   'div',
-  createInput('Início:', 'inicialTime', 'inicialTime'),
-  createInput('Fim:', 'finalTime', 'finalTime')
+  getTimeSelector('Início:', 'inicialTime'),
+  getTimeSelector('Fim:', 'finalTime')
 );
-TimeSelector.props.class = 'time-selector';
+TimeSelector.props.class = 'time-selector-wrapper';
 
 const prioritiesSelector = getSelection(
   'prioritySelector',
@@ -88,19 +59,10 @@ const addTagsButton = createButton(
   'Salvar Trecho'
 );
 
-const wrapperActions = getComponent(
-  'div',
-  prioritiesSelector,
-  addTagsButton
-)
+const wrapperActions = getComponent('div', prioritiesSelector, addTagsButton);
 wrapperActions.props.class = 'wrapper-actions';
 
-const CreateTags = getComponent(
-  'div',
-  TimeSelector,
-  textarea,
-  wrapperActions
-);
+const CreateTags = getComponent('div', TimeSelector, textarea, wrapperActions);
 CreateTags.props.class = 'create-tags';
 
 const emptyTagsMessage = getComponent(
@@ -111,14 +73,17 @@ emptyTagsMessage.props.class = 'empty-tags-message';
 
 const TagsList = getComponent('div');
 
-const TagsListWrapper = getComponent('div', getComponent('h5', getTextComponent('Marcações')));
+const TagsListWrapper = getComponent(
+  'div',
+  getComponent('h5', getTextComponent('Marcações'))
+);
 TagsListWrapper.props.class = 'tags-list-wrapper';
 
 addChildrenToView(
   TagsListWrapper,
   tags.length === 0,
   [emptyTagsMessage],
-  [TagsList],
+  [TagsList]
 );
 
 export const addTagsView = getComponent(
@@ -128,10 +93,3 @@ export const addTagsView = getComponent(
   TagsListWrapper
 );
 addTagsView.props.class = 'view contact';
-
-// addChildrenToView(
-//   addTagsView,
-//   tags.length !== 0,
-//   [addVideoContent, videoManagement],
-//   [introduction, videoManagement]
-// )

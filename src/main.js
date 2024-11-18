@@ -7,7 +7,7 @@ import { renderElement } from './utils/renderElement.js';// Renderiza elementos 
 import { showSnackbar } from './utils/showSnackbar.js';// Exibe notificações
 import { header } from './layout/header.js';
 import { footer } from './layout/footer.js';
-import { viewContainer } from './layout/grid.js';
+import { setView, viewContainer } from './layout/grid.js';
 import { currentTheme } from './services/storageHandle.js';// Obtém o tema do armazenamento local
 
 /**
@@ -29,6 +29,7 @@ const main = () => {
     renderElement(header, true, app);
     renderElement(viewContainer, true, app);
     renderElement(footer, true, app);
+    setView();
 
     // Exibe uma mensagem de sucesso indicando que a aplicação foi iniciada
     showSnackbar('Aplicação iniciada com sucesso!');

@@ -130,6 +130,7 @@
   --fade-in: fade-in var(--animation-duration-extra-long)
     var(--timing-function-quint) both;
   --fade-out: fade-out var(--animation-duration-extra-long) ease-out both;
+  --blink-invalid: blink-invalid var(--animation-duration-extra-long) var(--timing-function-quint) infinite;
 }
 
 /* Modo escuro */

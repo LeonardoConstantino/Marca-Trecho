@@ -179,3 +179,5 @@ export const secondsToTime = seconds => {
     remainingSeconds.toString().padStart(2, "0"),
   ].join(":");
 };
+
+export const getRandomId = () => Math.random().toString(36).substring(2, 8);

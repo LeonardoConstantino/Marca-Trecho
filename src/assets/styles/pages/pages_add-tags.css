@@ -41,34 +41,10 @@
   gap: var(--spacing-md);
 }
 
-.time-selector {
+.time-selector-wrapper {
   display: flex;
   flex-wrap: wrap;
   gap: var(--spacing-md);
-}
-
-.form-label-inicialTime,
-.form-label-finalTime {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-xs);
-  font-size: var(--font-size-medium);
-  color: var(--text-secondary);
-}
-
-.form-label-inicialTime input,
-.form-label-finalTime input {
-  background: var(--bg-secondary);
-  padding: var(--spacing-xs);
-  border: 1px solid var(--border);
-  border-radius: var(--border-radius);
-  font-size: var(--font-size-large);
-  transition: border-color var(--animation-duration) ease;
-}
-
-.form-label-inicialTime input:focus,
-.form-label-finalTime input:focus {
-  border-color: var(--accent);
 }
 
 .wrapper-actions {

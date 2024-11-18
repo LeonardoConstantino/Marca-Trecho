@@ -37,8 +37,8 @@
   background-repeat: no-repeat;
   background-size: contain;
   filter: var(--icon-filter);
-  width: 32px;
-  height: 32px;
+  width: 24px;
+  height: 24px;
 }
 
 /* Tamanhos de ícones adaptáveis */
