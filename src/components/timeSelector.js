@@ -48,13 +48,13 @@ const adjustTime = (e, adjustment) => {
 
   const newValue = timeToSeconds(input.value) + adjustment;
 
-  if (newValue < minSeconds) {
+  if (newValue + adjustment < minSeconds) {
     allButtonsDecreases.forEach((button) => {
       button.setAttribute('disabled', '');
     });
   }
 
-  if (newValue > maxSeconds) {
+  if (newValue + adjustment > maxSeconds) {
     allButtonsIncreases.forEach((button) => {
       button.setAttribute('disabled', '');
     });

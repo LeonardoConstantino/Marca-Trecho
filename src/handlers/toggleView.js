@@ -12,7 +12,7 @@ import { storageUtil } from '../utils/storageUtil';
 export const views = {
   'Pagina inicial': homeView,
   'Marcar trechos': addTagsView,
-  // 'Minhas Playlists': addTagsView,
+  'Trechos Marcados': addTagsView,
   // Tutorial: addTagsView,
 };
 

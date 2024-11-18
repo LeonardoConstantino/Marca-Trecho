@@ -1,13 +1,10 @@
-.view.contact {
+.view.add-Tags {
   padding: var(--spacing-lg);
   background: var(--bg-primary);
   border-radius: var(--border-radius-xl);
 }
 
 #videoWrapper {
-  /* display: flex; */
-  /* justify-content: center; */
-  /* align-items: center; */
   aspect-ratio: 16 / 9;
   background: var(--bg-secondary);
   border: 2px dashed var(--accent);

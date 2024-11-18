@@ -92,4 +92,4 @@ export const addTagsView = getComponent(
   CreateTags,
   TagsListWrapper
 );
-addTagsView.props.class = 'view contact';
+addTagsView.props.class = 'view add-Tags';
