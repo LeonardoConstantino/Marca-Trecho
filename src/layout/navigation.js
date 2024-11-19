@@ -6,6 +6,7 @@ import { getComponent } from '../utils/helpers.js';
 /**
  * Cria os links de navegação com base nos caminhos das rotas.
  *
+ * @param {object} views - Um objeto que mapeia os nomes das rotas para os caminhos correspondentes.
  * @returns {object} O componente de navegação completo.
  */
 const createNavigation = (views) => {

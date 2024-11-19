@@ -1,4 +1,9 @@
+/**
+ * @import { ElementConfig } from '../utils/types'
+ */
+
 import { addTagsView } from '../pages/addTags';
+import { createPlaylistView } from '../pages/createPlaylist';
 import { excerptsTagged } from '../pages/excerptsTagged';
 import { homeView } from '../pages/home';
 import { getLastView } from '../services/storageHandle';
@@ -14,6 +19,7 @@ export const views = {
   'Pagina inicial': homeView,
   'Marcar trechos': addTagsView,
   'Trechos Marcados': excerptsTagged,
+  'Criar Playlist': createPlaylistView,
   // Tutorial: addTagsView,
 };
 
@@ -35,7 +41,7 @@ export const getCurrentView = () => {
 /**
  * Alterna a visualização (view) exibida no contêiner de visualização.
  * @param {string} name - O nome da visualização a ser exibida.
- * @param {import('../utils/types').ElementConfig} view - O caminho do componente da visualização a ser renderizado.
+ * @param {ElementConfig} view - O caminho do componente da visualização a ser renderizado.
  * @returns {Promise<void>} Uma promessa que se resolve quando a visualização é alternada com sucesso.
  */
 export const toggleView = async (name, view) => {
