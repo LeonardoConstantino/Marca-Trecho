@@ -1,4 +1,5 @@
 import { addTagsView } from '../pages/addTags';
+import { excerptsTagged } from '../pages/excerptsTagged';
 import { homeView } from '../pages/home';
 import { getLastView } from '../services/storageHandle';
 import { FIRST_VIEW } from '../utils/constants';
@@ -12,7 +13,7 @@ import { storageUtil } from '../utils/storageUtil';
 export const views = {
   'Pagina inicial': homeView,
   'Marcar trechos': addTagsView,
-  'Trechos Marcados': addTagsView,
+  'Trechos Marcados': excerptsTagged,
   // Tutorial: addTagsView,
 };
 

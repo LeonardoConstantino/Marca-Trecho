@@ -59,7 +59,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--spacing-sm);
+  /* gap: var(--spacing-sm); */
   width: 100%;
 }
 
@@ -76,9 +76,13 @@
   color: var(--text-primary);
   background-color: var(--card-bg);
   border: 1px solid var(--border);
-  border-radius: var(--border-radius);
+  border-radius: var(--button-border-radius) 0 0 var(--button-border-radius);
   outline: none;
   transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.home-wrapper-input-add-video button{
+  border-radius: 0 var(--button-border-radius) var(--button-border-radius) 0;
 }
 
 .home-label-input-add-video input[type="text"]:focus {

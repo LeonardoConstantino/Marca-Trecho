@@ -4,7 +4,8 @@ button {
   gap: var(--spacing-xs);
   padding: var(--spacing-xs) var(--spacing-md);
   border: 1px solid var(--button-border-primary);
-  border-radius: var(--border-radius);
+  /* border-radius: var(--border-radius); */
+  border-radius: var(--button-border-radius);
   cursor: pointer;
   user-select: none;
   background: var(--button-bg-primary);
