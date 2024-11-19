@@ -136,7 +136,7 @@ playlists.props.class = 'home-playlists';
 // );
 // videoManagementActions.props.class = 'home-video-management-actions';
 
-const videoManagement = getComponent('div', addedVideos, playlists);
+export const videoManagement = getComponent('div', addedVideos, playlists);
 videoManagement.props.class = 'home-video-management';
 
 export const homeView = getComponent('div');

@@ -26,22 +26,19 @@ dialog.modal-close {
 }
 
 .close {
-  background: none;
-  border: none;
-  color: var(--text-secondary);
-  font-size: 1em;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
   position: absolute;
   padding: var(--spacing-sm);
   top: 0px;
   right: 0px;
-  cursor: pointer;
   transition: color var(--animation-duration) ease,
     transform var(--animation-duration) ease;
 }
 
 .close:hover {
   background: none;
-  /* color: var(--text-primary); */
   transform: scale(1.05) translate(-1px, 1px);
   box-shadow: none;
 }

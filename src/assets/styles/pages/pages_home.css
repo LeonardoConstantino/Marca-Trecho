@@ -1,3 +1,9 @@
+.view.home {
+  padding: var(--spacing-md);
+  background-color: var(--bg-primary);
+  border-radius: var(--border-radius);
+}
+
 .home-introduction {
   display: flex;
   flex-direction: column;
@@ -6,7 +12,6 @@
   background-color: var(--bg-secondary);
   padding: var(--spacing-md);
   border-radius: var(--border-radius);
-  box-shadow: var(--shadow-md);
   text-align: center;
 }
 

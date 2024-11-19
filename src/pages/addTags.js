@@ -73,7 +73,7 @@ emptyTagsMessage.props.class = 'empty-tags-message';
 
 const TagsList = getComponent('div');
 
-const TagsListWrapper = getComponent(
+export const TagsListWrapper = getComponent(
   'div',
   getComponent('h5', getTextComponent('Marcações'))
 );
