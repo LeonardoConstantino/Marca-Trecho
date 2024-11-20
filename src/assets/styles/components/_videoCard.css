@@ -1,0 +1,79 @@
+.videos-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  max-width: 500px;
+}
+
+.video-card {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius);
+  background-color: var(--bg-secondary);
+  transition: transform var(--animation-duration) ease,
+    box-shadow var(--animation-duration) ease;
+}
+
+.video-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.video-card-thumbnail-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.video-card-thumbnail-wrapper img {
+  border-radius: var(--border-radius-sm);
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  transition: transform var(--animation-duration-long) ease;
+}
+
+.video-card-title {
+  font-size: var(--font-size-large);
+  text-align: left;
+}
+
+.video-card-infos {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: var(--spacing-xs);
+}
+
+.video-card-infos a.video-card-link {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: var(--font-weight-medium);
+  transition: color var(--animation-duration) ease;
+}
+
+.video-card-infos a.video-card-link:hover,
+.video-card-infos a.video-card-link:focus {
+  color: var(--accent-hover);
+  text-decoration: underline;
+}
+
+.video-card-infos span {
+  font-size: var(--font-size-small);
+  color: var(--text-tertiary);
+  display: inline-block;
+}
+
+.video-card-action {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: flex-end;
+  justify-content: flex-end;
+  gap: var(--spacing-md);
+}

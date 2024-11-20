@@ -1,15 +1,13 @@
 import { closeModal } from '../components/modal';
-import {
-  loadYouTubeAPI,
-  createPlayer,
-} from '../services/youTubePlayer';
+import { loadYouTubeAPI, createPlayer, playerDestroy } from '../services/youTubePlayer';
 import {
   getRandomId,
   getSmallestAvailableThumbnail,
   videoIdFromURL,
 } from '../utils/helpers';
 import { showSnackbar } from '../utils/showSnackbar';
-import { setItemVideoList } from './storageHandle';
+import { setItemVideoList } from '../services/storageHandle';
+import { renderVideoCardList } from '../components/videoCard';
 
 // Função auxiliar para gerenciar mensagens
 const showMessage = (messageElement, show = true, message = '') => {
@@ -64,6 +62,7 @@ export const addVideoHandler = async (e) => {
 
     // Cria o player
     await createPlayer('player', videoId, {
+      //@ts-ignore
       onReady: (event) => {
         setItemVideoList({
           id: getRandomId(),
@@ -72,14 +71,16 @@ export const addVideoHandler = async (e) => {
           title: event.target.playerInfo.videoData.title,
           thumbnailUrl: thumbnailUrl,
           duration: event.target.playerInfo.duration,
+          addedIn: Number(new Date()),
           tags: [],
         });
         showSnackbar('Vídeo carregado com sucesso!');
         showMessage(positiveMessage, true, 'Vídeo carregado com sucesso!');
         btn.classList.remove('loading');
+        renderVideoCardList();
+        playerDestroy();
       },
     });
-
   } catch (error) {
     // Tratamento de erros
     showMessage(
@@ -93,6 +94,10 @@ export const addVideoHandler = async (e) => {
     btn.classList.remove('loading');
     input.value = '';
     setTimeout(() => {
+      // Resetar mensagens
+      showMessage(positiveMessage, false);
+      showMessage(negativeMessage, false);
+
       closeModal(e);
     }, 500);
   }

@@ -10,6 +10,7 @@
   --text-highlight: #000000;
 
   --accent: #ff0000; /* Inspirado no vermelho do YouTube */
+  --accent-hover: #ff6666;
   --border: #e8eaf0;
   --success: #5ba97a;
   --warning: #d9964c;
@@ -17,7 +18,7 @@
 
   --card-bg: #ffffff;
 
-  --shadow: rgba(0, 0, 0, 0.08);
+  --shadow: rgba(0, 0, 0, 0.18);
 
   --button-bg-primary: var(--accent);
   --button-bg-primary-hover: #e60000;
@@ -146,6 +147,7 @@
   --text-highlight: #ffffff;
 
   --accent: #ff4a4a;
+  --accent-hover: #ff6666;
   --border: #3c3e3f;
   --success: #6bab7f;
   --warning: #e6a74c;

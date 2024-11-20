@@ -12,7 +12,9 @@ import play from '../assets/images/play.svg';
 //@ts-ignore
 // import arrow from '../assets/images/arrow.svg';
 import { getVideoList } from '../services/storageHandle';
-import { addVideoHandler } from '../services/addVideoHandler';
+import { addVideoHandler } from '../handlers/addVideoHandler';
+import { getVideoCard } from '../components/videoCard';
+import { emptyMessage } from './../components/emptyMessage';
 
 const videoList = getVideoList();
 
@@ -83,6 +85,7 @@ const introduction = getComponent(
     getTextComponent(
       'Marque trechos de vídeos diretamente no navegador. você pode criar e organizar marcações de partes importantes de vídeos do YouTube.'
     )
+
   ),
   getComponent(
     'small',
@@ -101,24 +104,30 @@ const introduction = getComponent(
 );
 introduction.props.class = 'home-introduction';
 
-const addedVideos = getComponent(
-  'div',
-  getComponent('h5', getTextComponent('Gerencie seus vídeos')),
-  getComponent(
-    'div',
-    getComponent(
-      'p',
-      getTextComponent(
-        'Sua lista de vídeos esta vazia, adicione um vídeo para começar.'
-      )
-    )
-  )
-);
+const videosCards = videoList.map((video) => {
+  return getVideoCard(video);
+});
+
+const videosList = getComponent('ol', ...videosCards);
+videosList.props.class = 'videos-list';
+
+const addedVideos = getComponent('div');
 addedVideos.props.class = 'home-added-videos';
+addedVideos.props['data-videosCardsContainer'] = '';
+
+addChildrenToView(
+  addedVideos,
+  videoList.length === 0,
+  [
+    getComponent('h4', getTextComponent('Gerencie seus vídeos')),
+    emptyMessage('vídeos'),
+  ],
+  [getComponent('h4', getTextComponent('Gerencie seus vídeos')), videosList]
+);
 
 const playlists = getComponent(
   'div',
-  getComponent('h5', getTextComponent('Gerencie suas playlists')),
+  getComponent('h4', getTextComponent('Gerencie suas playlists')),
   getComponent(
     'div',
     getComponent(
@@ -154,8 +163,8 @@ homeView.props.class = 'view home';
 
 addChildrenToView(
   homeView,
-  videoList.length !== 0,
-  [addVideoContent, videoManagement],
-  [introduction, videoManagement]
+  videoList.length === 0,
+  [introduction, videoManagement],
+  [addVideoContent, videoManagement]
 );
 homeView.props.children.push(playerContainer);

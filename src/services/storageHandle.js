@@ -1,6 +1,7 @@
 /**
  * @import { ObjectVideo } from '../utils/types.js';
  */
+import { renderVideoCardList } from '../components/videoCard.js';
 import { APP_PREFIX, FIRST_VIEW } from '../utils/constants.js';
 import { storageUtil } from '../utils/storageUtil';
 
@@ -56,4 +57,24 @@ export const setItemVideoList = (item) => {
     currentVideoList.push(item)
     storageUtil.setItem(storageKeys.videoList, currentVideoList)
 }
+
+/**
+ * Exclui um video do local storage.
+ *
+ * @param {string} id - O ID da tarefa a ser excluída.
+ * @returns {void}
+ */
+export const deleteVideo = (id) => {
+  const currentVideoList = getVideoList()
+  const deletedVideo = currentVideoList.find((v) => v.id === id);
+  const filteredVideos = currentVideoList.filter((v) => v.id !== id);
+  storageUtil.setItem(storageKeys.videoList, filteredVideos)
+
+  renderVideoCardList()
+  
+  // saveVideos(filteredVideos);
+  // renderVideos(filteredVideos);
+  // updateOccupiedSize(filteredVideos);
+  // showSnackbar(getText(getLang(), 'notifications.VideoDeleted', deletedVideo));
+};
 export const getTags = () => []

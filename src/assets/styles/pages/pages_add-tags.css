@@ -12,6 +12,51 @@
   overflow: hidden;
 }
 
+#videoWrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: var(--bg-secondary); */
+  min-height: 200px; /* Ajuste conforme necessário */
+  /* border: 1px solid var(--border); */
+  /* border-radius: var(--border-radius); */
+}
+
+#videoWrapper.loading {
+  background-image: url('../../images/loading.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 50%;
+}
+
+#videoWrapper.loading::after {
+  content: 'Carregando...';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: var(--font-size-large);
+  font-weight: var(--font-weight-bold);
+  opacity: 1;
+  z-index: 2;
+  text-align: center;
+  animation: text-fade-in 1s ease-in-out infinite;
+}
+@keyframes text-fade-in {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+#videoWrapper.loading .video-placeholder {
+  display: none;
+}
+
+
 .video-placeholder {
   display: flex;
   justify-content: center;

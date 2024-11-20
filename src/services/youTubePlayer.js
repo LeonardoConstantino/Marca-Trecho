@@ -51,6 +51,7 @@ export const loadYouTubeAPI = () =>
     document.body.appendChild(scriptTag);
 
     // Define a função global esperada pela API.
+    //@ts-ignore
     customWindow.onYouTubeIframeAPIReady = () => {
       if (customWindow.YT && customWindow.YT.Player) {
         resolve();
@@ -74,14 +75,14 @@ export const createPlayer = (elementId, videoId, options = {}) =>
       return;
     }
 
-    const onReady = options.events?.onReady || (() => console.log('Player ready'));
-
     player = new customWindow.YT.Player(elementId, {
       height: '360',
       width: '640',
       videoId,
       events: {
+        //@ts-ignore
         onReady: options.onReady || (() => console.log('Player ready')),
+        //@ts-ignore
         onStateChange: options.onStateChange || (() => {}),
       },
       ...options,
@@ -95,3 +96,10 @@ export const createPlayer = (elementId, videoId, options = {}) =>
  * @returns {YT.Player | null} A instância do player.
  */
 export const getPlayer = () => player;
+
+export const playerDestroy = () => {
+  if (player) {
+    player.destroy();
+    player = null;
+  }
+};

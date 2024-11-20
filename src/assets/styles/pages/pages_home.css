@@ -29,7 +29,7 @@
   background: transparent;
 }
 
-.home-video-management h5 {
+.home-video-management h4 {
   margin-bottom: var(--spacing-sm);
 }
 
@@ -40,8 +40,8 @@
   border-radius: var(--border-radius-lg);
 }
 
-.home-added-videos div,
-.home-playlists div {
+.home-added-videos div p,
+.home-playlists div p {
   background-color: var(--bg-secondary);
   padding: var(--spacing-md);
   border-radius: var(--border-radius);
@@ -66,6 +66,7 @@
   justify-content: space-between;
   /* gap: var(--spacing-sm); */
   width: 100%;
+  margin-top: var(--spacing-md);
 }
 
 .home-wrapper-input-add-video .home-label-input-add-video {

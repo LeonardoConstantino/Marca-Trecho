@@ -116,6 +116,43 @@ export const formatDate = (date) => {
 };
 
 /**
+ * Formata um valor de tempo em milissegundos para uma string no formato de data e hora.
+ *
+ * @param {number} ms - O valor de tempo em milissegundos.
+ * @returns {string} - Uma string formatada no formato de data e hora, ou uma mensagem de erro se houver um problema.
+ * @throws {Error} - Se o argumento 'ms' não for um número válido.
+ *
+ * @example
+ * // Retorna uma string formatada com a data e hora.
+ * timeFormat(1619839200000); // Retorna '31/05/2022 13:00'
+ *
+ * // Retorna uma mensagem indicando que houve um problema com o formato de hora.
+ * timeFormat('string inválida'); // Retorna 'Formato de hora indisponível'
+ */
+export const timeFormat = (ms) => {
+  // Verifica se o argumento 'ms' é um número válido
+  if (typeof ms !== 'number' || isNaN(ms)) {
+    console.error('O argumento "ms" deve ser um número válido.');
+    return 'Formato de hora indisponível';
+  }
+
+  try {
+    const dataFormatada = new Intl.DateTimeFormat('pt-BR', {
+      dateStyle: 'short',
+      timeStyle: 'short',
+    }).format(new Date(ms));
+
+    return dataFormatada;
+  } catch (error) {
+    console.error(
+      'A API Intl.DateTimeFormat não está disponível neste ambiente de execução.'
+    );
+    // Em vez de retornar vazio, podemos retornar uma string indicando que houve um problema
+    return 'Formato de hora indisponível';
+  }
+};
+
+/**
  * @function calculateLocalStorageSize
  * @description Calcula o tamanho de um item para ser armazenado no localStorage e o formata em bytes, KB ou MB.
  * @param {object | Array<*> | string | number | boolean} item - O item a ser calculado, que será convertido para string e medido.
@@ -226,3 +263,7 @@ export const videoIdFromURL = (url) => {
   );
   return match ? match[1] : undefined;
 };
+
+export const sleep = (ms) => {
+  return new Promise((resolve) => setTimeout(resolve, ms))
+}

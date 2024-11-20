@@ -56,6 +56,7 @@
  * @property { string } title - Título do vídeo
  * @property { string } thumbnailUrl - URL da imagem de thumbnail do vídeo
  * @property { number } duration - Duração do vídeo
+ * @property { number } addedIn - Data de adição do vídeo
  * @property { Array<Tag> } tags - Array de marcações feitas pelo usuário no vídeo
  */
 
