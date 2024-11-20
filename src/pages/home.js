@@ -1,22 +1,32 @@
 // src/pages/home.js
 
 import { ButtonType, createButton, IconSize } from '../components/button';
-import { addChildrenToView, getComponent, getTextComponent } from '../utils/helpers';
+import {
+  addChildrenToView,
+  getComponent,
+  getTextComponent,
+} from '../utils/helpers';
 import { showModal } from './../handlers/showModal';
 //@ts-ignore
 import play from '../assets/images/play.svg';
 //@ts-ignore
 // import arrow from '../assets/images/arrow.svg';
 import { getVideoList } from '../services/storageHandle';
+import { addVideoHandler } from '../services/addVideoHandler';
 
-const videoList = getVideoList()
+const videoList = getVideoList();
 
-const inputAddVideo = getComponent('input')
+const playerContainer = getComponent('div');
+playerContainer.props.id = 'player';
+playerContainer.props.class = 'hidden';
+
+const inputAddVideo = getComponent('input');
 inputAddVideo.props.type = 'text';
 inputAddVideo.props.placeholder = 'Adicionar Vídeo';
 inputAddVideo.props.id = 'input-add-video';
+inputAddVideo.props.required = '';
 
-const labelInputAddVideo = getComponent('label', inputAddVideo )
+const labelInputAddVideo = getComponent('label', inputAddVideo);
 labelInputAddVideo.props.for = 'input-add-video';
 labelInputAddVideo.props.class = 'home-label-input-add-video';
 
@@ -25,7 +35,7 @@ const wrapperInputAddVideo = getComponent(
   labelInputAddVideo,
   createButton(
     'Adicionar Vídeo',
-    () => console.log('Adicionar Vídeo'),
+    addVideoHandler,
     play,
     'button-shine',
     'Adicionar Vídeo',
@@ -33,13 +43,12 @@ const wrapperInputAddVideo = getComponent(
     ButtonType.PRIMARY,
     IconSize.LARGE
   )
-)
+);
 wrapperInputAddVideo.props.class = 'home-wrapper-input-add-video';
 
 const positiveMessage = getComponent(
-    'p',
-    getTextComponent('Vídeo adicionado com sucesso!')
-  
+  'p',
+  getTextComponent('Vídeo adicionado com sucesso!')
 );
 positiveMessage.props.class = 'home-positive-message hidden';
 const negativeMessage = getComponent(
@@ -50,9 +59,10 @@ negativeMessage.props.class = 'home-negative-message hidden';
 
 const wrapperInputAddVideoMessage = getComponent(
   'div',
-  getComponent('label', positiveMessage, negativeMessage),
+  getComponent('label', positiveMessage, negativeMessage)
 );
-wrapperInputAddVideoMessage.props.class = 'home-wrapper-input-add-video-message';
+wrapperInputAddVideoMessage.props.class =
+  'home-wrapper-input-add-video-message';
 
 export const addVideoContent = getComponent(
   'div',
@@ -73,7 +83,6 @@ const introduction = getComponent(
     getTextComponent(
       'Marque trechos de vídeos diretamente no navegador. você pode criar e organizar marcações de partes importantes de vídeos do YouTube.'
     )
-
   ),
   getComponent(
     'small',
@@ -149,3 +158,4 @@ addChildrenToView(
   [addVideoContent, videoManagement],
   [introduction, videoManagement]
 );
+homeView.props.children.push(playerContainer);

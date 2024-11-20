@@ -104,6 +104,25 @@ button i {
   transition: filter var(--animation-duration-long) ease;
 }
 
+button.loading i {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-image: url('../../images/loading.svg') !important;
+}
+
+button.loading {
+  position: relative;
+  cursor: wait;
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+button.loading span {
+  visibility: hidden;
+}
+
 button:hover i,
 button.button-secondary:hover i,
 button.button-tertiary:hover i {

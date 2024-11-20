@@ -158,8 +158,8 @@ export const capitalizeFirstLetter = (str) => {
  * @param {string} timeString - A string de tempo no formato 'hh:mm:ss'.
  * @returns {number} - O número de segundos correspondente à string de tempo.
  */
-export const timeToSeconds = timeString => {
-  const [hours, minutes, seconds] = timeString.split(":").map(Number);
+export const timeToSeconds = (timeString) => {
+  const [hours, minutes, seconds] = timeString.split(':').map(Number);
   return hours * 3600 + minutes * 60 + (seconds || 0);
 };
 
@@ -168,16 +168,61 @@ export const timeToSeconds = timeString => {
  * @param {number} seconds - O número de segundos a ser convertido.
  * @returns {string} - A string de tempo no formato 'hh:mm:ss'.
  */
-export const secondsToTime = seconds => {
+export const secondsToTime = (seconds) => {
   const hours = Math.floor(seconds / 3600);
   const minutes = Math.floor((seconds % 3600) / 60);
   const remainingSeconds = seconds % 60;
 
   return [
-    hours.toString().padStart(2, "0"),
-    minutes.toString().padStart(2, "0"),
-    remainingSeconds.toString().padStart(2, "0"),
-  ].join(":");
+    hours.toString().padStart(2, '0'),
+    minutes.toString().padStart(2, '0'),
+    remainingSeconds.toString().padStart(2, '0'),
+  ].join(':');
 };
 
 export const getRandomId = () => Math.random().toString(36).substring(2, 8);
+
+/**
+ * Retorna a URL da menor resolução disponível para uma thumbnail de um vídeo do YouTube.
+ * @param {string} videoId - O ID do vídeo do YouTube.
+ * @param {string} [fallback="https://dummyimage.com/300"] - URL de fallback caso nenhuma thumbnail esteja disponível.
+ * @returns {Promise<string>} A URL da menor resolução disponível ou o fallback.
+ */
+export const getSmallestAvailableThumbnail = (
+  videoId,
+  fallback = 'https://via.placeholder.com/120x90'
+) => {
+  const resolutions = [1, 2, 3, 0]; // Ordem de menor para maior resolução
+
+  return new Promise((resolve) => {
+    let resolved = false;
+
+    resolutions.forEach((res) => {
+      const url = `https://img.youtube.com/vi/${videoId}/${res}.jpg`;
+      const img = new Image();
+
+      img.onload = () => {
+        if (!resolved) {
+          resolved = true;
+          resolve(url);
+        }
+      };
+
+      img.onerror = () => {
+        if (res === resolutions[resolutions.length - 1] && !resolved) {
+          resolved = true;
+          resolve(fallback);
+        }
+      };
+
+      img.src = url;
+    });
+  });
+};
+
+export const videoIdFromURL = (url) => {
+  const match = url.match(
+    /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/i
+  );
+  return match ? match[1] : undefined;
+};

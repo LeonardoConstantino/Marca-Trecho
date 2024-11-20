@@ -40,11 +40,33 @@
  */
 
 /**
+ * @typedef { Object } Tag
+ * @property { string } id - ID único para marcação
+ * @property { number } start - Início do trecho em segundos
+ * @property { number } end - Fim do trecho em segundos
+ * @property { string } comment - Comentário do usuário
+ * @property { string } priority - Nível de importância: "verde", "amarelo" ou "vermelho"
+ */
+
+/**
+ * @typedef { Object } ObjectVideo
+ * @property { string } id - ID único para vídeo
+ * @property { string } videoId - ID do vídeo extraído do link (YouTube ID)
+ * @property { URL } url - URL do vídeo
+ * @property { string } title - Título do vídeo
+ * @property { string } thumbnailUrl - URL da imagem de thumbnail do vídeo
+ * @property { number } duration - Duração do vídeo
+ * @property { Array<Tag> } tags - Array de marcações feitas pelo usuário no vídeo
+ */
+
+/**
  * Exporta os types para uso em outros arquivos
  * @typedef {object} Types
  * @property {Task} TASKS - Tipos de jogos disponíveis.
  * @property {ElementConfig} ELEMENTCONFIG - Tipos de cores.
  * @property {InputElementConfig} INPUTELEMENTCONFIG
  * @property {labelInputElementConfig} LABELINPUTELEMENTCONFIG
+ * @property {Tag} TAG
+ * @property {ObjectVideo} OBJECTVIDEO
  */
 module.exports = Types;
