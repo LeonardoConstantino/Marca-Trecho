@@ -12,7 +12,7 @@ import play from '../assets/images/play.svg';
 //@ts-ignore
 // import arrow from '../assets/images/arrow.svg';
 import { getVideoList } from '../services/storageHandle';
-import { addVideoHandler } from '../handlers/addVideoHandler';
+import { addVideoHandler } from '../handlers/addVideo';
 import { getVideoCard } from '../components/videoCard';
 import { emptyMessage } from './../components/emptyMessage';
 

@@ -25,22 +25,26 @@
 }
 
 .video-card-thumbnail-wrapper {
+  flex: 0  1 10rem;;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  /* width: 9.5rem; */
 }
 
 .video-card-thumbnail-wrapper img {
   border-radius: var(--border-radius-sm);
   width: 100%;
   height: auto;
+  aspect-ratio: 4/3;
   object-fit: cover;
+  /* object-fit: cover; */
   transition: transform var(--animation-duration-long) ease;
 }
 
 .video-card-title {
-  font-size: var(--font-size-large);
+  font-size: var(--font-size-medium);
   text-align: left;
 }
 

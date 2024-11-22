@@ -13,6 +13,7 @@ footer {
   /* bottom: 0; */
   width: 100%;
   max-width: var(--layout-max-width);
+  margin-top: auto;
 }
 
 footer .brand {

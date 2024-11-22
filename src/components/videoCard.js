@@ -16,9 +16,8 @@ import movieInfosEdit from '../assets/images/movieInfosEdit.svg';
 import { deleteVideo, getVideoList } from '../services/storageHandle';
 import { EventDelegator, renderElement } from '../utils/renderElement';
 import { emptyMessage } from './emptyMessage';
-import { createPlayer, loadYouTubeAPI } from '../services/youTubePlayer';
-// import { toggleView } from '../handlers/toggleView';
-// import { addTagsView } from '../pages/addTags';
+import { PlayerStates, setupIframePlayer } from '../services/youTubePlayer';
+import { renderTagCardList } from './tagCard';
 
 let timer;
 
@@ -63,6 +62,8 @@ const cancelAction = (e) => {
     deleteVideo(id);
     btn.classList.remove('cancel'); // Remove o estado de cancelamento
     spanBtn.textContent = 'Excluir';
+
+    renderVideoCardList()
   }, 5000);
 };
 
@@ -74,64 +75,90 @@ const cancelAction = (e) => {
 const editVideoTags = async (e) => {
   e.preventDefault();
 
-  // Validação do elemento disparador
+  // Valida o elemento disparador
   if (!(e.target instanceof HTMLElement)) return;
-  const btn = e.target.closest('button');
-  if (!btn) return;
-
-  const spanBtn = btn.querySelector('span');
-  if (!spanBtn) return;
-
-  // Localiza o card do vídeo associado
-  const videoCard = btn.closest('[data-id]');
+  const btn = e.target?.closest('button');
+  const videoCard = btn?.closest('[data-id]');
   if (!(videoCard instanceof HTMLElement)) return;
-  const id = videoCard.dataset.id;
-  if (!id) return;
+  const id = videoCard?.dataset?.id;
+  if (!btn || !id) return;
 
-  // Simula clique no botão de navegação para "Marcar trechos"
   const navButton = document.querySelector('[data-navButton="Marcar trechos"]');
   if (!(navButton instanceof HTMLButtonElement)) return;
+
+  // Simula clique no botão de navegação
   navButton.click();
 
-  // Obtém a lista atual de vídeos e o vídeo selecionado
   const currentVideoList = getVideoList();
   const selectedVideo = currentVideoList.find((video) => video.id === id);
   if (!selectedVideo) return;
 
-  // Aguarda um breve intervalo antes de continuar
   await sleep(500);
 
-  // Configura o wrapper de vídeo
   const videoWrapper = document.querySelector('#videoWrapper');
-  if (!(videoWrapper instanceof HTMLElement)) return;
+  const videoPlaceholder = videoWrapper?.querySelector('.video-placeholder');
+  if (
+    !(videoWrapper instanceof HTMLElement) ||
+    !(videoPlaceholder instanceof HTMLElement)
+  )
+    return;
+
+  // Configura o estado de carregamento
   videoWrapper.classList.add('loading');
+  videoWrapper.dataset.currentVideoId = selectedVideo.id
+  renderTagCardList();
+  await sleep(500);
+
+  const finalTime = document.querySelector('#finalTime');
+  const initialTime = document.querySelector('#inicialTime');
+  if (
+    !(finalTime instanceof HTMLInputElement) ||
+    !(initialTime instanceof HTMLInputElement)
+  )
+    return;
 
   try {
-    // Carrega a API do YouTube e inicializa o player
-    await loadYouTubeAPI();
-    await sleep(1000);
-
-    await createPlayer('videoWrapper', selectedVideo.id, {
-      //@ts-ignore
+    // Configura o iframe dinâmico
+    setupIframePlayer(selectedVideo.videoId, {
+      containerId: 'videoWrapper',
       onReady: (event) => {
-        event.target.getIframe().classList.remove('loading');
-        console.log('Player ready!', event);
+        const iframe = event.target.getIframe();
+        iframe?.classList.remove('loading');
+
+        // Atualiza valores máximos
+        const duration = event.target.getDuration();
+        finalTime.max = secondsToTime(duration);
+        initialTime.max = secondsToTime(duration);
         event.target.playVideo();
-        console.log(event.target.getPlayerState());
+      },
+      onStateChange: (event) => {
+        if (event.data === PlayerStates.PAUSED) {
+          const currentTime = event.target.getCurrentTime();
+          const duration = event.target.getDuration();
+          const finalTimeNewValue = Math.min(currentTime + 10, duration);
+
+          // Atualiza inputs de tempo
+          finalTime.value = secondsToTime(finalTimeNewValue);
+          finalTime.min = secondsToTime(currentTime);
+          initialTime.value = secondsToTime(currentTime);
+          initialTime.max = secondsToTime(currentTime);
+        }
       },
     });
+
+    EventDelegator.cleanup(videoWrapper);
+    videoPlaceholder.remove();
   } catch (error) {
     console.error('Erro ao inicializar o YouTube Player:', error);
   } finally {
-    // Garante que o estado de carregamento é removido
+    // Remove o estado de carregamento
     videoWrapper.classList.remove('loading');
-    console.log('Finalizando o player');
   }
 };
 
-export const getVideoCard = (infos) => {
+export const getVideoCard = (objectVideo) => {
   const { id, videoId, url, title, thumbnailUrl, duration, addedIn, tags } =
-    infos;
+    objectVideo;
 
   const videoUrl = getAnchor(url, 'Link do video');
   videoUrl.props.class = 'video-card-link';

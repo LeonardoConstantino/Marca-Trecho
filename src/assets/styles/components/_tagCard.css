@@ -1,0 +1,76 @@
+.tag-list {
+  display: flex;
+  flex-flow: row wrap;
+  gap: var(--spacing-md);
+}
+
+.tag-card {
+  display: flex;
+  flex-direction: column;
+  /* max-width: 200px; */
+  padding: var(--spacing-sm);
+  gap: var(--spacing-sm);
+  background-color: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  border-radius: var(--border-radius);
+  transition: border 0.2s;
+}
+
+.tag-card:hover {
+  border: 1px solid var(--accent);
+  background: var(--card-bg);
+}
+
+.tag-card .fist-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--font-size-small);
+  color: var(--text-secondary);
+}
+
+.tag-card .fist-line .priority {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+}
+.tag-card .fist-line .priority.low {
+  background: var(--success);
+}
+.tag-card .fist-line .priority.medium {
+  background: var(--warning);
+}
+.tag-card .fist-line .priority.high {
+  background: var(--danger);
+}
+
+.tag-card .time-wrapper,
+.tag-card .comment-wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-size: var(--font-size-medium);
+  color: var(--text-primary);
+}
+
+.tag-card .time-wrapper i,
+.tag-card .comment-wrapper i {
+  flex: 0 0 auto;
+}
+
+.tag-card .comment-wrapper p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tag-card .wrapper-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-sm);
+}
+
+.tag-card .wrapper-actions button {
+  padding: var(--spacing-sm);
+}

@@ -208,7 +208,7 @@ export const timeToSeconds = (timeString) => {
 export const secondsToTime = (seconds) => {
   const hours = Math.floor(seconds / 3600);
   const minutes = Math.floor((seconds % 3600) / 60);
-  const remainingSeconds = seconds % 60;
+  const remainingSeconds = Math.floor(seconds % 60);
 
   return [
     hours.toString().padStart(2, '0'),
@@ -217,7 +217,16 @@ export const secondsToTime = (seconds) => {
   ].join(':');
 };
 
-export const getRandomId = () => Math.random().toString(36).substring(2, 8);
+/**
+ * Gera um ID aleatório de 8 caracteres.
+ *
+ * @returns {string} - Um ID único de 8 caracteres.
+ */
+export const getRandomId = () => {
+  return typeof crypto?.randomUUID === 'function'
+    ? crypto.randomUUID().substring(0, 8)
+    : Math.random().toString(36).substring(2, 10);
+};
 
 /**
  * Retorna a URL da menor resolução disponível para uma thumbnail de um vídeo do YouTube.

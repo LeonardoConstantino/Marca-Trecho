@@ -205,6 +205,7 @@ button.cancel::before {
 
 button.cancel i {
   background-image: url('../../images/loading.svg') !important;
+  z-index: 2;
 }
 
 button.cancel span {

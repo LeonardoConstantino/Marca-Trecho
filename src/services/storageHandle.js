@@ -1,5 +1,6 @@
 /**
  * @import { ObjectVideo } from '../utils/types.js';
+ * @import { Tag } from '../utils/types.js';
  */
 import { renderVideoCardList } from '../components/videoCard.js';
 import { APP_PREFIX, FIRST_VIEW } from '../utils/constants.js';
@@ -61,7 +62,7 @@ export const setItemVideoList = (item) => {
 /**
  * Exclui um video do local storage.
  *
- * @param {string} id - O ID da tarefa a ser excluída.
+ * @param {string} id - O ID do video a ser excluído
  * @returns {void}
  */
 export const deleteVideo = (id) => {
@@ -69,12 +70,56 @@ export const deleteVideo = (id) => {
   const deletedVideo = currentVideoList.find((v) => v.id === id);
   const filteredVideos = currentVideoList.filter((v) => v.id !== id);
   storageUtil.setItem(storageKeys.videoList, filteredVideos)
-
-  renderVideoCardList()
-  
-  // saveVideos(filteredVideos);
-  // renderVideos(filteredVideos);
-  // updateOccupiedSize(filteredVideos);
-  // showSnackbar(getText(getLang(), 'notifications.VideoDeleted', deletedVideo));
 };
-export const getTags = () => []
+
+/**
+ * Obtém as tags associadas a um vídeo pelo seu ID.
+ *
+ * @param {string} videoId - O ID do vídeo.
+ * @returns {Array<Tag>} - Uma lista de tags do vídeo ou um array vazio se o vídeo não for encontrado.
+ */
+export const getTags = (videoId) => {
+  const videoList = getVideoList()
+  const video = videoList.find((v) => v.id === videoId)
+  if (!video) return []
+  return video.tags
+}
+
+/**
+ * Adiciona uma tag à lista de tags de um vídeo específico.
+ *
+ * @param {string} videoId - O ID do vídeo.
+ * @param {Tag} tag - O objeto representando a tag a ser adicionada.
+ * @returns {void}
+ */
+export const setTagInTagList = (videoId, tag) => {
+  const videoList = getVideoList();
+  
+  // Localiza o vídeo pelo ID
+  const video = videoList.find((v) => v.id === videoId);
+  if (!video) return;
+
+  // Adiciona a tag e salva a lista atualizada
+  video.tags.push(tag);
+  storageUtil.setItem(storageKeys.videoList, videoList);
+};
+
+/**
+ * Remove uma tag específica da lista de tags de um vídeo.
+ *
+ * @param {string} videoId - O ID do vídeo.
+ * @param {string} tagId - O objeto representando a tag a ser removida.
+ */
+export const deleteTagInTagList = (videoId, tagId) => {
+  const videoList = getVideoList();
+
+  // Localiza o vídeo pelo ID
+  const video = videoList.find((v) => v.id === videoId);
+  if (!video) return;
+
+  // Remove a tag e salva a lista atualizada
+  const filtered = video.tags.filter((t) => t.id !== tagId);
+  video.tags = filtered;
+
+  storageUtil.setItem(storageKeys.videoList, videoList);
+};

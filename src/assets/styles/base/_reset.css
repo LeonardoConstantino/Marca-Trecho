@@ -56,5 +56,5 @@ body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
   padding: var(--spacing-g);
-  min-height: 100dvh;
+  /* min-height: 100dvh; */
 }
