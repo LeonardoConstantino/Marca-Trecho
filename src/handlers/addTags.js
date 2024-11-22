@@ -87,3 +87,5 @@ export const addTagsHandler = async (e) => {
 
     renderTagCardList()
   };
+
+  //TODO - corrigir o erro de adicionar múltiplas tags seguidas

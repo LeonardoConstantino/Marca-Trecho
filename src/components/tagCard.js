@@ -16,10 +16,11 @@ import commentEdit from '../assets/images/commentEdit.svg';
 import { deleteTagInTagList, getTags } from '../services/storageHandle';
 import { EventDelegator, renderElement } from '../utils/renderElement';
 
-let timer;
+// Map para gerenciar temporizadores por tag
+const tagTimers = new Map();
 
 /**
- * Lida com a ação de cancelar ou excluir um vídeo após uma confirmação com atraso.
+ * Lida com a ação de cancelar ou excluir uma tag após uma confirmação com atraso.
  *
  * @param {Event} e - O evento de clique.
  */
@@ -58,22 +59,33 @@ const cancelAction = (e) => {
   if (btn.classList.contains('cancel')) {
     btn.classList.remove('cancel');
     btn.title = 'Apagar marcação';
-    clearTimeout(timer); // Cancela o temporizador existente
+
+    // Cancela o temporizador associado à tag
+    if (tagTimers.has(tagId)) {
+      clearTimeout(tagTimers.get(tagId));
+      tagTimers.delete(tagId);
+    }
     return;
   }
 
   btn.classList.add('cancel');
   btn.title = 'Cancelar';
 
-  // Define um temporizador para excluir o vídeo após 5 segundos
-  timer = setTimeout(() => {
+  // Define um temporizador para excluir a tag após 5 segundos
+  const timer = setTimeout(() => {
     btn.classList.remove('cancel'); // Remove o estado de cancelamento
     btn.title = 'Apagar marcação';
 
-    deleteTagInTagList(currentVideoId, tagId);
-    renderTagCardList();
+    deleteTagInTagList(currentVideoId, tagId); // Remove a tag do vídeo
+    renderTagCardList(); // Atualiza a lista de tags
+
+    tagTimers.delete(tagId); // Remove o temporizador associado à tag
   }, 5000);
+
+  // Armazena o temporizador no Map
+  tagTimers.set(tagId, timer);
 };
+
 
 export const getTagCard = (tag) => {
   const { id, start, end, comment, priority } = tag;

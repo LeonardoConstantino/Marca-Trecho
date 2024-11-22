@@ -1,6 +1,7 @@
 import {
   getAnchor,
   getComponent,
+  getIconComponent,
   getImgComponent,
   getTextComponent,
   getTextSpan,
@@ -9,17 +10,24 @@ import {
   timeFormat,
 } from '../utils/helpers';
 import { ButtonType, createButton, IconSize } from './button';
-//@ts-ignore
-import deleteIcon from '../assets/images/delete.svg';
-//@ts-ignore
-import movieInfosEdit from '../assets/images/movieInfosEdit.svg';
 import { deleteVideo, getVideoList } from '../services/storageHandle';
 import { EventDelegator, renderElement } from '../utils/renderElement';
 import { emptyMessage } from './emptyMessage';
 import { PlayerStates, setupIframePlayer } from '../services/youTubePlayer';
 import { renderTagCardList } from './tagCard';
+//@ts-ignore
+import deleteIcon from '../assets/images/delete.svg';
+//@ts-ignore
+import movieInfosEdit from '../assets/images/movieInfosEdit.svg';
+//@ts-ignore
+import clock from '../assets/images/clock.svg';
+//@ts-ignore
+import bookmarksTags from '../assets/images/bookmarksTags.svg';
+//@ts-ignore
+import externalLink from '../assets/images/externalLink.svg';
 
-let timer;
+// Map para gerenciar temporizadores por vídeo
+const timers = new Map();
 
 /**
  * Lida com a ação de cancelar ou excluir um vídeo após uma confirmação com atraso.
@@ -40,9 +48,8 @@ const cancelAction = (e) => {
 
   // Procura o elemento mais próximo com o atributo 'data-id'
   const videoCard = btn.closest('[data-id]');
-
-  // Verifica se o elemento encontrado é um HTMLElement e acessa o 'dataset'
   if (!(videoCard instanceof HTMLElement)) return;
+
   const id = videoCard.dataset.id;
   if (!id) return;
 
@@ -50,7 +57,13 @@ const cancelAction = (e) => {
   if (btn.classList.contains('cancel')) {
     btn.classList.remove('cancel');
     spanBtn.textContent = 'Excluir';
-    clearTimeout(timer); // Cancela o temporizador existente
+
+    // Cancela o temporizador associado ao vídeo
+    if (timers.has(id)) {
+      clearTimeout(timers.get(id));
+      timers.delete(id);
+    }
+
     return;
   }
 
@@ -58,13 +71,17 @@ const cancelAction = (e) => {
   spanBtn.textContent = 'Cancelar';
 
   // Define um temporizador para excluir o vídeo após 5 segundos
-  timer = setTimeout(() => {
-    deleteVideo(id);
-    btn.classList.remove('cancel'); // Remove o estado de cancelamento
+  const timer = setTimeout(() => {
+    deleteVideo(id); // Função que remove o vídeo
+    btn.classList.remove('cancel');
     spanBtn.textContent = 'Excluir';
 
-    renderVideoCardList()
+    renderVideoCardList(); // Re-renderiza a lista de vídeos
+    timers.delete(id); // Remove o temporizador após a execução
   }, 5000);
+
+  // Armazena o temporizador no Map
+  timers.set(id, timer);
 };
 
 /**
@@ -105,7 +122,7 @@ const editVideoTags = async (e) => {
 
   // Configura o estado de carregamento
   videoWrapper.classList.add('loading');
-  videoWrapper.dataset.currentVideoId = selectedVideo.id
+  videoWrapper.dataset.currentVideoId = selectedVideo.id;
   renderTagCardList();
   await sleep(500);
 
@@ -160,48 +177,59 @@ export const getVideoCard = (objectVideo) => {
   const { id, videoId, url, title, thumbnailUrl, duration, addedIn, tags } =
     objectVideo;
 
-  const videoUrl = getAnchor(url, 'Link do video');
-  videoUrl.props.class = 'video-card-link';
+  const durationWrapper = getTextSpan(`${secondsToTime(duration)}`);
 
-  const durationWrapper = getTextSpan(
-    `Duração do video: ${secondsToTime(duration)}`
-  );
   durationWrapper.props.class = 'video-card-duration';
   durationWrapper.props.title = 'Duração do vídeo';
 
-  const dateWrapper = getTextSpan(`Adicionado em: ${timeFormat(addedIn)}`);
-  dateWrapper.props.class = 'video-card-date';
-  dateWrapper.props.title = 'Data de adição';
-
-  const numberOfTags = getTextSpan(`Número de Marcações: ${tags.length}`);
-  numberOfTags.props.class = 'video-card-tags';
-
-  const videoIdWrapper = getTextSpan(`ID do vídeo: ${videoId}`);
-  videoIdWrapper.props.class = 'video-card-id';
-  videoIdWrapper.props.title = 'ID do vídeo';
-
-  const infosWrapper = getComponent(
-    'div',
-    videoUrl,
-    durationWrapper,
-    dateWrapper,
-    numberOfTags,
-    videoIdWrapper
-  );
-  infosWrapper.props.class = 'video-card-infos';
-
-  const titleWrapper = getComponent('h5', getTextComponent(title));
-  titleWrapper.props.class = 'video-card-title';
-
   const thumbnailWrapper = getComponent(
     'div',
-    getImgComponent(thumbnailUrl, `Thumbnail for video ${title}`, 100, 100)
+    getImgComponent(thumbnailUrl, `Thumbnail for video ${title}`, 100, 100),
+    durationWrapper
   );
   thumbnailWrapper.props.class = 'video-card-thumbnail-wrapper';
   thumbnailWrapper.props.title = `Thumbnail do video ${title}`;
 
-  const header = getComponent('div', thumbnailWrapper, titleWrapper);
-  header.props.class = 'video-card-header';
+  const titleWrapper = getComponent('h5', getTextComponent(title));
+  titleWrapper.props.class = 'video-card-title';
+
+  const dateWrapper = getComponent(
+    'spam',
+    getIconComponent(clock, 'small'),
+    getTextSpan(`${timeFormat(addedIn)}`)
+  );
+  dateWrapper.props.class = 'video-card-date';
+  dateWrapper.props.title = 'Data de adição';
+
+  const numberOfTags = getComponent(
+    'spam',
+    getIconComponent(bookmarksTags, 'small'),
+    getTextSpan(`${tags.length} marcações`)
+  );
+  numberOfTags.props.class = 'video-card-tags';
+
+  const secondLine = getComponent('spam', dateWrapper, numberOfTags);
+  secondLine.props.class = 'video-card-secondLine';
+
+  const videoIdWrapper = getTextSpan(`ID: ${videoId}`);
+  videoIdWrapper.props.class = 'video-card-id';
+  videoIdWrapper.props.title = 'ID do vídeo';
+
+  const videoUrl = getComponent(
+    'spam',
+    getIconComponent(externalLink, 'small'),
+    getAnchor(url, 'Assista no YouTube')
+  );
+  videoUrl.props.class = 'video-card-link';
+
+  const infosWrapper = getComponent(
+    'div',
+    titleWrapper,
+    secondLine,
+    videoIdWrapper,
+    videoUrl
+  );
+  infosWrapper.props.class = 'video-card-infos';
 
   const deleteButton = createButton(
     'Excluir',
@@ -228,7 +256,10 @@ export const getVideoCard = (objectVideo) => {
   const actionWrapper = getComponent('div', deleteButton, editButton);
   actionWrapper.props.class = 'video-card-action';
 
-  const videoCard = getComponent('li', header, infosWrapper, actionWrapper);
+  const divThumbInfo = getComponent('div', thumbnailWrapper, infosWrapper);
+  divThumbInfo.props.class = 'video-card-thumb-info';
+
+  const videoCard = getComponent('li', divThumbInfo, actionWrapper);
   videoCard.props.class = 'video-card';
   videoCard.props['data-id'] = id;
 

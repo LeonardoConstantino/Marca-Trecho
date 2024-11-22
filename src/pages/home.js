@@ -168,3 +168,5 @@ addChildrenToView(
   [addVideoContent, videoManagement]
 );
 homeView.props.children.push(playerContainer);
+
+//TODO - Corrigir primeira renderização da lista de videos
