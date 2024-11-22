@@ -1,6 +1,6 @@
 # Marca-Trecho!
 
-<!-- ### [preview do projeto](https://leonardoconstantino.github.io/Marca-Trecho/) -->
+### [preview do projeto](https://leonardoconstantino.github.io/Marca-Trecho/)
 
 [Detalhes da arquitetura de arquivos](https://github.com/LeonardoConstantino/Marca-Trecho/blob/master/estrutura.md)
 
@@ -8,11 +8,16 @@
 
 Este projeto é uma ferramenta de marcação de trechos de vídeos diretamente no navegador. Ele permite ao usuário criar e organizar marcações de partes importantes de vídeos do YouTube e, no futuro, de outros sites de vídeo. Não possui backend ou banco de dados, e todas as funcionalidades são executadas no front-end.
 
-<!-- ## Imagem do projeto
+## Imagem do projeto
 
 <div align='center'>
-    <img src='https://raw.githubusercontent.com/LeonardoConstantino/Marca-Trecho/master/src/assets/images/print.png' alt='Sample screenshot' width='400'>
-</div> -->
+    <img src='https://raw.githubusercontent.com/LeonardoConstantino/Marca-Trecho/master/src/assets/images/print.png' alt='Sample screenshot' width='200'>
+    <img src='https://raw.githubusercontent.com/LeonardoConstantino/Marca-Trecho/master/src/assets/images/print1.png' alt='Sample screenshot' width='200'>
+</div>
+<div align='center'>
+    <img src='https://raw.githubusercontent.com/LeonardoConstantino/Marca-Trecho/master/src/assets/images/print2.png' alt='Sample screenshot' width='200'>
+    <img src='https://raw.githubusercontent.com/LeonardoConstantino/Marca-Trecho/master/src/assets/images/print3.png' alt='Sample screenshot' width='200'>
+</div>
 
 ## Funcionalidades
 - **Adicionar Vídeos**: Insira o link do YouTube e adicione à sua lista.
@@ -106,9 +111,9 @@ Autor: Leonardo H. Constantino
 
 </div>
 
-<!-- <div align='center'>
+<div align='center'>
     <img src='https://raw.githubusercontent.com/LeonardoConstantino/Marca-Trecho/master/src/assets/images/representacao.jpg' alt='representação' width='400'>
-</div> -->
+</div>
 
 ## Proximo passos
 Ainda em desenvolvimento.
