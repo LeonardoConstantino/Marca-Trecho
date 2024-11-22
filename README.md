@@ -112,7 +112,7 @@ Autor: Leonardo H. Constantino
 </div>
 
 <div align='center'>
-    <img src='https://raw.githubusercontent.com/LeonardoConstantino/Marca-Trecho/master/src/assets/images/representacao.jpg' alt='representação' width='400'>
+    <img src='https://raw.githubusercontent.com/LeonardoConstantino/Marca-Trecho/refs/heads/master/src/assets/images/representacao.jpeg' alt='representação' width='400'>
 </div>
 
 ## Proximo passos
