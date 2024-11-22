@@ -16,7 +16,7 @@ import { addTagsHandler } from '../handlers/addTags';
 import { getTagCard } from '../components/tagCard';
 
 const videoList = getVideoList();
-const tags = getTags(videoList[0].id);
+const tags = getTags(videoList[0]?.id);
 
 const divVideoPlaceholder = getComponent(
   'div',

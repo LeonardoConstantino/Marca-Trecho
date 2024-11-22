@@ -1,127 +1,220 @@
-# Explicação da Estrutura
+# Estrutura de Arquivos do Projeto 📂Marca-Trecho
 
-| pasta/arquivo | conteúdo |
-|:---:|:---|
-| components/ | Contém componentes reutilizáveis que podem ser usados em várias partes da aplicação. |
-| layout/ | Contém componentes relacionados ao layout, como navegação, cabeçalhos, rodapés, etc. |
-| pages/ | Contém scripts específicos de páginas, representando as diferentes páginas da aplicação. |
-| services/ | Contém serviços para lidar com lógica de negócios, como chamadas de API e autenticação. |
-| utils/ | Contém funções utilitárias, constantes e validadores que podem ser usados em toda a aplicação. |
-| assets/ | Contém recursos estáticos como imagens, estilos e fontes. |
-| index.html | O ponto de entrada principal da aplicação. |
-| main.js | O arquivo JavaScript principal que importa e inicializa os módulos necessários. |
+Abaixo está uma descrição detalhada da estrutura de arquivos do projeto Marca-Trecho, organizada em categorias para fácil compreensão:
+
 
 ```
-|– Marca-Trecho/
-|
-| |– src/
-| |
-| |– assets/
-| |   |– images/           # Imagens
-| |   |– styles/           # Estilos (CSS/SASS)
-| |   |– fonts/            # Fontes
-| |
-| |– components/
-| |   |– button.js         # Componente de botão
-| |   |– carousel.js       # Componente de carrossel
-| |   |– dropdown.js       # Componente de dropdown
-| |   ...                  # Outros componentes
-| |
-| |– layout/
-| |   |– navigation.js     # Navegação
-| |   |– grid.js           # Sistema de grid
-| |   |– header.js         # Cabeçalho
-| |   |– footer.js         # Rodapé
-| |   |– sidebar.js        # Barra lateral
-| |   |– form.js           # Formulários
-| |   ...                  # Outros componentes de layout
-| |
-| |– pages/
-| |   |– home.js           # Página inicial
-| |   |– contact.js        # Página de contato
-| |   ...                  # Outras páginas
-| |
-| |– services/
-| |   |– apiService.js     # Serviço de API
-| |   |– authService.js    # Serviço de autenticação
-| |   ...                  # Outros serviços
-| |
-| |– utils/
-| |   |– constants.js      # Constantes
-| |   |– helpers.js        # Funções auxiliares
-| |   |– validators.js     # Funções de validação
-| |   ...                  # Outros utilitários
-| |
-| |– main.js               # Arquivo HTML principal
-|
-|– index.html              # Arquivo JS principal
+📦Marca-Trecho
+ ┣ 📂src
+ ┃ ┣ 📂assets
+ ┃ ┃ ┣ 📂fonts
+ ┃ ┃ ┣ 📂images
+ ┃ ┃ ┃ ┣ 📜addNotes.svg
+ ┃ ┃ ┃ ┣ 📜arrow.svg
+ ┃ ┃ ┃ ┣ 📜arrowCloseRight.svg
+ ┃ ┃ ┃ ┣ 📜arrowLeft.svg
+ ┃ ┃ ┃ ┣ 📜clock.svg
+ ┃ ┃ ┃ ┣ 📜close.svg
+ ┃ ┃ ┃ ┣ 📜comment.svg
+ ┃ ┃ ┃ ┣ 📜commentEdit.svg
+ ┃ ┃ ┃ ┣ 📜copy.svg
+ ┃ ┃ ┃ ┣ 📜danger.svg
+ ┃ ┃ ┃ ┣ 📜delete.svg
+ ┃ ┃ ┃ ┣ 📜doubleArrowLeft.svg
+ ┃ ┃ ┃ ┣ 📜favicon.ico
+ ┃ ┃ ┃ ┣ 📜github.svg
+ ┃ ┃ ┃ ┣ 📜loading.svg
+ ┃ ┃ ┃ ┣ 📜logo.png
+ ┃ ┃ ┃ ┣ 📜movieInfosEdit.svg
+ ┃ ┃ ┃ ┣ 📜openSource.svg
+ ┃ ┃ ┃ ┣ 📜play-pause.svg
+ ┃ ┃ ┃ ┣ 📜play.svg
+ ┃ ┃ ┃ ┣ 📜playAdd.svg
+ ┃ ┃ ┃ ┣ 📜questionMark.svg
+ ┃ ┃ ┃ ┣ 📜representacao.jpeg
+ ┃ ┃ ┃ ┣ 📜settings.svg
+ ┃ ┃ ┃ ┗ 📜share.svg
+ ┃ ┃ ┗ 📂styles
+ ┃ ┃ ┃ ┣ 📂base
+ ┃ ┃ ┃ ┃ ┣ 📜_reset.css
+ ┃ ┃ ┃ ┃ ┗ 📜_typography.css
+ ┃ ┃ ┃ ┣ 📂components
+ ┃ ┃ ┃ ┃ ┣ 📜_buttons.css
+ ┃ ┃ ┃ ┃ ┣ 📜_dropdown.css
+ ┃ ┃ ┃ ┃ ┣ 📜_fieldset.css
+ ┃ ┃ ┃ ┃ ┣ 📜_input-search.css
+ ┃ ┃ ┃ ┃ ┣ 📜_modal.css
+ ┃ ┃ ┃ ┃ ┣ 📜_snackbar.css
+ ┃ ┃ ┃ ┃ ┣ 📜_tagCard.css
+ ┃ ┃ ┃ ┃ ┣ 📜_textarea.css
+ ┃ ┃ ┃ ┃ ┣ 📜_time-selector.css
+ ┃ ┃ ┃ ┃ ┗ 📜_videoCard.css
+ ┃ ┃ ┃ ┣ 📂layout
+ ┃ ┃ ┃ ┃ ┣ 📜layout_container.css
+ ┃ ┃ ┃ ┃ ┣ 📜layout_footer.css
+ ┃ ┃ ┃ ┃ ┣ 📜layout_forms.css
+ ┃ ┃ ┃ ┃ ┣ 📜layout_header.css
+ ┃ ┃ ┃ ┃ ┣ 📜layout_main.css
+ ┃ ┃ ┃ ┃ ┣ 📜layout_navigation.css
+ ┃ ┃ ┃ ┃ ┗ 📜layout_sidebar.css
+ ┃ ┃ ┃ ┣ 📂pages
+ ┃ ┃ ┃ ┃ ┣ 📜pages_add-tags.css
+ ┃ ┃ ┃ ┃ ┣ 📜pages_excerpts-tagged.css
+ ┃ ┃ ┃ ┃ ┗ 📜pages_home.css
+ ┃ ┃ ┃ ┣ 📂themes
+ ┃ ┃ ┃ ┃ ┣ 📜themes_admin.css
+ ┃ ┃ ┃ ┃ ┗ 📜themes_theme.css
+ ┃ ┃ ┃ ┣ 📂utils
+ ┃ ┃ ┃ ┃ ┣ 📜media-queries.css
+ ┃ ┃ ┃ ┃ ┣ 📜utils_animation.css
+ ┃ ┃ ┃ ┃ ┣ 📜utils_helpers.css
+ ┃ ┃ ┃ ┃ ┗ 📜utils_variables.css
+ ┃ ┃ ┃ ┗ 📜main.css
+ ┃ ┣ 📂components
+ ┃ ┃ ┣ 📜button.js
+ ┃ ┃ ┣ 📜emptyMessage.js
+ ┃ ┃ ┣ 📜inputCheckBox.js
+ ┃ ┃ ┣ 📜inputRadio.js
+ ┃ ┃ ┣ 📜inputSearch.js
+ ┃ ┃ ┣ 📜modal.js
+ ┃ ┃ ┣ 📜selection.js
+ ┃ ┃ ┣ 📜snackbar.js
+ ┃ ┃ ┣ 📜tagCard.js
+ ┃ ┃ ┣ 📜timeSelector.js
+ ┃ ┃ ┗ 📜videoCard.js
+ ┃ ┣ 📂handlers
+ ┃ ┃ ┣ 📜addTags.js
+ ┃ ┃ ┣ 📜addVideo.js
+ ┃ ┃ ┣ 📜showModal.js
+ ┃ ┃ ┣ 📜toggleTheme.js
+ ┃ ┃ ┗ 📜toggleView.js
+ ┃ ┣ 📂layout
+ ┃ ┃ ┣ 📜footer.js
+ ┃ ┃ ┣ 📜form.js
+ ┃ ┃ ┣ 📜grid.js
+ ┃ ┃ ┣ 📜header.js
+ ┃ ┃ ┣ 📜navigation.js
+ ┃ ┃ ┗ 📜sidebar.js
+ ┃ ┣ 📂pages
+ ┃ ┃ ┣ 📜addTags.js
+ ┃ ┃ ┣ 📜createPlaylist.js
+ ┃ ┃ ┣ 📜excerptsTagged.js
+ ┃ ┃ ┗ 📜home.js
+ ┃ ┣ 📂services
+ ┃ ┃ ┣ 📜storageHandle.js
+ ┃ ┃ ┗ 📜youTubePlayer.js
+ ┃ ┣ 📂utils
+ ┃ ┃ ┣ 📜constants.js
+ ┃ ┃ ┣ 📜helpers.js
+ ┃ ┃ ┣ 📜renderElement.js
+ ┃ ┃ ┣ 📜showSnackbar.js
+ ┃ ┃ ┣ 📜storageUtil.js
+ ┃ ┃ ┗ 📜types.js
+ ┃ ┗ 📜main.js
+ ┣ 📜.gitignore
+ ┣ 📜CHANGELOG.md
+ ┣ 📜detalhamento.md
+ ┣ 📜estrutura.md
+ ┣ 📜index.html
+ ┣ 📜LICENSE.txt
+ ┣ 📜package-lock.json
+ ┣ 📜package.json
+ ┣ 📜README.md
+ ┣ 📜vite-env.d.ts
+ ┗ 📜vite.config.js
 ```
+## Raiz do Projeto
+- `index.html:` Arquivo principal HTML que carrega o aplicativo.
+- `README.md:` Documentação básica do projeto.
+- `CHANGELOG.md:` Histórico de alterações realizadas no projeto.
+- `estrutura.md:` Documento detalhando a estrutura de arquivos do projeto.
+- `detalhamento.md:` Detalhamento do funcionamento e requisitos do projeto.
+- `LICENSE.txt:` Licença do projeto.
+- `package.json / package-lock.json:` Gerenciadores de dependências do projeto.
+- `vite.config.js:` Configuração do Vite para desenvolvimento.
+- `vite-env.d.ts:` Tipos de ambiente do Vite.
 
-## Estrutura da pasta styles
+## Diretório `src`
+1. assets/
+Recursos estáticos como fontes, imagens e estilos CSS.
 
-| pasta/arquivo | conteúdo |
-|:---:|:---|
-| Base | A pasta base/ contém estilos básicos e padrões para o projeto. Aqui você pode encontrar um arquivo _reset.css e possivelmente uma folha de estilo como _base.css, que cuida de estilos para toda a aplicação.|
-|Layout| Na pasta layout/ estão os estilos para o layout da aplicação. Isso inclui folhas de estilo padrão como _header.css, _footer.css, _sidebar.css, bem como estilos relacionados ao layout, como grades e contêineres.|
-|Components|A pasta components/ é dedicada aos componentes que podem ser reutilizados nas páginas. Exemplos de componentes incluem buttons.css, modals.css, cards.css. É importante notar a diferença entre Components e Layout. Enquanto o Layout trata dos layouts globais da página, a pasta Components lida com componentes menores e reutilizáveis.|
-|Pages|A pasta pages/ contém estilos específicos para páginas individuais. Por exemplo, você pode encontrar um arquivo de estilo como _home.css ou _login.css|
-|Themes|Para aplicações maiores que requerem suporte a vários temas, a estrutura reserva uma pasta para esses temas. Aqui você pode incluir estilos para diferentes temas utilizados na aplicação.|
-|Abstract|A pasta abstract/ lida com todas as ferramentas e utilitários do SASS que podem ser utilizados em todo o projeto. Isso inclui arquivos como _variables.css, _mixins.css, _functions.css, entre outros.|
-|Vendors|Na pasta vendors/ estão contidos conteúdos externos, como CSS de bibliotecas ou frameworks externos, por exemplo, Normalize, Bootstrap, JQueryUI, etc. Os arquivos de inclusão desses estilos podem ser nomeados como _normalize.css, _bootstrap.css, etc.|
-|main.css|O ficheiro principal (normalmente chamado de main.css) também sendo o único ficheiro que não possui underscore.|
+`assets/fonts/`
+- Pasta para futuras fontes customizadas.
+`assets/images/`
+- Contém ícones e imagens utilizadas no projeto, como:
+    - Ícones para ações (e.g., addNotes.svg, delete.svg).
+    - Logotipos (logo.png, favicon.ico).
+    - Outras representações visuais (representacao.jpeg).
+`assets/styles/`
+- `base/`: Estilizações básicas como reset e tipografia.
+    - _reset.css: Normalização de estilos padrão.
+    - _typography.css: Estilos de tipografia base.
+- `components/`: Estilos específicos para componentes reutilizáveis.
+    - _buttons.css, _modal.css, _time-selector.css, etc.
+- `layout/`: Estilização para layouts principais como header, footer e sidebar.
+- `pages/`: Estilos específicos para páginas como home, add-tags.
+- `themes/`: Estilos para diferentes temas (ex.: admin, claro/escuro).
+- `utils/`: Estilos auxiliares como variáveis, animações e media queries.
+- `main.css`: Arquivo principal que importa os demais.
 
-No main.css não deve conter nada além de imports de outros ficheiros — Isto pois, é importante preservarmos a legibilidade no ficheiro principal.
+## 2. `components/`
+Componentes reutilizáveis em JavaScript:
 
-#### Para preservar a legibilidade, o arquivo principal deve respeitar estas diretrizes:
+- `button.js`: Botões customizados.
+- `emptyMessage.js`: Componente para mensagens de vazio.
+- `inputCheckBox.js` / inputRadio.js: Componentes de entrada específicos.
+- `modal.js`: Gerenciamento de modais.
+- `snackbar.js`: Notificações rápidas.
+- `tagCard.js`: Cartões para tags.
+- `timeSelector.js`: Selector de timestamps para vídeos.
+- `videoCard.js`: Cartões para visualização de vídeos.
 
-- Um arquivo por @import;
-- Um @import por linha;
-- Sem nova linha entre dois @imports da mesma pasta;
-- Uma nova linha após o último @import de uma pasta;
+## 3. `handlers/`
+Lida com eventos e ações do aplicativo:
 
-```
-styles/
-|
-|– base/
-|   |– _reset.css       # Reset/normalização
-|   |– _typography.css  # Regras de tipografia
-|   ...                 # Etc...
-|
-|– components/
-|   |– _buttons.css     # Botões
-|   |– _carousel.css    # Carrossel
-|   |– _dropdown.css    # Dropdown
-|   ...                 # Etc...
-|
-|– layout/
-|   |– _navigation.css  # Navegação
-|   |– _grid.css        # Sistema de grid
-|   |– _header.css      # Cabeçalho
-|   |– _footer.css      # Rodapé
-|   |– _sidebar.css     # Barra lateral
-|   |– _forms.css       # Formulários
-|   ...                 # Etc...
-|
-|– pages/
-|   |– _home.css        # Estilos Página inicial
-|   |– _contact.css     # Estilos Página de contato
-|   ...                 # Etc...
-|
-|– themes/
-|   |– _theme.css       # Tema padrão
-|   |– _admin.css       # Tema de administração
-|   ...                 # Etc...
-|
-|– utils/
-|   |– _variables.css   # Variáveis css
-|   |– _functions.css   # Funções css
-|   |– _mixins.css      # Mixins css
-|   |– _helpers.css     # Auxiliares de classes
-|
-|– vendors/
-|   |– _bootstrap.css   # Bootstrap
-|   |– _jquery-ui.css   # jQuery UI
-|   ...                 # Etc...
-|
-|– main.css             # Arquivo principal do css
-```
+- addTags.js: Manipulação de tags.
+- addVideo.js: Adição de vídeos.
+- showModal.js: Controle de exibição de modais.
+- toggleTheme.js: Alternância entre temas (claro/escuro).
+- toggleView.js: Troca de visualizações.
+
+## 4. `layout/`
+Componentes estruturais:
+
+`footer.js` / `header.js`: Footer e header do layout.
+`form.js`: Elementos de formulário.
+`grid.js`: Sistema de grid.
+`navigation.js`: Navegação principal.
+`sidebar.js`: Barra lateral.
+
+## 5. `pages/`
+Lógicas específicas de cada página:
+
+- `addTags.js`: Página para adição de tags.
+- `createPlaylist.js`: Página de criação de playlists.
+- `excerptsTagged.js`: Página para exibição de trechos marcados.
+- `home.js`: Página inicial.
+
+## 6. `services/`
+Serviços utilitários:
+
+- `storageHandle.js`: Manipulação de armazenamento local (LocalStorage).
+- `youTubePlayer.js`: Controle e integração com o player do YouTube.
+
+## 7. `utils/`
+Funções e constantes reutilizáveis:
+
+`constants.js`: Constantes globais do projeto.
+`helpers.js`: Funções auxiliares genéricas.
+`renderElement.js`: Função para renderização dinâmica de elementos.
+`showSnackbar.js`: Exibição de notificações.
+`storageUtil.js`: Utilitários para gerenciamento de dados no navegador.
+`types.js`: Tipos globais e interfaces.
+
+## 8. Arquivo Principal
+`main.js`: Arquivo de entrada para inicializar o aplicativo.
+
+## Observações
+- A estrutura é modular e organizada, favorecendo a separação de responsabilidades.
+- Os estilos e componentes estão bem segmentados para facilitar reutilização e escalabilidade.
+- A organização permite expansão futura para novas páginas, componentes e estilos.
