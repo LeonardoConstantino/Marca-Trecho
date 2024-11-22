@@ -7,13 +7,19 @@
 @import url('./components/_input-search.css');
 @import url('./components/_modal.css');
 @import url('./components/_snackbar.css');
+@import url('./components/_tagCard.css');
 @import url('./components/_textarea.css');
+@import url('./components/_time-selector.css');
+@import url('./components/_videoCard.css');
 
 @import url('./layout/layout_container.css');
 @import url('./layout/layout_footer.css');
+@import url('./layout/layout_main.css');
 @import url('./layout/layout_header.css');
 @import url('./layout/layout_navigation.css');
 
+@import url('./pages/pages_add-tags.css');
+@import url('./pages/pages_excerpts-tagged.css');
 @import url('./pages/pages_home.css');
 
 @import url('./utils/utils_variables.css');

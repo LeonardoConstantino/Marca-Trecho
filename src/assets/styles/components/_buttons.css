@@ -2,13 +2,14 @@ button {
   display: inline-flex;
   align-items: center;
   gap: var(--spacing-xs);
-  padding: var(--spacing-xs) var(--spacing-sm);
-  border: none;
-  border-radius: var(--border-radius);
+  padding: var(--spacing-xs) var(--spacing-md);
+  border: 1px solid var(--button-border-primary);
+  /* border-radius: var(--border-radius); */
+  border-radius: var(--button-border-radius);
   cursor: pointer;
   user-select: none;
-  background: var(--accent);
-  color: var(--bg-primary);
+  background: var(--button-bg-primary);
+  color: var(--button-text-primary);
   font-weight: var(--font-weight-bold);
   font-size: 1rem;
   transition: background-color var(--animation-duration) ease,
@@ -16,62 +17,82 @@ button {
     transform var(--animation-duration) ease;
 }
 
+button:focus,
+button.button-secondary:focus,
+button.button-tertiary:focus {
+  border: 1px solid var(--button-border-focus);
+  box-shadow: var(--button-shadow-focus);
+}
+
 button:hover {
-  opacity: 0.9;
   transform: scale(1.02);
-  box-shadow: var(--shadow-md);
+  background: var(--button-bg-primary-hover);
+  box-shadow: var(--button-shadow-hover);
 }
 
 button:disabled {
   cursor: not-allowed;
-  opacity: 0.6;
-  background: var(--bg-secondary);
-  color: var(--text-tertiary);
-  box-shadow: none;
+  opacity: 0.3;
+  background: var(--button-bg-primary-disabled);
+  color: var(--button-text-disabled);
+  box-shadow: var(--button-shadow-disabled);
   transform: none;
 }
 
-button.button-secondary {
-  background: transparent;
-  border: 1px solid var(--accent);
-  color: var(--accent);
+button:disabled:hover {
+  box-shadow: none;
+}
+
+button.button-secondary,
+button.button-tertiary {
   font-weight: var(--font-weight-regular);
   transition: background-color var(--animation-duration) ease,
-  color var(--animation-duration-short) ease;
+    color var(--animation-duration) ease,
+    box-shadow var(--animation-duration-long) ease;
+}
+
+button.button-secondary {
+  background: var(--button-bg-secondary);
+  border: 1px solid var(--button-border-secondary);
+  color: var(--button-text-secondary);
 }
 
 button.button-secondary:hover {
-  background: var(--accent);
+  background: var(--button-bg-secondary-hover);
   color: var(--bg-primary);
 }
 
 button.button-secondary:disabled {
-  background: var(--bg-secondary);
-  border: 1px solid var(--border);
-  color: var(--text-tertiary);
+  background: var(--button-bg-secondary-disabled);
+  border: 1px solid var(--button-border-disabled);
+  color: var(--button-text-secondary-disabled);
 }
 
 button.button-tertiary {
-  background: var(--bg-secondary);
-  border: 1px solid var(--border);
-  color: var(--text-primary);
-  font-weight: var(--font-weight-regular);
-  transition: border var(--animation-duration-long) ease,
-  color var(--animation-duration) ease;
+  background: var(--button-bg-tertiary);
+  border: 1px solid var(--button-border-tertiary);
+  color: var(--button-text-tertiary);
+  box-shadow: var(--button-shadow-tertiary);
 }
 
 button.button-tertiary:hover {
-  border: 1px solid var(--accent);
-  color: var(--text-primary);
+  border: 1px solid var(--button-border-tertiary-hover);
+  color: var(--button-text-tertiary-hover);
+  box-shadow: var(--button-shadow-tertiary-hover);
 }
 
 button.button-tertiary:disabled {
-  background: transparent;
-  border: 1px solid var(--text-tertiary);
-  color: var(--text-tertiary);
+  background: var(--button-bg-tertiary-disabled);
+  border: 1px solid var(--button-border-tertiary-disabled);
 }
 
-/* Estilo para o ícone opcional */
+button:disabled:hover,
+button.button-secondary:disabled:hover,
+button.button-tertiary:disabled:hover {
+  transform: none;
+  box-shadow: none;
+}
+
 button i {
   display: inline-block;
   background-position: center;
@@ -83,27 +104,111 @@ button i {
   transition: filter var(--animation-duration-long) ease;
 }
 
-/* Hover padrão para o botão */
-button:hover i {
+button.loading i {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-image: url('../../images/loading.svg') !important;
+}
+
+button.loading {
+  position: relative;
+  cursor: wait;
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+button.loading span {
+  visibility: hidden;
+}
+
+button:hover i,
+button.button-secondary:hover i,
+button.button-tertiary:hover i {
   filter: var(--icon-filter-hover);
 }
 
-/* Disabled */
 button:disabled i {
   filter: var(--icon-filter-disabled);
 }
 
-/* Botões secundários e terciários */
-button.button-secondary i {
-  filter: var(--icon-filter);
+button.button-shine {
+  position: relative;
+  overflow: hidden;
 }
 
-button.button-tertiary i {
-  filter: var(--icon-filter-tertiary);
+button.button-shine::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  transform: skewX(-20deg);
+  transition: opacity var(--animation-duration) ease;
 }
 
-/* Hover específico para botões secundário e terciário */
-button.button-secondary:hover i,
-button.button-tertiary:hover i {
-  filter: var(--icon-filter-hover);
+button.button-shine:hover::after {
+  animation: shine var(--animation-duration-extra-long) ease-in-out backwards;
+}
+
+@keyframes shine {
+  from {
+    left: -100%;
+  }
+  to {
+    left: 100%;
+  }
+}
+
+button.cancel {
+  position: relative;
+  overflow: hidden;
+  animation: var(--blink-invalid);
+  color: var(--text-highlight);
+}
+
+button.cancel:hover {
+  box-shadow: none;
+}
+
+button.cancel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--danger);
+  transform-origin: left;
+  transform: scaleX(1);
+  transition: transform var(--animation-duration) linear;
+  z-index: 1;
+  animation: countdown 5s linear forwards;
+}
+
+@keyframes countdown {
+  from {
+    transform: scaleX(1);
+  }
+  to {
+    transform: scaleX(0);
+  }
+}
+
+button.cancel i {
+  background-image: url('../../images/loading.svg') !important;
+  z-index: 2;
+}
+
+button.cancel span {
+  position: relative;
+  z-index: 2;
 }

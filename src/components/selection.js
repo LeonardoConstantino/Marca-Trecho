@@ -2,8 +2,7 @@
  * @import { ElementConfig } from '../utils/types.js'
  */
 
-import { getText } from '../services/dialogHandler';
-import { getComponent, getLang, getTextComponent } from '../utils/helpers';
+import { getComponent, getTextComponent } from '../utils/helpers';
 
 /**
  * Cria um elemento de seleção (select) com opções baseadas em um objeto fornecido.
@@ -27,7 +26,7 @@ export const getSelection = (id, objectOptions, onChangeHandler, title = '') => 
 
   const select = getComponent('select', ...options);
   if(id) select.props.id = id;
-  select.props.title = getText(getLang(), 'infos.selectInfo', objectOptions);
+  select.props.title = title;
   select.props.onChange = onChangeHandler;
   return select;
 };

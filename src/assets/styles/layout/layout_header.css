@@ -7,21 +7,18 @@ header {
   padding: var(--spacing-md);
   background-color: var(--bg-primary);
   border-bottom: 1px solid var(--border);
-  box-shadow: var(--shadow-md);
   width: 100%;
 }
 
 .header-title {
   display: flex;
-  /* flex-flow: row wrap; */
   align-items: center;
   gap: var(--spacing-sm);
 }
 
 .header-title h1 {
   color: var(--text-primary);
-  font-size: var(--font-size-h2);
-  /* margin: 0; */
+  /* font-size: var(--font-size-h2); */
 }
 
 .header-title img {
@@ -44,4 +41,11 @@ header .wrapper-actions {
   flex-flow: row wrap;
   width: 100%;
   gap: var(--spacing-md);
+}
+
+.modal-settings .dialog-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-md);
 }

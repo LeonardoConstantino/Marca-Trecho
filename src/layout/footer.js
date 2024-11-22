@@ -6,7 +6,7 @@ import {
   getAnchor,
 } from '../utils/helpers.js';
 //@ts-ignore
-import copy from '../assets/images/copy.svg';
+import openSource from '../assets/images/openSource.svg';
 //@ts-ignore
 import github from '../assets/images/github.svg';
 import { ButtonType, createButton, IconSize } from '../components/button.js';
@@ -90,7 +90,7 @@ const about = createButton(
 
 const brand = getComponent(
   'p',
-  getIconComponent(copy, 'small'),
+  getIconComponent(openSource, 'small'),
   getComponent('span', currentYear),
   getComponent('span', getTextComponent('Marca Trecho'))
 );
@@ -107,16 +107,3 @@ export const footer = getComponent(
   nav,
   brand
 );
-
-//   type: 'footer',
-//   props: {
-//     children: [
-//       getComponent(
-//         'p',
-//         getComponent('span', icone),
-//         getComponent('span', currentYear),
-//         getComponent('span', autor)
-//       ),
-//     ],
-//   },
-// };

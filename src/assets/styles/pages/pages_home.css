@@ -1,1 +1,113 @@
-/* Estilos específicos para a página inicial*/
+.view.home {
+  padding: var(--spacing-md);
+  background-color: var(--bg-primary);
+  border-radius: var(--border-radius);
+}
+
+.home-introduction {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-md);
+  background-color: var(--bg-secondary);
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius);
+  text-align: center;
+}
+
+.home-video-management {
+  display: flex;
+  gap: var(--spacing-lg);
+}
+
+.home-video-management-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.home-video-management-actions .button-tertiary {
+  background: transparent;
+}
+
+.home-video-management h4 {
+  margin-bottom: var(--spacing-sm);
+}
+
+.home-added-videos,
+.home-playlists {
+  border: 1px solid var(--border);
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius-lg);
+}
+
+.home-added-videos div p,
+.home-playlists div p {
+  background-color: var(--bg-secondary);
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius);
+  text-align: center;
+}
+
+.home-modal-add-video {
+  width: 500px;
+}
+
+.home-modal-add-video .dialog-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-md);
+}
+
+.home-wrapper-input-add-video {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* gap: var(--spacing-sm); */
+  width: 100%;
+  margin-top: var(--spacing-md);
+}
+
+.home-wrapper-input-add-video .home-label-input-add-video {
+  width: 100%;
+  align-self: stretch;
+  display: inline-flex;
+}
+
+.home-label-input-add-video input[type="text"] {
+  flex: 1;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: var(--font-size-large);
+  color: var(--text-primary);
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--button-border-radius) 0 0 var(--button-border-radius);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.home-wrapper-input-add-video button{
+  border-radius: 0 var(--button-border-radius) var(--button-border-radius) 0;
+}
+
+.home-label-input-add-video input[type="text"]:focus {
+  border-color: var(--text-tertiary);
+  box-shadow: var(--shadow-sm);
+}
+
+.home-wrapper-input-add-video-message {
+  width: 100%;
+  padding: var(--spacing-md);
+  text-align: center;
+}
+
+p.home-positive-message {
+  color: var(--success);
+  font-size: var(--font-size-large);
+}
+
+p.home-negative-message {
+  color: var(--danger);
+  font-size: var(--font-size-large);
+}

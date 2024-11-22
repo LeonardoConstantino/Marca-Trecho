@@ -33,6 +33,15 @@
     width: 100%;
     justify-content: end;
   }
+
+  .home-video-management{
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+  
+  .view.excerpts-tagged {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 375px) {

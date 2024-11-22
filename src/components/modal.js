@@ -3,7 +3,9 @@
  */
 import { getComponent } from '../utils/helpers.js';
 import { EventDelegator } from '../utils/renderElement.js';
-import { createButton } from './button.js';
+import { ButtonType, createButton, IconSize } from './button.js';
+//@ts-ignore
+import close from '../assets/images/close.svg';
 
 /**
  * Fecha um modal exibido na aplicação.
@@ -78,7 +80,7 @@ export const getModal = (
     // modal.props.children.push(form);
   }
   
-  const closeButton = createButton('X', closeModal, '', 'close', 'Fechar');
+  const closeButton = createButton('', closeModal, close, 'close', 'Fechar', false, ButtonType.TERTIARY, IconSize.NORMAL);
   
   const classForModal =
   className !== '' ? `dialog-modal ${className}` : 'dialog-modal';

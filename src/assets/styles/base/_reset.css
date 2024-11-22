@@ -9,8 +9,8 @@ html {
   border: none;
   margin: 0;
   padding: 0;
-  transition: background-color var(--animation-duration),
-    color var(--animation-duration-long);
+  transition: background-color var(--animation-duration-short),
+    color var(--animation-duration);
   /* border: red 1px solid; */
 }
 
@@ -56,4 +56,5 @@ body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
   padding: var(--spacing-g);
+  /* min-height: 100dvh; */
 }

@@ -7,12 +7,13 @@ footer {
   padding: var(--spacing-md) var(--spacing-lg);
   background-color: var(--bg-secondary);
   color: var(--text-secondary);
-  border-top: 1px solid var(--border);
+  border-top: 1px solid var(--accent);
   text-align: center;
-  position: fixed;
-  bottom: 0;
+  /* position: sticky; */
+  /* bottom: 0; */
   width: 100%;
   max-width: var(--layout-max-width);
+  margin-top: auto;
 }
 
 footer .brand {
@@ -21,6 +22,10 @@ footer .brand {
   gap: var(--spacing-xs);
   color: var(--text-tertiary);
   font-size: var(--font-size-medium);
+}
+
+footer .brand .icon {  
+  filter: var(--icon-filter-tertiary); 
 }
 
 .about-content .dialog-content,

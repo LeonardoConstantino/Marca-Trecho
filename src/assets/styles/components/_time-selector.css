@@ -1,0 +1,62 @@
+.time-selector {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.time-selector .form-label {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  font-size: var(--font-size-medium);
+  color: var(--text-secondary);
+}
+
+.time-selector .form-control {
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  padding: var(--spacing-xs);
+  border: 1px solid var(--border);
+  border-radius: var(--border-radius);
+  font-size: var(--font-size-large);
+  transition: border-color var(--animation-duration) ease;
+}
+
+.time-selector input[type='time'] {
+  background: transparent url('../../images/clock.svg') 97% 50% no-repeat;
+  background-size: 18px;
+}
+
+.time-selector input[type='time']::-webkit-inner-spin-button {
+  display: none;
+}
+
+.time-selector input[type='time']::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  cursor: pointer;
+}
+
+.time-selector input[type='time']:focus:valid {
+  border-color: var(--success);
+}
+
+.time-selector input[type='time']:invalid, .time-selector input[type='time']:focus:invalid {
+  background-image: url('../../images/danger.svg');
+  background-size: 22px;
+  animation: var(--blink-invalid);
+}
+
+.time-selector .actions {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--spacing-xs);
+}
+
+.time-selector .actions button {
+  margin-top: var(--spacing-xs);
+  padding: 0;
+}
+
+.time-selector .actions button.increases {
+  transform: rotate(180deg);
+}

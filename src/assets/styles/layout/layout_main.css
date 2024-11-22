@@ -1,0 +1,25 @@
+main {
+  max-width: var(--layout-max-width);
+  /* height: 100%; */
+  /* min-height: 80%; */
+  padding: var(--spacing-md);
+  background-color: var(--bg-tertiary);
+}
+
+main .view {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-lg) 0;
+  width: 100%;
+  animation: var(--fade-in);
+}
+
+main .view-out {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-lg) 0;
+  animation: var(--fade-out);
+}
+

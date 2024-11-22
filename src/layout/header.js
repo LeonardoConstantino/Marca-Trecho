@@ -1,4 +1,4 @@
-import { getComponent, getTextComponent } from '../utils/helpers';
+import { getComponent, getImgComponent, getTextComponent } from '../utils/helpers';
 import { navigation } from './navigation';
 // @ts-ignore
 import imageLogo from '../assets/images/logo.png';
@@ -66,7 +66,7 @@ const contentModalSettings = getComponent(
 const settingsButton = createButton(
   '',
   () => {
-    showModal(contentModalSettings, '', toggleTheme);
+    showModal(contentModalSettings, 'modal-settings', toggleTheme);
   },
   settings,
   '',
@@ -85,8 +85,8 @@ const headerActions = getComponent(
 headerActions.props.class = 'header-actions'; // Define a classe CSS para estilização
 
 // Cria o componente de imagem para o logotipo
-const img = getComponent('img');
-img.props.src = imageLogo;
+const img = getImgComponent(imageLogo, 'Logo', '40', '40');
+// Cria o componente de título
 const title = getComponent('h1', getTextComponent('Marca Trecho'));
 
 // Cria o componente de logotipo contendo a imagem

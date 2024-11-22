@@ -44,7 +44,7 @@ Para manter a navegação consistente, o Header e o Footer estarão fixos em tod
 **Checks**:
 
 - [ ] O logo redireciona para a Home.
-- [ ] Links de navegação levam para as seções correspondentes.
+- [x] Links de navegação levam para as seções correspondentes.
 - [ ] Botão de ajuda abre o tutorial ou dicas rápidas.
 - [ ] Botão de compartilhamento permite gerar link compartilhável (se aplicável).
 
@@ -78,9 +78,9 @@ Para manter a navegação consistente, o Header e o Footer estarão fixos em tod
 
 #### Checks:
 
-- [ ] Links de navegação redirecionam corretamente.
-- [ ] As informações de direitos autorais e políticas estão atualizadas.
-- [ ] Links para redes sociais funcionam (caso existam).
+- [x] Links de navegação redirecionam corretamente.
+- [x] As informações de direitos autorais e políticas estão atualizadas.
+- [x] Links para redes sociais funcionam (caso existam).
 
 ### 1. View: Home / Página Inicial
 

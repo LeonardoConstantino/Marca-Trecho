@@ -60,7 +60,7 @@ export const getAnchor = (link, nome) => {
  * @param {'small' | 'normal' | 'large'} [size='normal'] - O tamanho do ícone (por exemplo, 'small', 'medium', 'large').
  * @returns {Object} Um objeto representando o componente de ícone.
  */
-export const getIconComponent = (icon, size='normal') => {
+export const getIconComponent = (icon, size = 'normal') => {
   return {
     type: 'i',
     props: {
@@ -68,6 +68,33 @@ export const getIconComponent = (icon, size='normal') => {
       style: `background-image: url("${icon}")`,
     },
   };
+};
+
+export const getImgComponent = (src, alt, width, height) => {
+  const img = getComponent('img');
+  img.props.src = src;
+  img.props.alt = alt;
+  img.props.width = width;
+  img.props.height = height;
+  return img;
+};
+
+/**
+ * Adiciona filhos a uma visualização (view) com base em uma condição.
+ * @param {Object} view - A visualização (view) para a qual os filhos serão adicionados.
+ * @param {boolean} condition - A condição que determina quais filhos serão adicionados.
+ * @param {Array<Object>} childrenWhenTrue - Os filhos a serem adicionados se a condição for verdadeira.
+ * @param {Array<Object>} childrenWhenFalse - Os filhos a serem adicionados se a condição for falsa.
+ * @returns {void}
+ */
+export const addChildrenToView = (
+  view,
+  condition,
+  childrenWhenTrue,
+  childrenWhenFalse
+) => {
+  const childrenToAdd = condition ? childrenWhenTrue : childrenWhenFalse;
+  view.props.children.push(...childrenToAdd);
 };
 
 /**
@@ -86,6 +113,43 @@ export const getLang = () => {
  */
 export const formatDate = (date) => {
   return new Date(date).toLocaleString(getLang());
+};
+
+/**
+ * Formata um valor de tempo em milissegundos para uma string no formato de data e hora.
+ *
+ * @param {number} ms - O valor de tempo em milissegundos.
+ * @returns {string} - Uma string formatada no formato de data e hora, ou uma mensagem de erro se houver um problema.
+ * @throws {Error} - Se o argumento 'ms' não for um número válido.
+ *
+ * @example
+ * // Retorna uma string formatada com a data e hora.
+ * timeFormat(1619839200000); // Retorna '31/05/2022 13:00'
+ *
+ * // Retorna uma mensagem indicando que houve um problema com o formato de hora.
+ * timeFormat('string inválida'); // Retorna 'Formato de hora indisponível'
+ */
+export const timeFormat = (ms) => {
+  // Verifica se o argumento 'ms' é um número válido
+  if (typeof ms !== 'number' || isNaN(ms)) {
+    console.error('O argumento "ms" deve ser um número válido.');
+    return 'Formato de hora indisponível';
+  }
+
+  try {
+    const dataFormatada = new Intl.DateTimeFormat('pt-BR', {
+      dateStyle: 'short',
+      timeStyle: 'short',
+    }).format(new Date(ms));
+
+    return dataFormatada;
+  } catch (error) {
+    console.error(
+      'A API Intl.DateTimeFormat não está disponível neste ambiente de execução.'
+    );
+    // Em vez de retornar vazio, podemos retornar uma string indicando que houve um problema
+    return 'Formato de hora indisponível';
+  }
 };
 
 /**
@@ -125,3 +189,90 @@ export const capitalizeFirstLetter = (str) => {
   // Converte a primeira letra para maiúsculo e junta com o restante da string
   return str.charAt(0).toUpperCase() + str.slice(1);
 };
+
+/**
+ * Converte uma string de tempo no formato 'hh:mm:ss' para o número de segundos correspondente.
+ * @param {string} timeString - A string de tempo no formato 'hh:mm:ss'.
+ * @returns {number} - O número de segundos correspondente à string de tempo.
+ */
+export const timeToSeconds = (timeString) => {
+  const [hours, minutes, seconds] = timeString.split(':').map(Number);
+  return hours * 3600 + minutes * 60 + (seconds || 0);
+};
+
+/**
+ * Converte um número de segundos para uma string no formato 'hh:mm:ss'.
+ * @param {number} seconds - O número de segundos a ser convertido.
+ * @returns {string} - A string de tempo no formato 'hh:mm:ss'.
+ */
+export const secondsToTime = (seconds) => {
+  const hours = Math.floor(seconds / 3600);
+  const minutes = Math.floor((seconds % 3600) / 60);
+  const remainingSeconds = Math.floor(seconds % 60);
+
+  return [
+    hours.toString().padStart(2, '0'),
+    minutes.toString().padStart(2, '0'),
+    remainingSeconds.toString().padStart(2, '0'),
+  ].join(':');
+};
+
+/**
+ * Gera um ID aleatório de 8 caracteres.
+ *
+ * @returns {string} - Um ID único de 8 caracteres.
+ */
+export const getRandomId = () => {
+  return typeof crypto?.randomUUID === 'function'
+    ? crypto.randomUUID().substring(0, 8)
+    : Math.random().toString(36).substring(2, 10);
+};
+
+/**
+ * Retorna a URL da menor resolução disponível para uma thumbnail de um vídeo do YouTube.
+ * @param {string} videoId - O ID do vídeo do YouTube.
+ * @param {string} [fallback="https://dummyimage.com/300"] - URL de fallback caso nenhuma thumbnail esteja disponível.
+ * @returns {Promise<string>} A URL da menor resolução disponível ou o fallback.
+ */
+export const getSmallestAvailableThumbnail = (
+  videoId,
+  fallback = 'https://via.placeholder.com/120x90'
+) => {
+  const resolutions = [1, 2, 3, 0]; // Ordem de menor para maior resolução
+
+  return new Promise((resolve) => {
+    let resolved = false;
+
+    resolutions.forEach((res) => {
+      const url = `https://img.youtube.com/vi/${videoId}/${res}.jpg`;
+      const img = new Image();
+
+      img.onload = () => {
+        if (!resolved) {
+          resolved = true;
+          resolve(url);
+        }
+      };
+
+      img.onerror = () => {
+        if (res === resolutions[resolutions.length - 1] && !resolved) {
+          resolved = true;
+          resolve(fallback);
+        }
+      };
+
+      img.src = url;
+    });
+  });
+};
+
+export const videoIdFromURL = (url) => {
+  const match = url.match(
+    /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/i
+  );
+  return match ? match[1] : undefined;
+};
+
+export const sleep = (ms) => {
+  return new Promise((resolve) => setTimeout(resolve, ms))
+}

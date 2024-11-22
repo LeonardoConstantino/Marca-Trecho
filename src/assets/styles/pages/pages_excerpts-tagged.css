@@ -1,0 +1,65 @@
+.view.excerpts-tagged {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  background-color: var(--bg-primary);
+  border-radius: var(--border-radius);
+}
+
+.excerpts-tagged-tags {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.excerpts-tagged-infos {
+  display: flex;
+  gap: var(--spacing-sm);
+  align-items: flex-start;
+}
+
+.excerpts-tagged-infos img {
+  border-radius: var(--border-radius-sm);
+  object-fit: cover;
+  width: 100px;
+  height: 100px;
+}
+
+.excerpts-tagged-infos div {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.excerpts-tagged-infos a {
+  color: var(--text-primary);
+}
+
+.excerpts-tagged-infos a:hover {
+  text-decoration: underline;
+}
+
+.tags-list-wrapper {
+  flex-grow: 1;
+}
+
+.excerpts-tagged-videos {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  background-color: var(--bg-tertiary);
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+}
+
+.excerpts-tagged .home-added-videos h5,
+.excerpts-tagged .home-playlists h5 {
+  font-size: var(--font-size-large);
+  color: var(--text-secondary);
+}
+
+.excerpts-tagged .home-playlists {
+  display: none;
+}
