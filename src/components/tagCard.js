@@ -3,6 +3,8 @@ import {
   getIconComponent,
   getTextComponent,
   secondsToTime,
+  sleep,
+  timeToSeconds,
 } from '../utils/helpers';
 import { ButtonType, createButton, IconSize } from './button';
 //@ts-ignore
@@ -15,6 +17,7 @@ import deleteIcon from '../assets/images/delete.svg';
 import commentEdit from '../assets/images/commentEdit.svg';
 import { deleteTagInTagList, getTags } from '../services/storageHandle';
 import { EventDelegator, renderElement } from '../utils/renderElement';
+import { getPlayer } from '../services/youTubePlayer';
 
 // Map para gerenciar temporizadores por tag
 const tagTimers = new Map();
@@ -86,6 +89,110 @@ const cancelAction = (e) => {
   tagTimers.set(tagId, timer);
 };
 
+const editTag = async (e) => {
+  e.preventDefault();
+
+  try {
+    // Pausa o vídeo
+    const player = getPlayer();
+    if (player) player.pauseVideo();
+
+    await sleep(250);
+
+    /** @type {HTMLElement | null} */
+    const videoWrapper = document.querySelector('[data-current-video-id]');
+
+    // Verifica se o container de vídeo e o ID do vídeo estão disponíveis
+    if (!videoWrapper) {
+      console.error('Wrapper de vídeo não encontrado!');
+      return;
+    }
+
+    const currentVideoId = videoWrapper.dataset.currentVideoId;
+    if (!currentVideoId) {
+      console.error('Nenhum ID de vídeo disponível no wrapper.');
+      return;
+    }
+
+    // Verifica se o evento disparado é válido
+    if (!(e.target instanceof HTMLElement)) return;
+    const tagCard = e.target.closest('.tag-card');
+    if (!tagCard) {
+      console.error('Tag card não encontrado!');
+      return;
+    }
+
+    // Extração das informações do card
+    const tagId = tagCard.dataset.id;
+    const timeWrapper = tagCard.querySelector('.time-wrapper');
+    const commentWrapper = tagCard.querySelector('.comment-wrapper');
+    const priorityElement = tagCard.querySelector('.priority');
+
+    if (!timeWrapper || !commentWrapper || !priorityElement) {
+      console.error('Informações incompletas na tag card!');
+      return;
+    }
+
+    const [startTime, endTime] = timeWrapper.textContent.split(' - ');
+    const comment = commentWrapper.textContent;
+    const priority = priorityElement.classList[1];
+
+    // Validação dos valores extraídos
+    if (!startTime || !endTime || !comment || !priority) {
+      console.error('Dados da tag inválidos ou incompletos!');
+      return;
+    }
+
+    // Seleção do container de criação de tags
+    const createTagsContainer = document.querySelector('.create-tags');
+    if (!createTagsContainer) {
+      console.error('Container de criação de tags não encontrado!');
+      return;
+    }
+
+    // Seleção dos inputs
+    const finalTimeInput = createTagsContainer.querySelector('#finalTime');
+    const initialTimeInput = createTagsContainer.querySelector('#inicialTime');
+    const tagCommentInput =
+      createTagsContainer.querySelector('#tagCommentInput');
+    const prioritySelector =
+      createTagsContainer.querySelector('#prioritySelector');
+
+    if (
+      !(finalTimeInput instanceof HTMLInputElement) ||
+      !(initialTimeInput instanceof HTMLInputElement) ||
+      !(tagCommentInput instanceof HTMLTextAreaElement) ||
+      !(prioritySelector instanceof HTMLSelectElement)
+    ) {
+      console.error('Erro: Elementos necessários não encontrados.');
+      return;
+    }
+
+    // Define os valores nos inputs
+    //@ts-ignore
+    const duration = player.getDuration();
+    initialTimeInput.max = secondsToTime(duration);
+    initialTimeInput.value = startTime;
+    finalTimeInput.value = endTime;
+    tagCommentInput.value = comment;
+    prioritySelector.value = priority;
+
+    window.scrollTo({
+        top: videoWrapper.offsetTop + 100,
+        behavior: 'smooth'
+    })
+
+    // Busca o tempo inicial no player
+    //@ts-ignore
+    player.seekTo(timeToSeconds(startTime), true);
+
+    // Remove a tag da lista e renderiza
+    deleteTagInTagList(currentVideoId, tagId);
+    renderTagCardList();
+  } catch (error) {
+    console.error('Erro ao editar a tag:', error);
+  }
+};
 
 export const getTagCard = (tag) => {
   const { id, start, end, comment, priority } = tag;
@@ -101,7 +208,7 @@ export const getTagCard = (tag) => {
   componentTime.props.class = 'time-wrapper';
 
   const textComment = getComponent('p', getTextComponent(`${comment}`));
-  textComment.props.title = comment;
+  // textComment.props.title = comment;
 
   const commentComponent = getComponent(
     'spam',
@@ -125,12 +232,12 @@ export const getTagCard = (tag) => {
       'btn-delete-tag',
       'Apagar marcação',
       false,
-      ButtonType.TERTIARY,
+      ButtonType.PRIMARY,
       IconSize.SMALL
     ),
     createButton(
       '',
-      () => console.log('edit'),
+      editTag,
       commentEdit,
       'btn-commentEdit-tag',
       'Editar marcação',
@@ -150,6 +257,7 @@ export const getTagCard = (tag) => {
   );
   tagCard.props.class = 'tag-card';
   tagCard.props['data-id'] = id;
+  tagCard.props.title = comment;
 
   return tagCard;
 };

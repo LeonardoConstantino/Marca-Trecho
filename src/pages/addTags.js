@@ -7,7 +7,7 @@ import {
   getComponent,
   getTextComponent,
 } from '../utils/helpers';
-import { addVideoContent } from './home';
+import { addVideoContent, addedVideos } from './home';
 import { getSelection } from '../components/selection';
 import { getTimeSelector } from '../components/timeSelector';
 //@ts-ignore
@@ -25,7 +25,7 @@ const divVideoPlaceholder = getComponent(
 divVideoPlaceholder.props.class = 'video-placeholder';
 divVideoPlaceholder.props.title = 'Click Para Adicionar Um Vídeo';
 divVideoPlaceholder.props.onClick = () =>
-  showModal(addVideoContent, 'home-modal-add-video');
+  showModal(getComponent('<>', addVideoContent, addedVideos), 'home-modal-add-video');
 
 const videoWrapper = getComponent('div', divVideoPlaceholder);
 videoWrapper.props.id = 'videoWrapper';

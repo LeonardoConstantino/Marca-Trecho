@@ -15,6 +15,7 @@ import { EventDelegator, renderElement } from '../utils/renderElement';
 import { emptyMessage } from './emptyMessage';
 import { PlayerStates, setupIframePlayer } from '../services/youTubePlayer';
 import { renderTagCardList } from './tagCard';
+import { closeModal } from './modal';
 //@ts-ignore
 import deleteIcon from '../assets/images/delete.svg';
 //@ts-ignore
@@ -135,8 +136,11 @@ const editVideoTags = async (e) => {
     return;
 
   try {
+    const { width, height } = videoWrapper.getBoundingClientRect();
     // Configura o iframe dinâmico
     setupIframePlayer(selectedVideo.videoId, {
+      width: width.toString(),
+      height: height.toString(),
       containerId: 'videoWrapper',
       onReady: (event) => {
         const iframe = event.target.getIframe();
@@ -170,6 +174,7 @@ const editVideoTags = async (e) => {
   } finally {
     // Remove o estado de carregamento
     videoWrapper.classList.remove('loading');
+    closeModal(e);
   }
 };
 
@@ -289,11 +294,12 @@ export const renderVideoCardList = () => {
   // Exibe uma mensagem caso a lista esteja vazia
   if (currentVideoList.length === 0) {
     renderElement(
-      getComponent('h4', getTextComponent('Gerencie seus vídeos')),
-      true,
-      videosCardsContainer
+      getComponent(
+        '<>',
+        getComponent('h4', getTextComponent('Gerencie seus vídeos')),
+        emptyMessage('vídeos')
+      )
     );
-    renderElement(emptyMessage('vídeos'), true, videosCardsContainer);
     return;
   }
 
@@ -302,11 +308,11 @@ export const renderVideoCardList = () => {
   const videosList = getComponent('ol', ...videoCards);
   videosList.props.class = 'videos-list';
 
-  // Renderiza o título e a lista de vídeos no container
   renderElement(
-    getComponent('h4', getTextComponent('Gerencie seus vídeos')),
-    true,
-    videosCardsContainer
+    getComponent(
+      '<>',
+      getComponent('h4', getTextComponent('Gerencie seus vídeos')),
+      videosList
+    )
   );
-  renderElement(videosList, true, videosCardsContainer);
 };

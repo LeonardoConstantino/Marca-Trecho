@@ -1,13 +1,15 @@
 .tag-list {
   display: flex;
   flex-flow: row wrap;
+  justify-content: center;
   gap: var(--spacing-md);
 }
 
 .tag-card {
   display: flex;
   flex-direction: column;
-  /* max-width: 200px; */
+  width: 100%;
+  max-width: 300px;
   padding: var(--spacing-sm);
   gap: var(--spacing-sm);
   background-color: var(--bg-tertiary);

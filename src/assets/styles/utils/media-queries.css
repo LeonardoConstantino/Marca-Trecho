@@ -4,6 +4,10 @@
     --space-unit: 0.875rem;
     --font-size-root: 85%;
   }
+
+  .tag-card {
+    max-width: 250px;
+  }
 }
 
 @media (max-width: 600px) {
@@ -42,6 +46,10 @@
   .view.excerpts-tagged {
     grid-template-columns: 1fr;
   }
+
+  .tag-card {
+    max-width: 80%;
+  }
 }
 
 @media (max-width: 375px) {
@@ -53,5 +61,9 @@
   [data-nav] nav {
     flex-direction: column;
     gap: var(--spacing-sm);
+  }
+
+  .tag-card {
+    max-width: 90%;
   }
 }

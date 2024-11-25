@@ -111,7 +111,7 @@ const videosCards = videoList.map((video) => {
 const videosList = getComponent('ol', ...videosCards);
 videosList.props.class = 'videos-list';
 
-const addedVideos = getComponent('div');
+export const addedVideos = getComponent('div');
 addedVideos.props.class = 'home-added-videos';
 addedVideos.props['data-videosCardsContainer'] = '';
 
@@ -168,5 +168,3 @@ addChildrenToView(
   [addVideoContent, videoManagement]
 );
 homeView.props.children.push(playerContainer);
-
-//TODO - Corrigir primeira renderização da lista de videos

@@ -9,17 +9,17 @@
 .video-card {
   display: flex;
   flex-direction: column;
-  padding: calc(var(--spacing-sm) + 1px);
+  padding: var(--spacing-sm);
   background-color: var(--bg-secondary);
   border-radius: var(--border-radius-sm);
   gap: var(--spacing-md);
   max-width: 400px;
+  border: 1px solid var(--border);
   transition: border var(--animation-duration) ease;
 }
 
 .video-card:hover {
   border: 1px solid var(--accent);
-  padding: var(--spacing-sm);
 }
 
 .video-card .video-card-thumb-info {
@@ -70,7 +70,8 @@
 .video-card-secondLine {
   display: flex;
   align-items: center;
-  gap: var(--spacing-sm);
+  flex-flow: row wrap;
+  gap: var(--spacing-xs);
   color: var(--text-secondary);
 }
 

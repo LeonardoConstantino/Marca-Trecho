@@ -103,7 +103,7 @@
   --spacing-xl: calc(var(--space-unit) * 2); /* 32px */
 
   /* Layout */
-  --layout-max-width: 800px;
+  --layout-max-width: 1100px;
 
   /* Bordas */
   --border-radius-xs: 0.25rem; /* 4px */
