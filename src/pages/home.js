@@ -16,8 +16,6 @@ import { addVideoHandler } from '../handlers/addVideo';
 import { getVideoCard } from '../components/videoCard';
 import { emptyMessage } from './../components/emptyMessage';
 
-const videoList = getVideoList();
-
 const playerContainer = getComponent('div');
 playerContainer.props.id = 'player';
 playerContainer.props.class = 'hidden';
@@ -104,7 +102,7 @@ const introduction = getComponent(
 );
 introduction.props.class = 'home-introduction';
 
-const videosCards = videoList.map((video) => {
+const videosCards = getVideoList().map((video) => {
   return getVideoCard(video);
 });
 
@@ -117,7 +115,7 @@ addedVideos.props['data-videosCardsContainer'] = '';
 
 addChildrenToView(
   addedVideos,
-  videoList.length === 0,
+  getVideoList().length === 0,
   [
     getComponent('h4', getTextComponent('Gerencie seus vídeos')),
     emptyMessage('vídeos'),
@@ -163,7 +161,7 @@ homeView.props.class = 'view home';
 
 addChildrenToView(
   homeView,
-  videoList.length === 0,
+  getVideoList().length === 0,
   [introduction, videoManagement],
   [addVideoContent, videoManagement]
 );

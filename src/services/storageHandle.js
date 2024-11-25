@@ -2,7 +2,6 @@
  * @import { ObjectVideo } from '../utils/types.js';
  * @import { Tag } from '../utils/types.js';
  */
-import { renderVideoCardList } from '../components/videoCard.js';
 import { APP_PREFIX, FIRST_VIEW } from '../utils/constants.js';
 import { storageUtil } from '../utils/storageUtil';
 

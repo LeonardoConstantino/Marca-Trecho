@@ -10,11 +10,11 @@ import {
   timeFormat,
 } from '../utils/helpers';
 import { ButtonType, createButton, IconSize } from './button';
-import { deleteVideo, getVideoList } from '../services/storageHandle';
-import { EventDelegator, renderElement } from '../utils/renderElement';
+import { deleteVideo, getTags, getVideoList } from '../services/storageHandle';
+import { EventDelegator } from '../utils/renderElement';
 import { emptyMessage } from './emptyMessage';
 import { PlayerStates, setupIframePlayer } from '../services/youTubePlayer';
-import { renderTagCardList } from './tagCard';
+import { getTagCard } from './tagCard';
 import { closeModal } from './modal';
 //@ts-ignore
 import deleteIcon from '../assets/images/delete.svg';
@@ -26,6 +26,7 @@ import clock from '../assets/images/clock.svg';
 import bookmarksTags from '../assets/images/bookmarksTags.svg';
 //@ts-ignore
 import externalLink from '../assets/images/externalLink.svg';
+import { renderCardList } from '../utils/renderUtils';
 
 // Map para gerenciar temporizadores por vídeo
 const timers = new Map();
@@ -71,13 +72,35 @@ const cancelAction = (e) => {
   btn.classList.add('cancel');
   spanBtn.textContent = 'Cancelar';
 
+  /** @type {HTMLElement | null} */
+  const videosCardsContainer = document.querySelector(
+    '[data-videosCardsContainer]'
+  );
+
+  // Garante que o container existe antes de continuar
+  if (!videosCardsContainer) {
+    console.error('Container de vídeos não encontrado!');
+    return;
+  }
+
   // Define um temporizador para excluir o vídeo após 5 segundos
   const timer = setTimeout(() => {
     deleteVideo(id); // Função que remove o vídeo
     btn.classList.remove('cancel');
     spanBtn.textContent = 'Excluir';
 
-    renderVideoCardList(); // Re-renderiza a lista de vídeos
+    sleep(250)
+
+    // Re-renderiza a lista de vídeos
+    renderCardList({
+      container: videosCardsContainer,
+      list: getVideoList(),
+      getCardComponent: getVideoCard,
+      title: 'Gerencie seus vídeos',
+      emptyMessage: () => emptyMessage('vídeos'),
+      listClass: 'videos-list',
+    });
+
     timers.delete(id); // Remove o temporizador após a execução
   }, 5000);
 
@@ -115,16 +138,33 @@ const editVideoTags = async (e) => {
 
   const videoWrapper = document.querySelector('#videoWrapper');
   const videoPlaceholder = videoWrapper?.querySelector('.video-placeholder');
+  const tagCardsContainer = document.querySelector(
+    '[data-tagCardsContainer]'
+  );
   if (
     !(videoWrapper instanceof HTMLElement) ||
-    !(videoPlaceholder instanceof HTMLElement)
+    !(videoPlaceholder instanceof HTMLElement) ||
+    !(tagCardsContainer instanceof HTMLElement)
   )
     return;
 
   // Configura o estado de carregamento
   videoWrapper.classList.add('loading');
   videoWrapper.dataset.currentVideoId = selectedVideo.id;
-  renderTagCardList();
+
+  renderCardList({
+    container: tagCardsContainer,
+    list: getTags(selectedVideo.id),
+    getCardComponent: getTagCard,
+    title: 'Marcações',
+    emptyMessage: () =>
+      getComponent(
+        'div',
+        getComponent('p', getTextComponent('Nenhuma marcação adicionada'))
+      ),
+    listClass: 'tag-list',
+  });
+
   await sleep(500);
 
   const finalTime = document.querySelector('#finalTime');
@@ -271,48 +311,3 @@ export const getVideoCard = (objectVideo) => {
   return videoCard;
 };
 
-/**
- * Renderiza a lista de cards de vídeos no container designado.
- */
-export const renderVideoCardList = () => {
-  const currentVideoList = getVideoList();
-  /** @type {HTMLElement | null} */
-  const videosCardsContainer = document.querySelector(
-    '[data-videosCardsContainer]'
-  );
-
-  // Garante que o container existe antes de continuar
-  if (!videosCardsContainer) {
-    console.error('Container de vídeos não encontrado!');
-    return;
-  }
-
-  // Limpa eventos e conteúdo do container
-  EventDelegator.cleanup(videosCardsContainer);
-  videosCardsContainer.innerHTML = '';
-
-  // Exibe uma mensagem caso a lista esteja vazia
-  if (currentVideoList.length === 0) {
-    renderElement(
-      getComponent(
-        '<>',
-        getComponent('h4', getTextComponent('Gerencie seus vídeos')),
-        emptyMessage('vídeos')
-      )
-    );
-    return;
-  }
-
-  // Cria os componentes de vídeo
-  const videoCards = currentVideoList.map((video) => getVideoCard(video));
-  const videosList = getComponent('ol', ...videoCards);
-  videosList.props.class = 'videos-list';
-
-  renderElement(
-    getComponent(
-      '<>',
-      getComponent('h4', getTextComponent('Gerencie seus vídeos')),
-      videosList
-    )
-  );
-};

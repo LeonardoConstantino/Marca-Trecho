@@ -16,8 +16,8 @@ import deleteIcon from '../assets/images/delete.svg';
 //@ts-ignore
 import commentEdit from '../assets/images/commentEdit.svg';
 import { deleteTagInTagList, getTags } from '../services/storageHandle';
-import { EventDelegator, renderElement } from '../utils/renderElement';
 import { getPlayer } from '../services/youTubePlayer';
+import { renderCardList } from '../utils/renderUtils';
 
 // Map para gerenciar temporizadores por tag
 const tagTimers = new Map();
@@ -74,13 +74,35 @@ const cancelAction = (e) => {
   btn.classList.add('cancel');
   btn.title = 'Cancelar';
 
+  /** @type {HTMLElement | null} */
+  const tagCardsContainer = document.querySelector('[data-tagCardsContainer]');
+
+  // Garante que o container de tags existe antes de continuar
+  if (!tagCardsContainer) {
+    console.error('Container de tags não encontrado!');
+    return;
+  }
+
   // Define um temporizador para excluir a tag após 5 segundos
   const timer = setTimeout(() => {
     btn.classList.remove('cancel'); // Remove o estado de cancelamento
     btn.title = 'Apagar marcação';
 
     deleteTagInTagList(currentVideoId, tagId); // Remove a tag do vídeo
-    renderTagCardList(); // Atualiza a lista de tags
+    //renderTagCardList(); // Atualiza a lista de tags
+
+    renderCardList({
+      container: tagCardsContainer,
+      list: getTags(currentVideoId),
+      getCardComponent: getTagCard,
+      title: 'Marcações',
+      emptyMessage: () =>
+        getComponent(
+          'div',
+          getComponent('p', getTextComponent('Nenhuma marcação adicionada'))
+        ),
+      listClass: 'tag-list',
+    });
 
     tagTimers.delete(tagId); // Remove o temporizador associado à tag
   }, 5000);
@@ -157,12 +179,16 @@ const editTag = async (e) => {
       createTagsContainer.querySelector('#tagCommentInput');
     const prioritySelector =
       createTagsContainer.querySelector('#prioritySelector');
+    const tagCardsContainer = document.querySelector(
+      '[data-tagCardsContainer]'
+    );
 
     if (
       !(finalTimeInput instanceof HTMLInputElement) ||
       !(initialTimeInput instanceof HTMLInputElement) ||
       !(tagCommentInput instanceof HTMLTextAreaElement) ||
-      !(prioritySelector instanceof HTMLSelectElement)
+      !(prioritySelector instanceof HTMLSelectElement) ||
+      !(tagCardsContainer instanceof HTMLElement)
     ) {
       console.error('Erro: Elementos necessários não encontrados.');
       return;
@@ -178,9 +204,9 @@ const editTag = async (e) => {
     prioritySelector.value = priority;
 
     window.scrollTo({
-        top: videoWrapper.offsetTop + 100,
-        behavior: 'smooth'
-    })
+      top: videoWrapper.offsetTop + 100,
+      behavior: 'smooth',
+    });
 
     // Busca o tempo inicial no player
     //@ts-ignore
@@ -188,7 +214,19 @@ const editTag = async (e) => {
 
     // Remove a tag da lista e renderiza
     deleteTagInTagList(currentVideoId, tagId);
-    renderTagCardList();
+
+    renderCardList({
+      container: tagCardsContainer,
+      list: getTags(currentVideoId),
+      getCardComponent: getTagCard,
+      title: 'Marcações',
+      emptyMessage: () =>
+        getComponent(
+          'div',
+          getComponent('p', getTextComponent('Nenhuma marcação adicionada'))
+        ),
+      listClass: 'tag-list',
+    });
   } catch (error) {
     console.error('Erro ao editar a tag:', error);
   }
@@ -260,70 +298,4 @@ export const getTagCard = (tag) => {
   tagCard.props.title = comment;
 
   return tagCard;
-};
-
-/**
- * Renderiza a lista de cards de vídeos no container designado.
- */
-export const renderTagCardList = () => {
-  /** @type {HTMLElement | null} */
-  const tagCardsContainer = document.querySelector('[data-tagCardsContainer]');
-  /** @type {HTMLElement | null} */
-  const videoWrapper = document.querySelector('[data-current-video-id]');
-
-  // Verifica se o container de vídeo e o ID do vídeo estão disponíveis
-  if (!videoWrapper) {
-    console.error('Wrapper de vídeo não encontrado!');
-    return;
-  }
-  const currentVideoId = videoWrapper.dataset.currentVideoId;
-  if (!currentVideoId) {
-    console.error('Nenhum ID de vídeo disponível no wrapper.');
-    return;
-  }
-
-  // Obtém a lista de tags do vídeo atual
-  const currentTagList = getTags(currentVideoId);
-
-  // Garante que o container de tags existe antes de continuar
-  if (!tagCardsContainer) {
-    console.error('Container de tags não encontrado!');
-    return;
-  }
-
-  // Limpa eventos e conteúdo do container
-  EventDelegator.cleanup(tagCardsContainer);
-  tagCardsContainer.innerHTML = '';
-
-  // Exibe uma mensagem caso a lista esteja vazia
-  if (!currentTagList || currentTagList.length === 0) {
-    renderElement(
-      getComponent(
-        '<>',
-        getComponent('h5', getTextComponent('Marcações')),
-        getComponent(
-          'div',
-          getComponent('p', getTextComponent('Nenhuma marcação adicionada'))
-        )
-      ),
-      true,
-      tagCardsContainer
-    );
-    return;
-  }
-
-  // Gera os elementos da lista de tags
-  const tagCards = currentTagList.map((tag) => getTagCard(tag));
-  const tagsList = getComponent('ol', ...tagCards);
-  tagsList.props.class = 'tag-list';
-
-  renderElement(
-    getComponent(
-      '<>',
-      getComponent('h5', getTextComponent('Marcações')),
-      tagsList
-    ),
-    true,
-    tagCardsContainer
-  );
 };

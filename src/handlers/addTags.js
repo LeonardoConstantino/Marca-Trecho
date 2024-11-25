@@ -1,7 +1,8 @@
-import { renderTagCardList } from '../components/tagCard';
-import { setTagInTagList } from '../services/storageHandle';
+import { getTagCard } from '../components/tagCard';
+import { getTags, setTagInTagList } from '../services/storageHandle';
 import { getPlayer } from '../services/youTubePlayer';
-import { getRandomId, sleep, timeToSeconds } from '../utils/helpers';
+import { getComponent, getRandomId, getTextComponent, sleep, timeToSeconds } from '../utils/helpers';
+import { renderCardList } from '../utils/renderUtils';
 
 /**
  * Lida com a criação e adição de uma tag para o vídeo atual.
@@ -32,6 +33,9 @@ export const addTagsHandler = async (e) => {
   const prioritySelector =
     createTagsContainer.querySelector('#prioritySelector');
   const videoWrapper = document.querySelector('#videoWrapper');
+  const tagCardsContainer = document.querySelector(
+    '[data-tagCardsContainer]'
+  );
 
   // Valida a existência dos elementos
   if (
@@ -39,7 +43,8 @@ export const addTagsHandler = async (e) => {
     !(initialTimeInput instanceof HTMLInputElement) ||
     !(tagCommentInput instanceof HTMLTextAreaElement) ||
     !(prioritySelector instanceof HTMLSelectElement) ||
-    !(videoWrapper instanceof HTMLElement)
+    !(videoWrapper instanceof HTMLElement) ||
+    !(tagCardsContainer instanceof HTMLElement)
   ) {
     console.error('Erro: Elementos necessários não encontrados.');
     return;
@@ -86,5 +91,16 @@ export const addTagsHandler = async (e) => {
   tagCommentInput.value = '';
   prioritySelector.value = 'low';
 
-  renderTagCardList();
+  renderCardList({
+    container: tagCardsContainer,
+    list: getTags(currentVideoId),
+    getCardComponent: getTagCard,
+    title: 'Marcações',
+    emptyMessage: () =>
+      getComponent(
+        'div',
+        getComponent('p', getTextComponent('Nenhuma marcação adicionada'))
+      ),
+    listClass: 'tag-list',
+  });
 };
