@@ -2,10 +2,10 @@
  * @import { ElementConfig } from '../utils/types.js'
  */
 import { getComponent } from '../utils/helpers.js';
-import { EventDelegator } from '../utils/renderElement.js';
 import { ButtonType, createButton, IconSize } from './button.js';
 //@ts-ignore
 import close from '../assets/images/close.svg';
+import { cleanupContainer } from '../utils/renderUtils.js';
 
 /**
  * Fecha um modal exibido na aplicação.
@@ -19,13 +19,11 @@ export const closeModal = (e) => {
 
   const modal = e.target.closest('dialog');
   if (modal instanceof HTMLDialogElement) {
-    EventDelegator.cleanup(modal);
-
     modal.classList.add('modal-close')
-
+    
     setTimeout(() => {
       modal.close();
-      modal.remove();
+      cleanupContainer(modal, true);
     }, 450);
   }
 };
@@ -83,7 +81,7 @@ export const getModal = (
   const closeButton = createButton('', closeModal, close, 'close', 'Fechar', false, ButtonType.TERTIARY, IconSize.NORMAL);
   
   const classForModal =
-  className !== '' ? `dialog-modal ${className}` : 'dialog-modal';
+  className !== '' ? `scrollbar dialog-modal ${className}` : 'scrollbar dialog-modal';
 
   // const modal = getComponent('dialog', closeButton, content, form);
   modal.props.children.push(closeButton, content);

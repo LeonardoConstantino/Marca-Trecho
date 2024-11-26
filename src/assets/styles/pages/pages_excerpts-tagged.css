@@ -19,6 +19,36 @@
   align-items: flex-start;
 }
 
+.excerpts-tagged-infos .video-card {
+  width: 100%;
+  max-width: none;
+}
+.excerpts-tagged-infos .video-card .video-card-thumb-info {
+  flex-flow: row nowrap;
+}
+.excerpts-tagged-infos .video-card .video-card-thumb-info img {
+  width: 100%;
+  height: 100%;
+}
+
+.excerpts-tagged-infos .video-card .video-card-thumb-info .video-card-infos {
+  gap: var(--spacing-sm);
+}
+
+.excerpts-tagged-infos .video-card .video-card-thumb-info .video-card-title {
+  text-align: center;
+  white-space: normal;
+  flex: 1 0 auto;
+  font-size: var(--font-size-h5);
+}
+.excerpts-tagged-infos .video-card .video-card-action {
+  display: none;
+}
+
+.excerpts-tagged-infos .video-card:hover {
+  border: 1px solid var(--border);
+}
+
 .excerpts-tagged-infos img {
   border-radius: var(--border-radius-sm);
   object-fit: cover;
@@ -44,6 +74,14 @@
   flex-grow: 1;
 }
 
+.tags-list-wrapper .tags-list-wrapper .tag-card {
+  max-width: 100%;
+}
+
+.tags-list-wrapper .tags-list-wrapper .tag-card .wrapper-actions {
+  display: none;
+}
+
 .excerpts-tagged-videos {
   display: flex;
   flex-direction: column;
@@ -58,6 +96,43 @@
 .excerpts-tagged .home-playlists h5 {
   font-size: var(--font-size-large);
   color: var(--text-secondary);
+}
+
+.excerpts-tagged-videos
+  .home-video-management
+  .dialog-content
+  .videos-list
+  .video-card
+  .video-card-action
+  .video-card-open-side {
+  display: flex;
+}
+
+.excerpts-tagged-videos .video-card-action .video-card-delete,
+.excerpts-tagged-videos .video-card-action .video-card-edit,
+.excerpts-tagged-videos .video-card-thumb-info .video-card-secondLine,
+.excerpts-tagged-videos .video-card-thumb-info .video-card-link,
+.excerpts-tagged-videos .video-card-thumb-info .video-card-id {
+  display: none;
+}
+
+.excerpts-tagged-videos .video-card-thumb-info .video-card-infos {
+  max-width: 100%;
+}
+
+.excerpts-tagged-videos .video-card-thumb-info .video-card-thumbnail-wrapper {
+  flex: 0 0 96px;
+}
+
+.excerpts-tagged-videos .video-card-thumb-info .video-card-title {
+  text-align: center;
+  white-space: normal;
+  flex: 1 0 auto;
+}
+
+.excerpts-tagged-videos .video-card-thumb-info {
+  flex-flow: row wrap;
+  justify-content: center;
 }
 
 .excerpts-tagged .home-playlists {

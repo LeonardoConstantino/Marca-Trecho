@@ -10,12 +10,18 @@ import {
   timeFormat,
 } from '../utils/helpers';
 import { ButtonType, createButton, IconSize } from './button';
-import { deleteVideo, getTags, getVideoList } from '../services/storageHandle';
-import { EventDelegator } from '../utils/renderElement';
+import {
+  deleteVideo,
+  getTags,
+  getVideoInListById,
+  getVideoList,
+} from '../services/storageHandle';
+import { renderElement } from '../utils/renderElement';
 import { emptyMessage } from './emptyMessage';
 import { PlayerStates, setupIframePlayer } from '../services/youTubePlayer';
 import { getTagCard } from './tagCard';
 import { closeModal } from './modal';
+import { cleanupContainer, renderCardList } from '../utils/renderUtils';
 //@ts-ignore
 import deleteIcon from '../assets/images/delete.svg';
 //@ts-ignore
@@ -26,7 +32,8 @@ import clock from '../assets/images/clock.svg';
 import bookmarksTags from '../assets/images/bookmarksTags.svg';
 //@ts-ignore
 import externalLink from '../assets/images/externalLink.svg';
-import { renderCardList } from '../utils/renderUtils';
+//@ts-ignore
+import expand from '../assets/images/expandPlayer.svg';
 
 // Map para gerenciar temporizadores por vídeo
 const timers = new Map();
@@ -89,7 +96,7 @@ const cancelAction = (e) => {
     btn.classList.remove('cancel');
     spanBtn.textContent = 'Excluir';
 
-    sleep(250)
+    sleep(250);
 
     // Re-renderiza a lista de vídeos
     renderCardList({
@@ -138,9 +145,7 @@ const editVideoTags = async (e) => {
 
   const videoWrapper = document.querySelector('#videoWrapper');
   const videoPlaceholder = videoWrapper?.querySelector('.video-placeholder');
-  const tagCardsContainer = document.querySelector(
-    '[data-tagCardsContainer]'
-  );
+  const tagCardsContainer = document.querySelector('[data-tagCardsContainer]');
   if (
     !(videoWrapper instanceof HTMLElement) ||
     !(videoPlaceholder instanceof HTMLElement) ||
@@ -207,8 +212,7 @@ const editVideoTags = async (e) => {
       },
     });
 
-    EventDelegator.cleanup(videoWrapper);
-    videoPlaceholder.remove();
+    cleanupContainer(videoPlaceholder);
   } catch (error) {
     console.error('Erro ao inicializar o YouTube Player:', error);
   } finally {
@@ -216,6 +220,74 @@ const editVideoTags = async (e) => {
     videoWrapper.classList.remove('loading');
     closeModal(e);
   }
+};
+
+const openSide = (e) => {
+  /**
+   * Oculta todos os elementos que correspondem ao seletor, exceto aquele com o ID especificado.
+   *
+   * @param {string} selector - O seletor dos elementos a serem manipulados.
+   * @param {string} id - O ID do elemento a ser mantido visível.
+   */
+  const toggleVisibilityExcept = (selector, id) => {
+    const elements = [...document.querySelectorAll(selector)];
+    elements.forEach((element) => {
+      if (!(element instanceof HTMLElement)) return;
+      const isCurrent = element.dataset.id === id;
+      element.classList.toggle('hidden', isCurrent);
+    });
+  };
+
+  e.preventDefault();
+
+  // Valida o elemento disparador
+  if (!(e.target instanceof HTMLElement)) return;
+
+  const btn = e.target?.closest('button');
+  const videoCard = btn?.closest('[data-id]');
+  if (!(videoCard instanceof HTMLElement)) return;
+
+  const id = videoCard.dataset?.id;
+  if (!btn || !id) return;
+
+  // Oculta todos os vídeos, exceto o atual
+  toggleVisibilityExcept('.video-card', id);
+
+  // Atualiza os containers designados
+  const videosCardsContainer = document.querySelector('.excerpts-tagged-infos');
+  const TagsListWrapper = document.querySelector('.tags-list-wrapper');
+
+  if (
+    !videosCardsContainer ||
+    !TagsListWrapper ||
+    !(videosCardsContainer instanceof HTMLElement) ||
+    !(TagsListWrapper instanceof HTMLElement)
+  ) {
+    console.error('Containers necessários não foram encontrados.');
+    return;
+  }
+
+  // Limpa eventos e conteúdo dos containers
+  cleanupContainer(TagsListWrapper);
+  cleanupContainer(videosCardsContainer);
+
+  // Renderiza o card do vídeo atual
+  const videoCardSide = getVideoCard(getVideoInListById(id));
+  renderElement(videoCardSide, true, videosCardsContainer);
+
+  // Renderiza a lista de marcações
+  renderCardList({
+    container: TagsListWrapper,
+    list: getTags(id),
+    getCardComponent: getTagCard,
+    title: 'Marcações',
+    emptyMessage: () =>
+      getComponent(
+        'div',
+        getComponent('p', getTextComponent('Nenhuma marcação adicionada'))
+      ),
+    listClass: 'tags-list-wrapper',
+  });
 };
 
 export const getVideoCard = (objectVideo) => {
@@ -280,7 +352,7 @@ export const getVideoCard = (objectVideo) => {
     'Excluir',
     cancelAction,
     deleteIcon,
-    '',
+    'video-card-delete',
     `Delete video: ${title}`,
     false,
     ButtonType.PRIMARY,
@@ -291,14 +363,30 @@ export const getVideoCard = (objectVideo) => {
     'Editar',
     editVideoTags,
     movieInfosEdit,
-    '',
+    'video-card-edit',
     `Editar informações do video: ${title}`,
     false,
     ButtonType.TERTIARY,
     IconSize.SMALL
   );
 
-  const actionWrapper = getComponent('div', deleteButton, editButton);
+  const openSideButton = createButton(
+    'Abrir ao lado',
+    openSide,
+    expand,
+    'video-card-open-side',
+    `Abrir ao lado: ${title}`,
+    false,
+    ButtonType.PRIMARY,
+    IconSize.NORMAL
+  );
+
+  const actionWrapper = getComponent(
+    'div',
+    openSideButton,
+    deleteButton,
+    editButton
+  );
   actionWrapper.props.class = 'video-card-action';
 
   const divThumbInfo = getComponent('div', thumbnailWrapper, infosWrapper);
@@ -310,4 +398,3 @@ export const getVideoCard = (objectVideo) => {
 
   return videoCard;
 };
-

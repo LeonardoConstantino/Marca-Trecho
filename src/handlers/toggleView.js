@@ -8,7 +8,8 @@ import { excerptsTagged } from '../pages/excerptsTagged';
 import { homeView } from '../pages/home';
 import { getLastView } from '../services/storageHandle';
 import { FIRST_VIEW } from '../utils/constants';
-import { EventDelegator, renderElement } from '../utils/renderElement';
+import { renderElement } from '../utils/renderElement';
+import { cleanupContainer } from '../utils/renderUtils';
 import { storageUtil } from '../utils/storageUtil';
 
 /**
@@ -64,15 +65,14 @@ export const toggleView = async (name, view) => {
   // Atualização da visualização com transição
   if (viewContainer instanceof HTMLElement) {
     const currentViewElement = viewContainer.querySelector('.view');
-    EventDelegator.cleanup(viewContainer);
-
+    
     if (currentViewElement || currentViewElement) {
       currentViewElement.classList.add('view-out');
       currentViewElement.classList.remove('view');
     } 
-
+    
     setTimeout(() => {
-      viewContainer.innerHTML = '';
+      cleanupContainer(viewContainer);
       renderElement(view, true, viewContainer);
       viewContainer.dataset.view = name;
       storageUtil.setItem('lastView', name);

@@ -2,6 +2,17 @@ import { getComponent, getTextComponent } from './helpers.js'
 import { EventDelegator, renderElement } from './renderElement.js'
 
 /**
+ * Limpa os eventos e o conteúdo de um container.
+ *
+ * @param {HTMLElement} container - O container a ser limpo.
+ * @param {boolean} isRemove - Se deve remover o container após a limpeza.
+ */
+export const cleanupContainer = (container, isRemove=false) => {
+  EventDelegator.cleanup(container);
+  isRemove? container.remove(): container.innerHTML = '';
+};
+
+/**
  * Renderiza uma lista genérica de cards no container designado.
  *
  * @param {Object} options - Configurações para renderização.
@@ -26,8 +37,7 @@ export const renderCardList = ({
     }
   
     // Limpa eventos e conteúdo do container
-    EventDelegator.cleanup(container);
-    container.innerHTML = '';
+    cleanupContainer(container);
   
     // Exibe uma mensagem caso a lista esteja vazia
     if (!list || list.length === 0) {

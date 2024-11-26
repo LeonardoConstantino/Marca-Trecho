@@ -6,10 +6,12 @@ import {
 } from '../utils/helpers';
 import { videoManagement } from './home';
 import { TagsListWrapper } from './addTags.js';
+//@ts-ignore
+import imgPlaceholder from '../assets/images/imgPlaceholder.svg';
 
 const thumbnail = getImgComponent(
-  'https://dummyimage.com/1000',
-  'thumbnail',
+  imgPlaceholder,
+  'Image Placeholder',
   100,
   100
 );
@@ -19,8 +21,8 @@ const Infos = getComponent(
   thumbnail,
   getComponent(
     'div',
-    getComponent('h4', getTextComponent('placeholder Titulo do video')),
-    getAnchor('fakelink.com', 'Placeholder Link'),
+    getComponent('h4', getTextComponent('Nada por aqui')),
+    getAnchor('', 'N/A'),
   )
 );
 Infos.props.class = 'excerpts-tagged-infos';

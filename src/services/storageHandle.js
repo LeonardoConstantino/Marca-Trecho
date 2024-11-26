@@ -47,6 +47,29 @@ export const getLastView = ()=> storageUtil.getItem(storageKeys.lastView) || FIR
 export const getVideoList = () => storageUtil.getItem(storageKeys.videoList) || [];
 
 /**
+ * Recupera o vídeo da lista de vídeos salva no armazenamento local com o ID especificado.
+ *
+ * @param {string} id - O ID do vídeo a ser recuperado.
+ * @returns {ObjectVideo | undefined} - O objeto de vídeo correspondente ao ID fornecido, ou undefined se o vídeo não for encontrado.
+ */
+export const getVideoInListById = (id) => {
+  if (typeof id !== 'string' || id.trim() === '') {
+    console.error('O ID fornecido deve ser uma string válida.');
+    return undefined;
+  }
+
+  const currentVideoList = getVideoList();
+
+  if (!Array.isArray(currentVideoList)) {
+    console.error('A lista de vídeos não é válida.');
+    return undefined;
+  }
+
+  return currentVideoList.find((v) => v.id === id);
+};
+
+
+/**
  * salva o objeto video no local storage
  * 
  * @param {ObjectVideo} item - O objeto video a ser salvo.
