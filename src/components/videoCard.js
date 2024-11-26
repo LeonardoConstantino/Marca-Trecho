@@ -16,7 +16,7 @@ import {
   getVideoInListById,
   getVideoList,
 } from '../services/storageHandle';
-import { renderElement } from '../utils/renderElement';
+import { EventDelegator, renderElement } from '../utils/renderElement';
 import { emptyMessage } from './emptyMessage';
 import { PlayerStates, setupIframePlayer } from '../services/youTubePlayer';
 import { getTagCard } from './tagCard';
@@ -183,7 +183,7 @@ const editVideoTags = async (e) => {
   try {
     const { width, height } = videoWrapper.getBoundingClientRect();
     // Configura o iframe dinâmico
-    setupIframePlayer(selectedVideo.videoId, {
+    await setupIframePlayer(selectedVideo.videoId, {
       width: width.toString(),
       height: height.toString(),
       containerId: 'videoWrapper',
@@ -212,7 +212,9 @@ const editVideoTags = async (e) => {
       },
     });
 
-    cleanupContainer(videoPlaceholder, true);
+    // cleanupContainer(videoWrapper);
+    EventDelegator.cleanup(videoWrapper)
+    videoPlaceholder.remove();
   } catch (error) {
     console.error('Erro ao inicializar o YouTube Player:', error);
   } finally {
@@ -249,6 +251,12 @@ const openSide = (e) => {
 
   const id = videoCard.dataset?.id;
   if (!btn || !id) return;
+
+  const btnPlayBook = document.querySelector('.play-book');
+  if (!(btnPlayBook instanceof HTMLButtonElement)) return;
+
+  btnPlayBook.classList.remove('hidden');
+  btnPlayBook.dataset.currentVideoId = id
 
   // Oculta todos os vídeos, exceto o atual
   toggleVisibilityExcept('.video-card', id);
@@ -290,7 +298,7 @@ const openSide = (e) => {
         'div',
         getComponent('p', getTextComponent('Nenhuma marcação adicionada'))
       ),
-    listClass: 'tags-list-wrapper',
+    listClass: 'tags-list',
   });
 };
 
@@ -381,7 +389,7 @@ export const getVideoCard = (objectVideo) => {
     'video-card-open-side',
     `Abrir ao lado: ${title}`,
     false,
-    ButtonType.PRIMARY,
+    ButtonType.SECONDARY,
     IconSize.NORMAL
   );
 

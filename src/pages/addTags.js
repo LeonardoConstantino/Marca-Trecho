@@ -28,7 +28,7 @@ divVideoPlaceholder.props.onClick = () =>
 //   addedVideos.props.class += ' hidden'
 // }
 
-const videoWrapper = getComponent('div', divVideoPlaceholder);
+export const videoWrapper = getComponent('div', divVideoPlaceholder);
 videoWrapper.props.id = 'videoWrapper';
 videoWrapper.props['data-current-video-id'] = '';
 

@@ -1,5 +1,5 @@
-import { getComponent, getTextComponent } from './helpers.js'
-import { EventDelegator, renderElement } from './renderElement.js'
+import { getComponent, getTextComponent } from './helpers.js';
+import { EventDelegator, renderElement } from './renderElement.js';
 
 /**
  * Limpa os eventos e o conteúdo de um container.
@@ -7,9 +7,13 @@ import { EventDelegator, renderElement } from './renderElement.js'
  * @param {HTMLElement} container - O container a ser limpo.
  * @param {boolean} isRemove - Se deve remover o container após a limpeza.
  */
-export const cleanupContainer = (container, isRemove=false) => {
+export const cleanupContainer = (container, isRemove = false) => {
   EventDelegator.cleanup(container);
-  isRemove? container.remove(): container.innerHTML = '';
+  if (isRemove) {
+    container.remove();
+    return;
+  }
+  container.innerHTML = '';
 };
 
 /**
@@ -24,44 +28,43 @@ export const cleanupContainer = (container, isRemove=false) => {
  * @param {string} [options.listClass='list'] - Classe CSS atribuída à lista de cards.
  */
 export const renderCardList = ({
-    container,
-    list,
-    getCardComponent,
-    title,
-    emptyMessage,
-    listClass = 'list',
-  }) => {
-    if (!container) {
-      console.error('Container não encontrado!');
-      return;
-    }
-  
-    // Limpa eventos e conteúdo do container
-    cleanupContainer(container);
-  
-    // Exibe uma mensagem caso a lista esteja vazia
-    if (!list || list.length === 0) {
-      renderElement(
-        getComponent(
-          '<>',
-          getComponent('h4', getTextComponent(title)),
-          emptyMessage()
-        ),
-        true,
-        container
-      );
-      return;
-    }
-  
-    // Gera os elementos da lista
-    const cards = list.map((item) => getCardComponent(item));
-    const cardList = getComponent('ol', ...cards);
-    cardList.props.class = listClass;
-  
+  container,
+  list,
+  getCardComponent,
+  title,
+  emptyMessage,
+  listClass = 'list',
+}) => {
+  if (!container) {
+    console.error('Container não encontrado!');
+    return;
+  }
+
+  // Limpa eventos e conteúdo do container
+  cleanupContainer(container);
+
+  // Exibe uma mensagem caso a lista esteja vazia
+  if (!list || list.length === 0) {
     renderElement(
-      getComponent('<>', getComponent('h4', getTextComponent(title)), cardList),
+      getComponent(
+        '<>',
+        getComponent('h4', getTextComponent(title)),
+        emptyMessage()
+      ),
       true,
       container
     );
-  };
-  
+    return;
+  }
+
+  // Gera os elementos da lista
+  const cards = list.map((item) => getCardComponent(item));
+  const cardList = getComponent('ol', ...cards);
+  cardList.props.class = listClass;
+
+  renderElement(
+    getComponent('<>', getComponent('h4', getTextComponent(title)), cardList),
+    true,
+    container
+  );
+};

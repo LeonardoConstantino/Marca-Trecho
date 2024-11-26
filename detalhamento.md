@@ -145,7 +145,7 @@ Descrição: Exibe uma lista de todos os trechos marcados para cada vídeo, perm
 - [x] Cada trecho exibe os detalhes (início, fim, comentário, importância) em formato legível.
 - [x] Ao editar um trecho, a view deve atualizar as informações corretamente.
 - [x] Exclusão de trecho deve ser confirmada antes de remover.
-- [ ] Verificar se os trechos são ordenados pelo timestamp inicial.
+- [x] Verificar se os trechos são ordenados pelo timestamp inicial.
 
 ### 4. View: Criar Playlist
 

@@ -13,6 +13,11 @@
   gap: var(--spacing-md);
 }
 
+.excerpts-tagged-tags .play-book{
+  flex: 0 1 auto;
+  align-self: flex-end;
+}
+
 .excerpts-tagged-infos {
   display: flex;
   gap: var(--spacing-sm);
@@ -22,6 +27,7 @@
 .excerpts-tagged-infos .video-card {
   width: 100%;
   max-width: none;
+  border: none;
 }
 .excerpts-tagged-infos .video-card .video-card-thumb-info {
   flex-flow: row nowrap;
@@ -36,7 +42,6 @@
 }
 
 .excerpts-tagged-infos .video-card .video-card-thumb-info .video-card-title {
-  text-align: center;
   white-space: normal;
   flex: 1 0 auto;
   font-size: var(--font-size-h5);
@@ -46,7 +51,7 @@
 }
 
 .excerpts-tagged-infos .video-card:hover {
-  border: 1px solid var(--border);
+  border: none;
 }
 
 .excerpts-tagged-infos img {
@@ -74,11 +79,17 @@
   flex-grow: 1;
 }
 
-.tags-list-wrapper .tags-list-wrapper .tag-card {
+.tags-list-wrapper .tags-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.tags-list-wrapper .tags-list .tag-card {
   max-width: 100%;
 }
 
-.tags-list-wrapper .tags-list-wrapper .tag-card .wrapper-actions {
+.tags-list-wrapper .tags-list .tag-card .wrapper-actions {
   display: none;
 }
 
@@ -99,6 +110,13 @@
 }
 
 .excerpts-tagged-videos
+  .home-video-management
+  .home-added-videos
+  .videos-list
+  .video-card
+  .video-card-action
+  .video-card-open-side,
+  .excerpts-tagged-videos
   .home-video-management
   .dialog-content
   .videos-list
@@ -137,4 +155,30 @@
 
 .excerpts-tagged .home-playlists {
   display: none;
+}
+
+.dialog-modal.excerpts-tagged-play-book{
+  width: 95%;
+  max-width: var(--layout-max-width);
+  padding: var(--spacing-xl);
+}
+
+.dialog-modal.excerpts-tagged-play-book::backdrop {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.dialog-modal.excerpts-tagged-play-book .comment-box {
+  position: absolute;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 10px;
+  border-radius: var(--border-radius);
+  display: none;
+  transition: opacity 0.3s ease;
+}
+.dialog-modal.excerpts-tagged-play-book .comment-box.visible {
+  display: block;
 }
