@@ -212,7 +212,7 @@ const editVideoTags = async (e) => {
       },
     });
 
-    cleanupContainer(videoPlaceholder);
+    cleanupContainer(videoPlaceholder, true);
   } catch (error) {
     console.error('Erro ao inicializar o YouTube Player:', error);
   } finally {
@@ -275,10 +275,14 @@ const openSide = (e) => {
   const videoCardSide = getVideoCard(getVideoInListById(id));
   renderElement(videoCardSide, true, videosCardsContainer);
 
+  const tagsSortTagsByStart = getTags(id).sort((a, b) => {
+    return a.start - b.start;
+  });
+
   // Renderiza a lista de marcações
   renderCardList({
     container: TagsListWrapper,
-    list: getTags(id),
+    list: tagsSortTagsByStart,
     getCardComponent: getTagCard,
     title: 'Marcações',
     emptyMessage: () =>
