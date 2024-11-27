@@ -301,9 +301,9 @@ function generateShareLink(playlistId, isEditable) {
 
 #### Checks:
 
-- [ ] Cada passo possui uma breve explicação e uma imagem ilustrativa.
-- [ ] O botão "Começar Agora" leva o usuário de volta à Home.
-- [ ] O tutorial cobre todos os principais recursos do aplicativo de maneira clara e concisa.
+- [x] Cada passo possui uma breve explicação e uma imagem ilustrativa.
+- [x] O botão "Começar Agora" leva o usuário de volta à Home.
+- [x] O tutorial cobre todos os principais recursos do aplicativo de maneira clara e concisa.
 
 ## Estruturas de Dados
 ### 1. Estrutura de Dados do Vídeo

@@ -11,6 +11,11 @@
   font-size: var(--font-size-large);
   color: var(--text-secondary);
 }
+
+.view.tutorial .return-button{
+  align-self: center;
+}
+
 .step {
   display: flex;
   flex-flow: row wrap;
