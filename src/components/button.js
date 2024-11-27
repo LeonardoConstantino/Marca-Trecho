@@ -81,6 +81,7 @@ export const createButton = (
 
   // Cria a representação do botão com um span filho contendo o texto.
   const button = getComponent('button');
+  button.props['aria-label'] = text
   if (text !== '') button.props.children.push(getTextSpan(text));
 
   // Adiciona o evento onClick se for fornecido.

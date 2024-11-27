@@ -63,7 +63,7 @@ wrapperInputAddVideoMessage.props.class =
 
 export const addVideoContent = getComponent(
   'div',
-  getComponent('h3', getTextComponent('Adicionar Vídeo')),
+  getComponent('h2', getTextComponent('Adicionar Vídeo')),
   wrapperInputAddVideo,
   wrapperInputAddVideoMessage
 );

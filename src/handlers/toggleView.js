@@ -17,28 +17,29 @@ import { storageUtil } from '../utils/storageUtil';
  * Objeto que mapeia os nomes das visualizações (views) com seus respectivos componentes.
  * Cada chave representa o nome da visualização e o valor é o componente correspondente.
  */
-export const views = {
+export const views = Object.freeze({
   'Pagina inicial': homeView,
   'Marcar trechos': addTagsView,
   'Trechos Marcados': excerptsTagged,
   // 'Criar Playlist': createPlaylistView,
   Tutorial: tutorialView,
-};
+});
 
 /**
- * Retorna a visualização (view) atual exibida no contêiner de visualização ou a ultima visualização armazenada no armazenamento local.
+ * Retorna a visualização (view) atual exibida no contêiner de visualização ou a última visualização armazenada no armazenamento local.
  * @returns {string} O nome da visualização atual.
  */
 export const getCurrentView = () => {
   const viewContainer = document.querySelector('[data-view]');
-  const lastView = getLastView();
-  const currentView =
-    viewContainer instanceof HTMLElement
-      ? viewContainer.dataset.view
-      : lastView;
 
-  return currentView || FIRST_VIEW;
+  // Garantindo que o elemento é um HTMLElement antes de acessar dataset
+  const currentView = viewContainer instanceof HTMLElement ? viewContainer.dataset.view : undefined;
+
+  // Retorna a visualização atual ou a última visualização armazenada, com fallback para a visualização padrão
+  return currentView || getLastView() || FIRST_VIEW;
 };
+
+
 
 /**
  * Alterna a visualização (view) exibida no contêiner de visualização.

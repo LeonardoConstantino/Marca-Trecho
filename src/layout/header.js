@@ -6,6 +6,7 @@ import { showSnackbar } from '../utils/showSnackbar';
 import { closeModal } from '../components/modal';
 import { getInputRadio } from './../components/inputRadio';
 import { toggleTheme } from '../handlers/toggleTheme';
+import { quickTip } from '../handlers/quickTip';
 // @ts-ignore
 import imageLogo from '../assets/images/logo.png';
 // @ts-ignore
@@ -17,12 +18,7 @@ import settings from '../assets/images/settings.svg';
 
 const helpButton = createButton(
   'Dica rápida',
-  () => {
-    showModal(getComponent('div', getTextComponent('Em breve...')), '', (e) => {
-      showSnackbar('Teste teste 123 teste');
-      closeModal(e);
-    });
-  },
+  quickTip,
   questionMark,
   '',
   '',

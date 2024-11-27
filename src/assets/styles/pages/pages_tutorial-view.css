@@ -1,0 +1,69 @@
+
+.view.tutorial {
+  padding: var(--spacing-xl);
+  gap: var(--spacing-xl);
+}
+.view.tutorial h2 {
+  text-align: center;
+}
+.view.tutorial p {
+  text-align: center;
+  font-size: var(--font-size-large);
+  color: var(--text-secondary);
+}
+.step {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+  padding: var(--spacing-lg);
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--border-radius);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.step .content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.step:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+.step .content-wrapper h3 {
+  color: var(--accent);
+}
+.step .content-wrapper p {
+  text-align: center;
+  font-size: var(--font-size-large);
+  color: var(--text-secondary);
+}
+.step img {
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--animation-duration),
+    box-shadow var(--animation-duration);
+}
+
+.step img:hover {
+  transform: scale(1.01);
+  box-shadow: var(--shadow-md);
+}
+
+.dialog-modal .dialog-content .step {
+  justify-content: center;
+  border: none;
+  background: transparent;
+}
+
+.dialog-modal .dialog-content .step:hover {
+  transform: translateY(0px);
+  box-shadow: none;
+}

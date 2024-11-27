@@ -45,7 +45,7 @@ Para manter a navegação consistente, o Header e o Footer estarão fixos em tod
 
 - ~~[ ] O logo redireciona para a Home.~~
 - [x] Links de navegação levam para as seções correspondentes.
-- [ ] Botão de ajuda abre o tutorial ou dicas rápidas.
+- [x] Botão de ajuda abre o tutorial ou dicas rápidas.
 - [ ] Botão de compartilhamento permite gerar link compartilhável (se aplicável).
 
 ### Footer
