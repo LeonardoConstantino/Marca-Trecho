@@ -83,7 +83,6 @@ export const addTagsHandler = async (e) => {
   };
 
   setTagInTagList(currentVideoId, newTag);
-  // console.log('Tag adicionada com sucesso:', newTag);
 
   // Opcional: Limpa os campos após salvar
   // initialTimeInput.value = '';

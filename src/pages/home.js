@@ -1,5 +1,4 @@
 // src/pages/home.js
-
 import { ButtonType, createButton, IconSize } from '../components/button';
 import {
   addChildrenToView,
@@ -9,8 +8,6 @@ import {
 import { showModal } from './../handlers/showModal';
 //@ts-ignore
 import play from '../assets/images/play.svg';
-//@ts-ignore
-// import arrow from '../assets/images/arrow.svg';
 import { getVideoList } from '../services/storageHandle';
 import { addVideoHandler } from '../handlers/addVideo';
 import { getVideoCard } from '../components/videoCard';

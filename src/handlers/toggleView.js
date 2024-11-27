@@ -6,6 +6,7 @@ import { addTagsView } from '../pages/addTags';
 import { createPlaylistView } from '../pages/createPlaylist';
 import { excerptsTagged } from '../pages/excerptsTagged';
 import { homeView } from '../pages/home';
+import { tutorialView } from '../pages/tutorial';
 import { getLastView } from '../services/storageHandle';
 import { FIRST_VIEW } from '../utils/constants';
 import { renderElement } from '../utils/renderElement';
@@ -20,8 +21,8 @@ export const views = {
   'Pagina inicial': homeView,
   'Marcar trechos': addTagsView,
   'Trechos Marcados': excerptsTagged,
-  'Criar Playlist': createPlaylistView,
-  // Tutorial: addTagsView,
+  // 'Criar Playlist': createPlaylistView,
+  Tutorial: tutorialView,
 };
 
 /**

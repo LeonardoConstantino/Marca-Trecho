@@ -1,5 +1,11 @@
 import { getComponent, getImgComponent, getTextComponent } from '../utils/helpers';
 import { navigation } from './navigation';
+import { ButtonType, createButton, IconSize } from '../components/button';
+import { showModal } from '../handlers/showModal';
+import { showSnackbar } from '../utils/showSnackbar';
+import { closeModal } from '../components/modal';
+import { getInputRadio } from './../components/inputRadio';
+import { toggleTheme } from '../handlers/toggleTheme';
 // @ts-ignore
 import imageLogo from '../assets/images/logo.png';
 // @ts-ignore
@@ -8,15 +14,9 @@ import questionMark from '../assets/images/questionMark.svg';
 import share from '../assets/images/share.svg';
 // @ts-ignore
 import settings from '../assets/images/settings.svg';
-import { ButtonType, createButton, IconSize } from '../components/button';
-import { showModal } from '../handlers/showModal';
-import { showSnackbar } from '../utils/showSnackbar';
-import { closeModal } from '../components/modal';
-import { getInputRadio } from './../components/inputRadio';
-import { toggleTheme } from '../handlers/toggleTheme';
 
 const helpButton = createButton(
-  '',
+  'Dica rápida',
   () => {
     showModal(getComponent('div', getTextComponent('Em breve...')), '', (e) => {
       showSnackbar('Teste teste 123 teste');
@@ -32,7 +32,7 @@ const helpButton = createButton(
 );
 
 const shareButton = createButton(
-  '',
+  'Compartilhar',
   () => {
     showModal(
       getComponent('div', getTextComponent('Em breve...')),
@@ -64,7 +64,7 @@ const contentModalSettings = getComponent(
 );
 
 const settingsButton = createButton(
-  '',
+  'Configurações',
   () => {
     showModal(contentModalSettings, 'modal-settings', toggleTheme);
   },
