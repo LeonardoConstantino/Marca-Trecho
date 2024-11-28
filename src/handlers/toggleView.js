@@ -33,13 +33,14 @@ export const getCurrentView = () => {
   const viewContainer = document.querySelector('[data-view]');
 
   // Garantindo que o elemento é um HTMLElement antes de acessar dataset
-  const currentView = viewContainer instanceof HTMLElement ? viewContainer.dataset.view : undefined;
+  const currentView =
+    viewContainer instanceof HTMLElement
+      ? viewContainer.dataset.view
+      : undefined;
 
   // Retorna a visualização atual ou a última visualização armazenada, com fallback para a visualização padrão
   return currentView || getLastView() || FIRST_VIEW;
 };
-
-
 
 /**
  * Alterna a visualização (view) exibida no contêiner de visualização.
@@ -67,12 +68,12 @@ export const toggleView = async (name, view) => {
   // Atualização da visualização com transição
   if (viewContainer instanceof HTMLElement) {
     const currentViewElement = viewContainer.querySelector('.view');
-    
+
     if (currentViewElement || currentViewElement) {
       currentViewElement.classList.add('view-out');
       currentViewElement.classList.remove('view');
-    } 
-    
+    }
+
     setTimeout(() => {
       cleanupContainer(viewContainer);
       renderElement(view, true, viewContainer);

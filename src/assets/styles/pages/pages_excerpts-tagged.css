@@ -13,7 +13,7 @@
   gap: var(--spacing-md);
 }
 
-.excerpts-tagged-tags .play-book{
+.excerpts-tagged-tags .play-book {
   flex: 0 1 auto;
   align-self: flex-end;
 }
@@ -116,7 +116,7 @@
   .video-card
   .video-card-action
   .video-card-open-side,
-  .excerpts-tagged-videos
+.excerpts-tagged-videos
   .home-video-management
   .dialog-content
   .videos-list
@@ -157,7 +157,7 @@
   display: none;
 }
 
-.dialog-modal.excerpts-tagged-play-book{
+.dialog-modal.excerpts-tagged-play-book {
   width: 95%;
   max-width: var(--layout-max-width);
   padding: var(--spacing-xl);

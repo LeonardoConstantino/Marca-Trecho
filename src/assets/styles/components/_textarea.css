@@ -12,7 +12,9 @@ textarea {
 
 textarea::placeholder {
   color: var(--text-tertiary);
-  transition: color var(--animation-duration) ease, opacity var(--animation-duration) ease, transform var(--animation-duration-long) ease;
+  transition: color var(--animation-duration) ease,
+    opacity var(--animation-duration) ease,
+    transform var(--animation-duration-long) ease;
 }
 
 textarea:focus::placeholder {

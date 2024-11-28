@@ -1,6 +1,5 @@
-import { closeModal } from "../components/modal";
-import { storageUtil } from "../utils/storageUtil";
-
+import { closeModal } from '../components/modal';
+import { storageUtil } from '../utils/storageUtil';
 
 /**
  * Função responsável por alternar o tema da aplicação.
@@ -19,7 +18,6 @@ export const toggleTheme = (e) => {
     storageUtil.setItem('theme', selectedTheme.value);
     document.documentElement.setAttribute('data-theme', selectedTheme.value);
   }
-
 
   closeModal(e);
 };

@@ -1,5 +1,9 @@
 import { closeModal } from '../components/modal';
-import { loadYouTubeAPI, createPlayer, playerDestroy } from '../services/youTubePlayer';
+import {
+  loadYouTubeAPI,
+  createPlayer,
+  playerDestroy,
+} from '../services/youTubePlayer';
 import {
   getRandomId,
   getSmallestAvailableThumbnail,
@@ -93,7 +97,7 @@ export const addVideoHandler = async (e) => {
         showMessage(positiveMessage, true, 'Vídeo carregado com sucesso!');
         btn.classList.remove('loading');
 
-        await sleep(250)
+        await sleep(250);
 
         renderCardList({
           container: videosCardsContainer,

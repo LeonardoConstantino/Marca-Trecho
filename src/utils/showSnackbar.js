@@ -40,6 +40,8 @@ const createSnackbar = (text, duration) => {
   activeSnackbar.add(snackbarId);
 
   const snackbarElement = renderElement(snackbar, true, snackbarContainer);
+  if (!(snackbarElement instanceof HTMLElement)) return
+  
   // Remover o snackbar após a duração especificada
   setTimeout(() => {
     snackbarElement.remove();

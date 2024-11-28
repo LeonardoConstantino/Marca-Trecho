@@ -24,8 +24,8 @@ footer .brand {
   font-size: var(--font-size-medium);
 }
 
-footer .brand .icon {  
-  filter: var(--icon-filter-tertiary); 
+footer .brand .icon {
+  filter: var(--icon-filter-tertiary);
 }
 
 .about-content .dialog-content,
@@ -65,7 +65,7 @@ footer .brand .icon {
 }
 
 .dialog-content .icon {
-  filter: var(--icon-filter-hover); 
+  filter: var(--icon-filter-hover);
 }
 
 .dialog-content p {

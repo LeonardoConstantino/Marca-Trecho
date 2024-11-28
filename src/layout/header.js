@@ -1,4 +1,8 @@
-import { getComponent, getImgComponent, getTextComponent } from '../utils/helpers';
+import {
+  getComponent,
+  getImgComponent,
+  getTextComponent,
+} from '../utils/helpers';
 import { navigation } from './navigation';
 import { ButtonType, createButton, IconSize } from '../components/button';
 import { showModal } from '../handlers/showModal';
@@ -24,7 +28,7 @@ const helpButton = createButton(
   '',
   false,
   ButtonType.TERTIARY,
-  IconSize.SMALL,
+  IconSize.SMALL
 );
 
 const shareButton = createButton(
@@ -45,7 +49,7 @@ const shareButton = createButton(
   '',
   false,
   ButtonType.TERTIARY,
-  IconSize.SMALL,
+  IconSize.SMALL
 );
 
 const contentModalSettings = getComponent(
@@ -69,7 +73,7 @@ const settingsButton = createButton(
   '',
   false,
   ButtonType.TERTIARY,
-  IconSize.SMALL,
+  IconSize.SMALL
 );
 
 const headerActions = getComponent(
@@ -81,7 +85,7 @@ const headerActions = getComponent(
 headerActions.props.class = 'header-actions'; // Define a classe CSS para estilização
 
 // Cria o componente de imagem para o logotipo
-const img = getImgComponent(imageLogo, 'Logo', '40', '40');
+const img = getImgComponent(imageLogo, 'Logo', 40, 40);
 // Cria o componente de título
 const title = getComponent('h1', getTextComponent('Marca Trecho'));
 

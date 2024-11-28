@@ -1,10 +1,7 @@
 // src/pages/addTags.js
 import { createButton } from '../components/button';
 import { showModal } from '../handlers/showModal';
-import {
-  getComponent,
-  getTextComponent,
-} from '../utils/helpers';
+import { getComponent, getTextComponent } from '../utils/helpers';
 import { addedVideos } from './home';
 import { getSelection } from '../components/selection';
 import { getTimeSelector } from '../components/timeSelector';

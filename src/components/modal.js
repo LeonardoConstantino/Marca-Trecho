@@ -19,8 +19,8 @@ export const closeModal = (e) => {
 
   const modal = e.target.closest('dialog');
   if (modal instanceof HTMLDialogElement) {
-    modal.classList.add('modal-close')
-    
+    modal.classList.add('modal-close');
+
     setTimeout(() => {
       modal.close();
       cleanupContainer(modal, true);
@@ -49,10 +49,10 @@ export const getModal = (
   titleBtnConfirme = 'Confirmar',
   cancelHandler = closeModal,
   textBtnCancel = 'Cancelar',
-  titleBtnCancel = 'Fechar',
+  titleBtnCancel = 'Fechar'
 ) => {
-  const modal = getComponent('dialog')
-  const form = getComponent('form')
+  const modal = getComponent('dialog');
+  const form = getComponent('form');
 
   if (confirmeHandler) {
     const confirmeModalButton = createButton(
@@ -62,7 +62,7 @@ export const getModal = (
       '',
       titleBtnConfirme
     );
-    
+
     const cancelModalButton = createButton(
       textBtnCancel,
       cancelHandler,
@@ -71,17 +71,28 @@ export const getModal = (
       titleBtnCancel
     );
     if (cancelModalButton.props) cancelModalButton.props.formmethod = 'dialog';
-    
+
     // const form = getComponent('form', confirmeModalButton, cancelModalButton);
     form.props.children.push(confirmeModalButton, cancelModalButton);
     if (form.props) form.props.method = 'dialog';
     // modal.props.children.push(form);
   }
-  
-  const closeButton = createButton('', closeModal, close, 'close', 'Fechar', false, ButtonType.TERTIARY, IconSize.NORMAL);
-  
+
+  const closeButton = createButton(
+    '',
+    closeModal,
+    close,
+    'close',
+    'Fechar',
+    false,
+    ButtonType.TERTIARY,
+    IconSize.NORMAL
+  );
+
   const classForModal =
-  className !== '' ? `scrollbar dialog-modal ${className}` : 'scrollbar dialog-modal';
+    className !== ''
+      ? `scrollbar dialog-modal ${className}`
+      : 'scrollbar dialog-modal';
 
   // const modal = getComponent('dialog', closeButton, content, form);
   modal.props.children.push(closeButton, content);

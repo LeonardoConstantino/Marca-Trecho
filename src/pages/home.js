@@ -80,7 +80,6 @@ const introduction = getComponent(
     getTextComponent(
       'Marque trechos de vídeos diretamente no navegador. você pode criar e organizar marcações de partes importantes de vídeos do YouTube.'
     )
-
   ),
   getComponent(
     'small',

@@ -6,7 +6,7 @@ import {
 } from '../utils/helpers';
 import { videoManagement } from './home';
 import { TagsListWrapper } from './addTags.js';
-//"http://img.youtube.com/vi/dYlDwzN8aUg/1.jpg"
+
 const thumbnail = getImgComponent(
   'https://dummyimage.com/1000',
   'thumbnail',

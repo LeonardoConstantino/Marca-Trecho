@@ -1,4 +1,3 @@
-
 .view.tutorial {
   padding: var(--spacing-xl);
   gap: var(--spacing-xl);
@@ -12,7 +11,7 @@
   color: var(--text-secondary);
 }
 
-.view.tutorial .return-button{
+.view.tutorial .return-button {
   align-self: center;
 }
 

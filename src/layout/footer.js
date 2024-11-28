@@ -94,16 +94,8 @@ const brand = getComponent(
   getComponent('span', currentYear),
   getComponent('span', getTextComponent('Marca Trecho'))
 );
-brand.props.class = 'brand'
+brand.props.class = 'brand';
 
-const nav = getComponent('nav', 
-  about,
-  privacyPolicy,
-  contact,
-)
+const nav = getComponent('nav', about, privacyPolicy, contact);
 
-export const footer = getComponent(
-  'footer',
-  nav,
-  brand
-);
+export const footer = getComponent('footer', nav, brand);

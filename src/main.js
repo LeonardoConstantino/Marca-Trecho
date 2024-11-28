@@ -3,12 +3,12 @@
 import './assets/styles/main.css';
 
 // Importa funções e módulos utilitários e páginas para a estrutura da aplicação
-import { renderElement } from './utils/renderElement.js';// Renderiza elementos no DOM
-import { showSnackbar } from './utils/showSnackbar.js';// Exibe notificações
+import { renderElement } from './utils/renderElement.js'; // Renderiza elementos no DOM
+import { showSnackbar } from './utils/showSnackbar.js'; // Exibe notificações
 import { header } from './layout/header.js';
 import { footer } from './layout/footer.js';
 import { setView, viewContainer } from './layout/grid.js';
-import { currentTheme } from './services/storageHandle.js';// Obtém o tema do armazenamento local
+import { currentTheme } from './services/storageHandle.js'; // Obtém o tema do armazenamento local
 
 /**
  * @function main
@@ -18,13 +18,13 @@ const main = () => {
   try {
     // Seleciona o elemento principal da aplicação no DOM
     const app = document.getElementById('app');
-        
+
     // Obtém o tema atual da aplicação do armazenamento local
     document.documentElement.setAttribute('data-theme', currentTheme);
-  
+
     // Lança um erro se o elemento 'app' não for encontrado no DOM
     if (!app) throw new Error('Elemento com o ID "app" não encontrado.');
-      
+
     // Renderiza os componentes da aplicação no DOM
     renderElement(header, true, app);
     renderElement(viewContainer, true, app);
@@ -38,7 +38,7 @@ const main = () => {
     console.error(error);
     showSnackbar('Ocorreu um erro ao iniciar a aplicação.');
   }
-}
+};
 
 // Aguarda o carregamento completo do DOM para inicializar a aplicação
 document.addEventListener('DOMContentLoaded', main);

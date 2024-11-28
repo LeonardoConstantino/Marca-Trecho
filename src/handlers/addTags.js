@@ -1,7 +1,13 @@
 import { getTagCard } from '../components/tagCard';
 import { getTags, setTagInTagList } from '../services/storageHandle';
 import { getPlayer } from '../services/youTubePlayer';
-import { getComponent, getRandomId, getTextComponent, sleep, timeToSeconds } from '../utils/helpers';
+import {
+  getComponent,
+  getRandomId,
+  getTextComponent,
+  sleep,
+  timeToSeconds,
+} from '../utils/helpers';
 import { renderCardList } from '../utils/renderUtils';
 
 /**
@@ -33,9 +39,7 @@ export const addTagsHandler = async (e) => {
   const prioritySelector =
     createTagsContainer.querySelector('#prioritySelector');
   const videoWrapper = document.querySelector('#videoWrapper');
-  const tagCardsContainer = document.querySelector(
-    '[data-tagCardsContainer]'
-  );
+  const tagCardsContainer = document.querySelector('[data-tagCardsContainer]');
 
   // Valida a existência dos elementos
   if (

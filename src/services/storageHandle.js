@@ -11,6 +11,16 @@ import { storageUtil } from '../utils/storageUtil';
  */
 storageUtil.setAppPrefix(APP_PREFIX);
 
+/**
+ * Objeto que contém as chaves usadas para armazenar e recuperar dados no armazenamento local da aplicação.
+ * Essas chaves ajudam a organizar e identificar os diferentes tipos de dados armazenados.
+ * @type {Object}
+ * @property {string} theme - A chave usada para armazenar e recuperar o tema atual da aplicação.
+ * @property {string} language - A chave usada para armazenar e recuperar o idioma atual da aplicação.
+ * @property {string} lastView - A chave usada para armazenar e recuperar a última view da aplicação.
+ * @property {string} videoList - A chave usada para armazenar e recuperar a lista de vídeos salvos.
+ * @readonly
+ */
 const storageKeys = Object.freeze({
   theme: 'theme',
   language: 'language',
@@ -30,21 +40,24 @@ export const currentTheme = storageUtil.getItem(storageKeys.theme) || 'light';
  * Caso não exista nenhum idioma armazenado, o idioma padrão 'pt-BR' é retornado.
  * @type {string} - O idioma atual da aplicação armazenado no armazenamento local.
  */
-export const currentLanguage = storageUtil.getItem(storageKeys.language) || 'pt-BR';
+export const currentLanguage =
+  storageUtil.getItem(storageKeys.language) || 'pt-BR';
 
 /**
  * Recupera a última view da aplicação armazenada no armazenamento local.
  * Caso não exista nenhuma view armazenada, a view padrão fistView[tutorial ou home] é retornada.
  * @returns {string} - A última view da aplicação armazenada no armazenamento local.
  */
-export const getLastView = ()=> storageUtil.getItem(storageKeys.lastView) || FIRST_VIEW;
+export const getLastView = () =>
+  storageUtil.getItem(storageKeys.lastView) || FIRST_VIEW;
 
 /**
  * Retorna a lista de videos salvos do local storage
- * 
+ *
  * @returns {Array<ObjectVideo>} - A lista de videos salvos do local storage.
  */
-export const getVideoList = () => storageUtil.getItem(storageKeys.videoList) || [];
+export const getVideoList = () =>
+  storageUtil.getItem(storageKeys.videoList) || [];
 
 /**
  * Recupera o vídeo da lista de vídeos salva no armazenamento local com o ID especificado.
@@ -68,18 +81,17 @@ export const getVideoInListById = (id) => {
   return currentVideoList.find((v) => v.id === id);
 };
 
-
 /**
  * salva o objeto video no local storage
- * 
+ *
  * @param {ObjectVideo} item - O objeto video a ser salvo.
  * @returns {void}
  */
 export const setItemVideoList = (item) => {
-    const currentVideoList = getVideoList()
-    currentVideoList.push(item)
-    storageUtil.setItem(storageKeys.videoList, currentVideoList)
-}
+  const currentVideoList = getVideoList();
+  currentVideoList.push(item);
+  storageUtil.setItem(storageKeys.videoList, currentVideoList);
+};
 
 /**
  * Exclui um video do local storage.
@@ -88,10 +100,10 @@ export const setItemVideoList = (item) => {
  * @returns {void}
  */
 export const deleteVideo = (id) => {
-  const currentVideoList = getVideoList()
+  const currentVideoList = getVideoList();
   const deletedVideo = currentVideoList.find((v) => v.id === id);
   const filteredVideos = currentVideoList.filter((v) => v.id !== id);
-  storageUtil.setItem(storageKeys.videoList, filteredVideos)
+  storageUtil.setItem(storageKeys.videoList, filteredVideos);
 };
 
 /**
@@ -101,11 +113,11 @@ export const deleteVideo = (id) => {
  * @returns {Array<Tag>} - Uma lista de tags do vídeo ou um array vazio se o vídeo não for encontrado.
  */
 export const getTags = (videoId) => {
-  const videoList = getVideoList()
-  const video = videoList.find((v) => v.id === videoId)
-  if (!video) return []
-  return video.tags
-}
+  const videoList = getVideoList();
+  const video = videoList.find((v) => v.id === videoId);
+  if (!video) return [];
+  return video.tags;
+};
 
 /**
  * Adiciona uma tag à lista de tags de um vídeo específico.
@@ -116,7 +128,7 @@ export const getTags = (videoId) => {
  */
 export const setTagInTagList = (videoId, tag) => {
   const videoList = getVideoList();
-  
+
   // Localiza o vídeo pelo ID
   const video = videoList.find((v) => v.id === videoId);
   if (!video) return;

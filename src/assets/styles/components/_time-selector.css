@@ -40,7 +40,8 @@
   border-color: var(--success);
 }
 
-.time-selector input[type='time']:invalid, .time-selector input[type='time']:focus:invalid {
+.time-selector input[type='time']:invalid,
+.time-selector input[type='time']:focus:invalid {
   background-image: url('../../images/danger.svg');
   background-size: 22px;
   animation: var(--blink-invalid);

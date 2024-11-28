@@ -3,9 +3,7 @@
  */
 
 /**
- * EventDelegator fornece um sistema de gerenciamento centralizado para manipulação de eventos
- * em elementos criados dinamicamente. Ele utiliza delegação de eventos para reduzir o uso de memória
- * e melhorar o desempenho, especialmente em aplicações com um grande número de ouvintes de eventos.
+ * EventDelegator fornece um sistema de gerenciamento centralizado para manipulação de eventos em elementos criados dinamicamente. Ele utiliza delegação de eventos para reduzir o uso de memória e melhorar o desempenho, especialmente em aplicações com um grande número de ouvintes de eventos.
  */
 export const EventDelegator = {
   /**
