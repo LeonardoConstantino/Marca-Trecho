@@ -98,26 +98,32 @@ const introduction = getComponent(
 );
 introduction.props.class = 'home-introduction';
 
-const videosCards = getVideoList().map((video) => {
-  return getVideoCard(video);
-});
+export const getAddedVideos = ()=>{
+  const currentVideoList = getVideoList()
+  
+  const videosCards = currentVideoList.map((video) => {
+    return getVideoCard(video);
+  });
+  
+  const videosList = getComponent('ol', ...videosCards);
+  videosList.props.class = 'videos-list';
+  
+  const addedVideos = getComponent('div');
+  addedVideos.props.class = 'home-added-videos';
+  addedVideos.props['data-videosCardsContainer'] = '';
+  
+  addChildrenToView(
+    addedVideos,
+    currentVideoList.length === 0,
+    [
+      getComponent('h4', getTextComponent('Gerencie seus vídeos')),
+      emptyMessage('vídeos'),
+    ],
+    [getComponent('h4', getTextComponent('Gerencie seus vídeos')), videosList]
+  );
 
-const videosList = getComponent('ol', ...videosCards);
-videosList.props.class = 'videos-list';
-
-export const addedVideos = getComponent('div');
-addedVideos.props.class = 'home-added-videos';
-addedVideos.props['data-videosCardsContainer'] = '';
-
-addChildrenToView(
-  addedVideos,
-  getVideoList().length === 0,
-  [
-    getComponent('h4', getTextComponent('Gerencie seus vídeos')),
-    emptyMessage('vídeos'),
-  ],
-  [getComponent('h4', getTextComponent('Gerencie seus vídeos')), videosList]
-);
+  return addedVideos
+}
 
 const playlists = getComponent(
   'div',
@@ -149,7 +155,7 @@ playlists.props.class = 'home-playlists';
 // );
 // videoManagementActions.props.class = 'home-video-management-actions';
 
-export const videoManagement = getComponent('div', addedVideos, playlists);
+export const videoManagement = getComponent('div', getAddedVideos(), playlists);
 videoManagement.props.class = 'home-video-management';
 
 export const homeView = getComponent('div');

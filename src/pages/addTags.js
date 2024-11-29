@@ -2,7 +2,7 @@
 import { createButton } from '../components/button';
 import { showModal } from '../handlers/showModal';
 import { getComponent, getTextComponent } from '../utils/helpers';
-import { addedVideos } from './home';
+import { getAddedVideos } from './home';
 import { getSelection } from '../components/selection';
 import { getTimeSelector } from '../components/timeSelector';
 //@ts-ignore
@@ -19,7 +19,7 @@ const divVideoPlaceholder = getComponent(
 divVideoPlaceholder.props.class = 'video-placeholder';
 divVideoPlaceholder.props.title = 'Click Para Adicionar Um Vídeo';
 divVideoPlaceholder.props.onClick = () =>
-  showModal(addedVideos, 'home-modal-add-video');
+  showModal(getAddedVideos(), 'home-modal-add-video');
 
 // if (getVideoList.length === 0) {
 //   addedVideos.props.class += ' hidden'

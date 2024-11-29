@@ -40,6 +40,7 @@
 
   .home-video-management {
     flex-direction: column;
+    align-items: center;
     gap: var(--spacing-md);
   }
 
@@ -49,6 +50,15 @@
 
   .tag-card {
     max-width: 80%;
+  }
+  
+  .step {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .step .content-wrapper {
+    text-align: center;
   }
 }
 

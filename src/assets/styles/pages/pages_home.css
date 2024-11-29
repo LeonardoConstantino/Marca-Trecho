@@ -17,6 +17,7 @@
 
 .home-video-management {
   display: flex;
+  justify-content: center;
   gap: var(--spacing-lg);
 }
 
