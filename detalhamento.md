@@ -43,9 +43,9 @@ Para manter a navegação consistente, o Header e o Footer estarão fixos em tod
 
 **Checks**:
 
-- [ ] O logo redireciona para a Home.
+- ~~[ ] O logo redireciona para a Home.~~
 - [x] Links de navegação levam para as seções correspondentes.
-- [ ] Botão de ajuda abre o tutorial ou dicas rápidas.
+- [x] Botão de ajuda abre o tutorial ou dicas rápidas.
 - [ ] Botão de compartilhamento permite gerar link compartilhável (se aplicável).
 
 ### Footer
@@ -94,9 +94,9 @@ Para manter a navegação consistente, o Header e o Footer estarão fixos em tod
 
 #### Checks:
 
-- [ ] Implementar função `videoIdFromURL` para extrair e validar o ID do vídeo.
-- [ ] Mostrar mensagem de erro se o link do vídeo for inválido.
-- [ ] Adicionar vídeo à lista com o título e o thumbnail.
+- [x] Implementar função `videoIdFromURL` para extrair e validar o ID do vídeo.
+- [x] Mostrar mensagem de erro se o link do vídeo for inválido.
+- [x] Adicionar vídeo à lista com o título e o thumbnail.
 
 ### 2. View: Adicionar Marcações ao Vídeo
 
@@ -124,10 +124,10 @@ const trecho = {
 
 #### Checks:
 
-- [ ] Player deve carregar o vídeo com base no ID extraído.
-- [ ] Trecho deve salvar as timestamps de início e fim corretamente.
-- [ ] Comentário e nível de importância devem ser armazenados com o trecho.
-- [ ] Verificar se o usuário pode adicionar múltiplos trechos em um único vídeo.
+- [x] Player deve carregar o vídeo com base no ID extraído.
+- [x] Trecho deve salvar as timestamps de início e fim corretamente.
+- [x] Comentário e nível de importância devem ser armazenados com o trecho.
+- [x] Verificar se o usuário pode adicionar múltiplos trechos em um único vídeo.
 
 ### 3. View: Listagem de Trechos Marcados
 
@@ -142,10 +142,10 @@ Descrição: Exibe uma lista de todos os trechos marcados para cada vídeo, perm
 
 #### Checks:
 
-- [ ] Cada trecho exibe os detalhes (início, fim, comentário, importância) em formato legível.
-- [ ] Ao editar um trecho, a view deve atualizar as informações corretamente.
-- [ ] Exclusão de trecho deve ser confirmada antes de remover.
-- [ ] Verificar se os trechos são ordenados pelo timestamp inicial.
+- [x] Cada trecho exibe os detalhes (início, fim, comentário, importância) em formato legível.
+- [x] Ao editar um trecho, a view deve atualizar as informações corretamente.
+- [x] Exclusão de trecho deve ser confirmada antes de remover.
+- [x] Verificar se os trechos são ordenados pelo timestamp inicial.
 
 ### 4. View: Criar Playlist
 
@@ -301,9 +301,9 @@ function generateShareLink(playlistId, isEditable) {
 
 #### Checks:
 
-- [ ] Cada passo possui uma breve explicação e uma imagem ilustrativa.
-- [ ] O botão "Começar Agora" leva o usuário de volta à Home.
-- [ ] O tutorial cobre todos os principais recursos do aplicativo de maneira clara e concisa.
+- [x] Cada passo possui uma breve explicação e uma imagem ilustrativa.
+- [x] O botão "Começar Agora" leva o usuário de volta à Home.
+- [x] O tutorial cobre todos os principais recursos do aplicativo de maneira clara e concisa.
 
 ## Estruturas de Dados
 ### 1. Estrutura de Dados do Vídeo

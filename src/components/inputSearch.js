@@ -27,7 +27,8 @@ export const getInputSearch = (
     throw new Error('onInputHandler must be a function');
   }
 
-  const classForLabel = className !== '' ? `label-input-search ${className}` : 'label-input-search';
+  const classForLabel =
+    className !== '' ? `label-input-search ${className}` : 'label-input-search';
 
   /** @type {InputElementConfig} */
   const inputSearch = getComponent('input');

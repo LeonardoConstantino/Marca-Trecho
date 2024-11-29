@@ -13,10 +13,15 @@ import { getComponent, getTextComponent } from '../utils/helpers';
  * @param {string} [title=''] - Um título opcional para o elemento de seleção.
  * @returns {ElementConfig} - O elemento de seleção criado.
  */
-export const getSelection = (id, objectOptions, onChangeHandler, title = '') => {
-    if (!onChangeHandler || typeof onChangeHandler !== 'function') {
-      throw new Error('onChangeHandler must be a function');
-    }
+export const getSelection = (
+  id,
+  objectOptions,
+  onChangeHandler,
+  title = ''
+) => {
+  if (!onChangeHandler || typeof onChangeHandler !== 'function') {
+    throw new Error('onChangeHandler must be a function');
+  }
 
   const options = Object.entries(objectOptions).map(([key, value]) => {
     const option = getComponent('option', getTextComponent(value));
@@ -25,7 +30,7 @@ export const getSelection = (id, objectOptions, onChangeHandler, title = '') => 
   });
 
   const select = getComponent('select', ...options);
-  if(id) select.props.id = id;
+  if (id) select.props.id = id;
   select.props.title = title;
   select.props.onChange = onChangeHandler;
   return select;

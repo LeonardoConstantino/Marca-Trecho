@@ -6,36 +6,40 @@ import { addTagsView } from '../pages/addTags';
 import { createPlaylistView } from '../pages/createPlaylist';
 import { excerptsTagged } from '../pages/excerptsTagged';
 import { homeView } from '../pages/home';
+import { tutorialView } from '../pages/tutorial';
 import { getLastView } from '../services/storageHandle';
 import { FIRST_VIEW } from '../utils/constants';
-import { EventDelegator, renderElement } from '../utils/renderElement';
+import { renderElement } from '../utils/renderElement';
+import { cleanupContainer } from '../utils/renderUtils';
 import { storageUtil } from '../utils/storageUtil';
 
 /**
  * Objeto que mapeia os nomes das visualizações (views) com seus respectivos componentes.
  * Cada chave representa o nome da visualização e o valor é o componente correspondente.
  */
-export const views = {
+export const views = Object.freeze({
   'Pagina inicial': homeView,
   'Marcar trechos': addTagsView,
   'Trechos Marcados': excerptsTagged,
-  'Criar Playlist': createPlaylistView,
-  // Tutorial: addTagsView,
-};
+  // 'Criar Playlist': createPlaylistView,
+  Tutorial: tutorialView,
+});
 
 /**
- * Retorna a visualização (view) atual exibida no contêiner de visualização ou a ultima visualização armazenada no armazenamento local.
+ * Retorna a visualização (view) atual exibida no contêiner de visualização ou a última visualização armazenada no armazenamento local.
  * @returns {string} O nome da visualização atual.
  */
 export const getCurrentView = () => {
   const viewContainer = document.querySelector('[data-view]');
-  const lastView = getLastView();
+
+  // Garantindo que o elemento é um HTMLElement antes de acessar dataset
   const currentView =
     viewContainer instanceof HTMLElement
       ? viewContainer.dataset.view
-      : lastView;
+      : undefined;
 
-  return currentView || FIRST_VIEW;
+  // Retorna a visualização atual ou a última visualização armazenada, com fallback para a visualização padrão
+  return currentView || getLastView() || FIRST_VIEW;
 };
 
 /**
@@ -64,15 +68,14 @@ export const toggleView = async (name, view) => {
   // Atualização da visualização com transição
   if (viewContainer instanceof HTMLElement) {
     const currentViewElement = viewContainer.querySelector('.view');
-    EventDelegator.cleanup(viewContainer);
 
     if (currentViewElement || currentViewElement) {
       currentViewElement.classList.add('view-out');
       currentViewElement.classList.remove('view');
-    } 
+    }
 
     setTimeout(() => {
-      viewContainer.innerHTML = '';
+      cleanupContainer(viewContainer);
       renderElement(view, true, viewContainer);
       viewContainer.dataset.view = name;
       storageUtil.setItem('lastView', name);

@@ -33,8 +33,16 @@
 /** @type {WindowWithYouTube} */
 const customWindow = window;
 
+/**
+ * Representa uma instância do player do YouTube.
+ * Esse player é usado para controlar a reprodução de vídeos do YouTube na aplicação.
+ */
 let player = null;
 
+/**
+ * Representa os possíveis estados do player do YouTube.
+ * Esses estados são usados para controlar o comportamento do player durante a reprodução de vídeos.
+ */
 export const PlayerStates = Object.freeze({
   UNSTARTED: -1,
   ENDED: 0,
@@ -164,6 +172,15 @@ export const createYouTubeIframe = (videoId, options) => {
   return iframe;
 };
 
+/**
+ * Configura e retorna uma instância do player de vídeo do YouTube.
+ * @async
+ * @param {string} videoId - O ID do vídeo do YouTube a ser reproduzido.
+ * @param {Object} options - Opções adicionais para o player.
+ * @param {function} [options.onReady] - Função de callback chamada quando o player estiver pronto.
+ * @param {function} [options.onStateChange] - Função de callback chamada quando o estado do player mudar.
+ * @returns {Promise<YT.Player>} Uma promessa que resolve para a instância do player do YouTube.
+ */
 export const setupIframePlayer = async (videoId, options) => {
   const iframe = createYouTubeIframe(videoId, options);
 
@@ -193,6 +210,10 @@ export const setupIframePlayer = async (videoId, options) => {
  */
 export const getPlayer = () => player;
 
+/**
+ * Destrói a instância atual do player de vídeo do YouTube.
+ * Essa função é útil para limpar o estado do player e liberar recursos quando o player não for mais necessário.
+ */
 export const playerDestroy = () => {
   if (player) {
     player.destroy();

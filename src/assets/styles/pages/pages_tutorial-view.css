@@ -1,0 +1,79 @@
+.view.tutorial {
+  background-color: var(--bg-primary);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: var(--spacing-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  text-align: center;
+}
+.view.tutorial h2 {
+  margin-bottom: var(--spacing-md);
+}
+.view.tutorial p {
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-lg);
+  font-size: var(--font-size-large);
+}
+
+.view.tutorial .return-button {
+  align-self: center;
+  margin-top: var(--spacing-lg);
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+  background-color: var(--bg-secondary);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-md);
+  transition: all var(--animation-duration) ease;
+}
+
+.step .content-wrapper {
+  flex-grow: 1;
+  text-align: left;
+}
+
+.step:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-sm);
+  background-color: var(--bg-tertiary);
+}
+.step .content-wrapper h3 {
+  color: var(--accent);
+  font-size: var(--font-size-h4);
+  margin-bottom: var(--spacing-sm);
+}
+.step .content-wrapper p {
+  font-size: var(--font-size-large);
+  color: var(--text-secondary);
+}
+.step img {
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+  object-fit: contain;
+  border-radius: var(--border-radius-sm);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--animation-duration),
+    box-shadow var(--animation-duration);
+}
+
+.step img:hover {
+  transform: scale(1.01);
+  box-shadow: var(--shadow-md);
+}
+
+.dialog-modal .dialog-content .step {
+  justify-content: center;
+  border: none;
+  background: transparent;
+}
+
+.dialog-modal .dialog-content .step:hover {
+  transform: translateY(0px);
+  box-shadow: none;
+}

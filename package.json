@@ -1,7 +1,7 @@
 {
   "name": "marca-trecho",
   "private": true,
-  "version": "0.2.1",
+  "version": "1.0.0",
   "type": "module",
   "homepage": "https://leonardoconstantino.github.io/Marca-Trecho/",
   "scripts": {

@@ -17,7 +17,16 @@
 
 .home-video-management {
   display: flex;
+  justify-content: center;
   gap: var(--spacing-lg);
+}
+
+.home-video-management
+  .videos-list
+  .video-card
+  .video-card-action
+  .video-card-open-side {
+  display: none;
 }
 
 .home-video-management-actions {
@@ -60,6 +69,15 @@
   padding: var(--spacing-md);
 }
 
+.home-modal-add-video
+  .dialog-content
+  .videos-list
+  .video-card
+  .video-card-action
+  .video-card-open-side {
+  display: none;
+}
+
 .home-wrapper-input-add-video {
   display: flex;
   align-items: center;
@@ -75,7 +93,7 @@
   display: inline-flex;
 }
 
-.home-label-input-add-video input[type="text"] {
+.home-label-input-add-video input[type='text'] {
   flex: 1;
   padding: var(--spacing-xs) var(--spacing-sm);
   font-size: var(--font-size-large);
@@ -87,11 +105,11 @@
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-.home-wrapper-input-add-video button{
+.home-wrapper-input-add-video button {
   border-radius: 0 var(--button-border-radius) var(--button-border-radius) 0;
 }
 
-.home-label-input-add-video input[type="text"]:focus {
+.home-label-input-add-video input[type='text']:focus {
   border-color: var(--text-tertiary);
   box-shadow: var(--shadow-sm);
 }

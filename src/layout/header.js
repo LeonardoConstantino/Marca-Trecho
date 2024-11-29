@@ -1,5 +1,16 @@
-import { getComponent, getImgComponent, getTextComponent } from '../utils/helpers';
+import {
+  getComponent,
+  getImgComponent,
+  getTextComponent,
+} from '../utils/helpers';
 import { navigation } from './navigation';
+import { ButtonType, createButton, IconSize } from '../components/button';
+import { showModal } from '../handlers/showModal';
+import { showSnackbar } from '../utils/showSnackbar';
+import { closeModal } from '../components/modal';
+import { getInputRadio } from './../components/inputRadio';
+import { toggleTheme } from '../handlers/toggleTheme';
+import { quickTip } from '../handlers/quickTip';
 // @ts-ignore
 import imageLogo from '../assets/images/logo.png';
 // @ts-ignore
@@ -8,31 +19,20 @@ import questionMark from '../assets/images/questionMark.svg';
 import share from '../assets/images/share.svg';
 // @ts-ignore
 import settings from '../assets/images/settings.svg';
-import { ButtonType, createButton, IconSize } from '../components/button';
-import { showModal } from '../handlers/showModal';
-import { showSnackbar } from '../utils/showSnackbar';
-import { closeModal } from '../components/modal';
-import { getInputRadio } from './../components/inputRadio';
-import { toggleTheme } from '../handlers/toggleTheme';
 
 const helpButton = createButton(
-  '',
-  () => {
-    showModal(getComponent('div', getTextComponent('Em breve...')), '', (e) => {
-      showSnackbar('Teste teste 123 teste');
-      closeModal(e);
-    });
-  },
+  'Dica rápida',
+  quickTip,
   questionMark,
   '',
   '',
   false,
   ButtonType.TERTIARY,
-  IconSize.SMALL,
+  IconSize.SMALL
 );
 
 const shareButton = createButton(
-  '',
+  'Compartilhar',
   () => {
     showModal(
       getComponent('div', getTextComponent('Em breve...')),
@@ -49,7 +49,7 @@ const shareButton = createButton(
   '',
   false,
   ButtonType.TERTIARY,
-  IconSize.SMALL,
+  IconSize.SMALL
 );
 
 const contentModalSettings = getComponent(
@@ -64,7 +64,7 @@ const contentModalSettings = getComponent(
 );
 
 const settingsButton = createButton(
-  '',
+  'Configurações',
   () => {
     showModal(contentModalSettings, 'modal-settings', toggleTheme);
   },
@@ -73,7 +73,7 @@ const settingsButton = createButton(
   '',
   false,
   ButtonType.TERTIARY,
-  IconSize.SMALL,
+  IconSize.SMALL
 );
 
 const headerActions = getComponent(
@@ -85,7 +85,7 @@ const headerActions = getComponent(
 headerActions.props.class = 'header-actions'; // Define a classe CSS para estilização
 
 // Cria o componente de imagem para o logotipo
-const img = getImgComponent(imageLogo, 'Logo', '40', '40');
+const img = getImgComponent(imageLogo, 'Logo', 40, 40);
 // Cria o componente de título
 const title = getComponent('h1', getTextComponent('Marca Trecho'));
 

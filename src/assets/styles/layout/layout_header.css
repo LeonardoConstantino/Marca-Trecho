@@ -35,6 +35,14 @@ header .header-actions {
   gap: var(--spacing-md);
 }
 
+header .header-actions button {
+  padding: var(--spacing-sm);
+}
+
+header .header-actions button span {
+  display: none;
+}
+
 header .wrapper-actions {
   display: flex;
   justify-content: flex-end;

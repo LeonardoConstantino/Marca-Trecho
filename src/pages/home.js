@@ -1,5 +1,4 @@
 // src/pages/home.js
-
 import { ButtonType, createButton, IconSize } from '../components/button';
 import {
   addChildrenToView,
@@ -9,14 +8,10 @@ import {
 import { showModal } from './../handlers/showModal';
 //@ts-ignore
 import play from '../assets/images/play.svg';
-//@ts-ignore
-// import arrow from '../assets/images/arrow.svg';
 import { getVideoList } from '../services/storageHandle';
 import { addVideoHandler } from '../handlers/addVideo';
 import { getVideoCard } from '../components/videoCard';
 import { emptyMessage } from './../components/emptyMessage';
-
-const videoList = getVideoList();
 
 const playerContainer = getComponent('div');
 playerContainer.props.id = 'player';
@@ -68,7 +63,7 @@ wrapperInputAddVideoMessage.props.class =
 
 export const addVideoContent = getComponent(
   'div',
-  getComponent('h3', getTextComponent('Adicionar Vídeo')),
+  getComponent('h2', getTextComponent('Adicionar Vídeo')),
   wrapperInputAddVideo,
   wrapperInputAddVideoMessage
 );
@@ -85,7 +80,6 @@ const introduction = getComponent(
     getTextComponent(
       'Marque trechos de vídeos diretamente no navegador. você pode criar e organizar marcações de partes importantes de vídeos do YouTube.'
     )
-
   ),
   getComponent(
     'small',
@@ -104,26 +98,32 @@ const introduction = getComponent(
 );
 introduction.props.class = 'home-introduction';
 
-const videosCards = videoList.map((video) => {
-  return getVideoCard(video);
-});
+export const getAddedVideos = ()=>{
+  const currentVideoList = getVideoList()
+  
+  const videosCards = currentVideoList.map((video) => {
+    return getVideoCard(video);
+  });
+  
+  const videosList = getComponent('ol', ...videosCards);
+  videosList.props.class = 'videos-list';
+  
+  const addedVideos = getComponent('div');
+  addedVideos.props.class = 'home-added-videos';
+  addedVideos.props['data-videosCardsContainer'] = '';
+  
+  addChildrenToView(
+    addedVideos,
+    currentVideoList.length === 0,
+    [
+      getComponent('h4', getTextComponent('Gerencie seus vídeos')),
+      emptyMessage('vídeos'),
+    ],
+    [getComponent('h4', getTextComponent('Gerencie seus vídeos')), videosList]
+  );
 
-const videosList = getComponent('ol', ...videosCards);
-videosList.props.class = 'videos-list';
-
-const addedVideos = getComponent('div');
-addedVideos.props.class = 'home-added-videos';
-addedVideos.props['data-videosCardsContainer'] = '';
-
-addChildrenToView(
-  addedVideos,
-  videoList.length === 0,
-  [
-    getComponent('h4', getTextComponent('Gerencie seus vídeos')),
-    emptyMessage('vídeos'),
-  ],
-  [getComponent('h4', getTextComponent('Gerencie seus vídeos')), videosList]
-);
+  return addedVideos
+}
 
 const playlists = getComponent(
   'div',
@@ -155,7 +155,7 @@ playlists.props.class = 'home-playlists';
 // );
 // videoManagementActions.props.class = 'home-video-management-actions';
 
-export const videoManagement = getComponent('div', addedVideos, playlists);
+export const videoManagement = getComponent('div', getAddedVideos(), playlists);
 videoManagement.props.class = 'home-video-management';
 
 export const homeView = getComponent('div');
@@ -163,7 +163,7 @@ homeView.props.class = 'view home';
 
 addChildrenToView(
   homeView,
-  videoList.length === 0,
+  getVideoList().length === 0,
   [introduction, videoManagement],
   [addVideoContent, videoManagement]
 );

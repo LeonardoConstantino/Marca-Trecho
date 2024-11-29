@@ -70,7 +70,16 @@ export const getIconComponent = (icon, size = 'normal') => {
   };
 };
 
-export const getImgComponent = (src, alt, width, height) => {
+/**
+ * Cria um componente de imagem com propriedades específicas.
+ *
+ * @param {string} src - A URL da imagem.
+ * @param {string} alt - O texto alternativo da imagem.
+ * @param {number} [width=100] - A largura da imagem em pixels.
+ * @param {number} [height=100] - A altura da imagem em pixels.
+ * @returns {Object} Um objeto representando o componente de imagem.
+ */
+export const getImgComponent = (src, alt, width = 100, height = 100) => {
   const img = getComponent('img');
   img.props.src = src;
   img.props.alt = alt;
@@ -236,7 +245,7 @@ export const getRandomId = () => {
  */
 export const getSmallestAvailableThumbnail = (
   videoId,
-  fallback = 'https://via.placeholder.com/120x90'
+  fallback = 'https://dummyimage.com/300'
 ) => {
   const resolutions = [1, 2, 3, 0]; // Ordem de menor para maior resolução
 
@@ -266,6 +275,11 @@ export const getSmallestAvailableThumbnail = (
   });
 };
 
+/**
+ * Extrai o ID de um vídeo do YouTube a partir de uma URL.
+ * @param {string} url - A URL do vídeo do YouTube.
+ * @returns {string|undefined} - O ID do vídeo ou undefined se a URL não for válida.
+ */
 export const videoIdFromURL = (url) => {
   const match = url.match(
     /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/i
@@ -273,6 +287,11 @@ export const videoIdFromURL = (url) => {
   return match ? match[1] : undefined;
 };
 
+/**
+ * Pausa a execução do código por um determinado período de tempo.
+ * @param {number} ms - O tempo em milissegundos que o código deve ser pausado.
+ * @returns {Promise<void>} Uma promessa que é resolvida após o tempo especificado.
+ */
 export const sleep = (ms) => {
-  return new Promise((resolve) => setTimeout(resolve, ms))
-}
+  return new Promise((resolve) => setTimeout(resolve, ms));
+};

@@ -1,4 +1,4 @@
-import { getTextComponent } from '../utils/helpers.js'
+import { getTextComponent } from '../utils/helpers.js';
 
 /**
  * Retorna um objeto que representa um elemento de interface do usuário do tipo "snackbar".
@@ -15,5 +15,5 @@ export const getSnackbar = (text, className = 'show') => {
       children: [getTextComponent(text)],
       class: className,
     },
-  }
-}
+  };
+};

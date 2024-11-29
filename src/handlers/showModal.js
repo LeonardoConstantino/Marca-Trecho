@@ -20,30 +20,30 @@ import { renderElement } from '../utils/renderElement.js';
  * @returns {void}
  */
 export const showModal = (
-    content,
-    className,
-    confirmeHandler,
-    textBtnConfirme,
-    titleBtnConfirme,
-    cancelHandler,
-    textBtnCancel,
-    titleBtnCancel
-  ) => {
-    const modal = renderElement(
-      getModal(
-        content,
-        className,
-        confirmeHandler,
-        textBtnConfirme,
-        titleBtnConfirme,
-        cancelHandler,
-        textBtnCancel,
-        titleBtnCancel
-      ),
-      true
-    );
-  
-    if (modal instanceof HTMLDialogElement) {
-      modal.showModal();
-    }
-  };
+  content,
+  className,
+  confirmeHandler,
+  textBtnConfirme,
+  titleBtnConfirme,
+  cancelHandler,
+  textBtnCancel,
+  titleBtnCancel
+) => {
+  const modal = renderElement(
+    getModal(
+      content,
+      className,
+      confirmeHandler,
+      textBtnConfirme,
+      titleBtnConfirme,
+      cancelHandler,
+      textBtnCancel,
+      titleBtnCancel
+    ),
+    true
+  );
+
+  if (modal instanceof HTMLDialogElement) {
+    modal.showModal();
+  }
+};

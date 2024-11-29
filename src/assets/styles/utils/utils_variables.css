@@ -43,21 +43,20 @@
   --button-shadow-hover: var(--shadow-lg);
   --button-shadow-focus: 0px 2px 4px rgba(0, 0, 0, 0.2);
   --button-shadow-disabled: none;
-  
+
   --button-bg-tertiary: var(--bg-tertiary);
   --button-text-tertiary: var(--text-primary);
   --button-border-tertiary: var(--border);
   --button-shadow-tertiary: 0 0 1.6px 0px var(--accent);
-  
+
   --button-border-tertiary-focus: var(--accent);
   --button-text-tertiary-focus: var(--text-primary);
   --button-shadow-tertiary-focus: 0 0 1px 0 var(--accent);
 
-  
   --button-text-tertiary-hover: var(--text-primary);
   --button-border-tertiary-hover: var(--accent);
   --button-shadow-tertiary-hover: 0 0 1px 0 var(--accent);
-  
+
   --button-bg-tertiary-disabled: transparent;
   --button-text-tertiary-disabled: var(--text-tertiary);
   --button-border-tertiary-disabled: var(--text-tertiary);
@@ -77,6 +76,7 @@
 
   --font-size-base: 1rem;
 
+  --font-size-xsmall: 0.75rem;
   --font-size-small: 0.875rem;
   --font-size-medium: 0.9rem;
   --font-size-large: 1.125rem;
@@ -102,7 +102,7 @@
   --spacing-xl: calc(var(--space-unit) * 2); /* 32px */
 
   /* Layout */
-  --layout-max-width: 800px;
+  --layout-max-width: 1100px;
 
   /* Bordas */
   --border-radius-xs: 0.25rem; /* 4px */
@@ -132,7 +132,8 @@
   --fade-in: fade-in var(--animation-duration-extra-long)
     var(--timing-function-quint) both;
   --fade-out: fade-out var(--animation-duration-extra-long) ease-out both;
-  --blink-invalid: blink-invalid var(--animation-duration-extra-long) var(--timing-function-quint) infinite;
+  --blink-invalid: blink-invalid var(--animation-duration-extra-long)
+    var(--timing-function-quint) infinite;
 }
 
 /* Modo escuro */
@@ -166,7 +167,7 @@
     saturate(120%) hue-rotate(0deg) brightness(60%) contrast(75%);
   --icon-filter-tertiary: brightness(0) saturate(100%) invert(40%) sepia(10%)
     saturate(300%) hue-rotate(180deg) brightness(85%) contrast(85%);
-    
+
   --button-bg-primary: var(--accent);
   --button-bg-primary-hover: #ff3030;
   --button-bg-primary-focus: #b30000;
@@ -195,16 +196,15 @@
   --button-text-tertiary: var(--text-primary);
   --button-border-tertiary: var(--border);
   --button-shadow-tertiary: 0 0 1.6px 0px var(--accent);
-  
+
   --button-border-tertiary-focus: var(--accent);
   --button-text-tertiary-focus: var(--text-primary);
   --button-shadow-tertiary-focus: 0 0 1px 0 var(--accent);
 
-  
   --button-text-tertiary-hover: var(--text-primary);
   --button-border-tertiary-hover: var(--accent);
   --button-shadow-tertiary-hover: 0 0 1px 0 var(--accent);
-  
+
   --button-bg-tertiary-disabled: transparent;
   --button-text-tertiary-disabled: var(--text-tertiary);
   --button-border-tertiary-disabled: var(--text-tertiary);

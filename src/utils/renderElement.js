@@ -3,9 +3,7 @@
  */
 
 /**
- * EventDelegator fornece um sistema de gerenciamento centralizado para manipulação de eventos
- * em elementos criados dinamicamente. Ele utiliza delegação de eventos para reduzir o uso de memória
- * e melhorar o desempenho, especialmente em aplicações com um grande número de ouvintes de eventos.
+ * EventDelegator fornece um sistema de gerenciamento centralizado para manipulação de eventos em elementos criados dinamicamente. Ele utiliza delegação de eventos para reduzir o uso de memória e melhorar o desempenho, especialmente em aplicações com um grande número de ouvintes de eventos.
  */
 export const EventDelegator = {
   /**
@@ -136,26 +134,26 @@ export const EventDelegator = {
    * @param {HTMLElement} element - O elemento do qual os manipuladores de eventos devem ser removidos.
    */
   cleanup(element) {
-    // Obtém o ID do manipulador do dataset do elemento.
-    const handlerId = element.dataset.handlerId;
-    if (handlerId) {
-      // Remove os manipuladores de eventos associados.
-      this.removeEventHandlers(handlerId);
-      // Remove o ID do manipulador do dataset do elemento.
-      delete element.dataset.handlerId;
-      // Reduz o contador de IDs de manipuladores.
-      --this.handlerId
+    if (!(element instanceof HTMLElement)) {
+      console.error('O elemento fornecido não é um HTMLElement.');
+      return;
     }
 
-    // Remove de forma recursiva os IDs de manipuladores e manipuladores de eventos de todos os elementos filhos.
-    element.querySelectorAll('[data-handler-id]').forEach((child) => {
-      const childElement = /** @type {HTMLElement} */ (child);
-      const childHandlerId = childElement.dataset.handlerId;
-      if (childHandlerId) {
-        this.removeEventHandlers(childHandlerId);
-        delete childElement.dataset.handlerId;
-        --this.handlerId
+    // Função auxiliar para limpar eventos de um único elemento
+    const clearElementHandler = (el) => {
+      const handlerId = el.dataset.handlerId;
+      if (handlerId) {
+        this.removeEventHandlers(handlerId); // Remove os eventos associados ao handlerId
+        delete el.dataset.handlerId; // Remove o handlerId do dataset
       }
+    };
+
+    // Limpa eventos do elemento raiz
+    clearElementHandler(element);
+
+    // Itera apenas sobre os elementos filhos que realmente precisam ser limpos
+    element.querySelectorAll('[data-handler-id]').forEach((child) => {
+      clearElementHandler(child);
     });
   },
 };
@@ -178,15 +176,15 @@ export const renderElement = (
 
     // Suporte para Fragment (<>)
     if (type === '<>') {
-      /** @type {DocumentFragment} */ 
+      /** @type {DocumentFragment} */
       const fragment = document.createDocumentFragment();
       const children = Array.isArray(props.children) ? props.children : [];
-      
+
       children.forEach((child) => {
         const childElement = renderElement(child, false, container);
         if (childElement) fragment.appendChild(childElement);
       });
-      
+
       return isAppend ? container.appendChild(fragment) : fragment;
     }
 
@@ -224,7 +222,7 @@ export const renderElement = (
           if (typeof value !== 'string' && typeof value !== 'number') {
             throw new Error(`Invalid attribute value for ${key}: ${value}`);
           }
-          const parsedValue = typeof value === 'number' ? String(value) : value
+          const parsedValue = typeof value === 'number' ? String(value) : value;
           element.setAttribute(key, parsedValue);
         });
       }

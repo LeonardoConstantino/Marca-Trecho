@@ -15,7 +15,7 @@ import { getComponent, getTextSpan } from '../utils/helpers';
 export const ButtonType = Object.freeze({
   PRIMARY: 'primary',
   SECONDARY: 'secondary',
-  TERTIARY: 'tertiary'
+  TERTIARY: 'tertiary',
 });
 const defaultButtonType = ButtonType.PRIMARY;
 
@@ -31,7 +31,7 @@ const defaultButtonType = ButtonType.PRIMARY;
 export const IconSize = Object.freeze({
   SMALL: 'small',
   NORMAL: 'normal',
-  LARGE: 'large'
+  LARGE: 'large',
 });
 const defaultIconSize = IconSize.NORMAL;
 /**
@@ -81,6 +81,7 @@ export const createButton = (
 
   // Cria a representação do botão com um span filho contendo o texto.
   const button = getComponent('button');
+  button.props['aria-label'] = text;
   if (text !== '') button.props.children.push(getTextSpan(text));
 
   // Adiciona o evento onClick se for fornecido.
